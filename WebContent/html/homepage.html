@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="homepage.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+  <!--Navigation Bar -->
+  <div class="topnav">
+    <img id="Logo" src="logo.png" alt="Logo" />
+    <a id="HomeLink" class="activeTab" href="homepage.html">Home</a>
+    <a id="ReservationLink" href="myReservationsAndFlightHistory.html">My Reservations/Flight History</a>
+    <div class="dropdown">
+        <img id="AccountLogo" src="account_iconBlackBorder.png" alt="Account Logo" />
+        <div class="dropdown-content">
+          <a href="login.html">Log in</a>
+          <a href="createAccount.html">Sign up</a>
+          <a href="myAccount.html">My Account</a>
+        </div>
+    </div>
+  </div>
+
+  <main>
+    <form>
+      From: <input type="text" class="fsize" name="From" placeholder="Newark (EWR) ">      
+      To:  <input type="text" class="fsize" name="To" placeholder="Honolulu (HNL)"> 
+      Departing: <input type="text" class="fsize" name="startDate" placeholder="mm/dd/yyyy"> 
+      Returning: <input type="text" class="fsize" name="endDate" placeholder="mm/dd/yyyy"> 
+      <input type="submit" name="Search">
+    </form>
+
+  </main>
+</body>
+
+</html>

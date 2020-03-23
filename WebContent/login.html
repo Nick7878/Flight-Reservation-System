@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login page</title>
+  <link href="css/login.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+  <div class="topnav">
+    <img id="Logo" src="logo.png" alt="Logo" />
+    <a id="HomeLink" href="homepage.html">Home</a>
+    <a id="ReservationLink" href="myReservationsAndFlightHistory.html">My Reservations/Flight History</a>
+    <div class="dropdown">
+        <img id="AccountLogo" src="account_iconBlackBorder.png" alt="Account Logo" />
+        <div class="dropdown-content">
+          <a href="login.html">Log in</a>
+          <a href="createAccount.html">Sign up</a>
+          <a href="myAccount.html">My Account</a>
+        </div>
+    </div>
+  </div>
+
+  <main>
+    <!--- main will contain a table that holds login + password info -->
+    <h2 id="loginText">Login</h2>
+
+    <table>
+      <!--- row for email -->
+      <tr>
+        <td align="left"> Email: </td>
+        <td> <input type="text" size="25px" name="box"> </td>
+      </tr>
+      <!--- row for password -->
+      <tr>
+        <td> Password: </td>
+        <td> <input type="text" size="25px" name="box"> </td>
+      </tr>
+    </table>
+
+    <table>
+
+      <tr>
+        <td> <input type="submit" onclick="" value="Login"> </td>
+        <td> <input type="submit" onclick="" value="Forgot Password"> </td>
+      </tr>
+
+      <div class="row">
+
+        <td> New user? </td>
+
+        <tr>
+          <!--This is how to make a button go to a webpage. When we do the javascript, we'll get rid of this-->
+          <form action="createAccount.html">
+            <td class = "submitButton"> <input type="submit" onclick="" value="Create Account"> </td>
+          </form>
+        </tr>
+
+      </div>
+    </table>
+  </main>
+</body>
+
+</html>

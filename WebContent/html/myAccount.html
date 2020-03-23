@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="myAccount.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!--Navigation Bar -->
+  <div class="topnav">
+    <img id="Logo" src="logo.png" alt="Logo" />
+    <a id="HomeLink" href="homepage.html">Home</a>
+    <a id="ReservationLink" href="myReservationsAndFlightHistory.html">My Reservations/Flight History</a>
+    <div class="dropdown">
+      <img id="AccountLogo" src="account_iconBlackBorder.png" alt="Account Logo" />
+      <div class="dropdown-content">
+        <a href="login.html">Log in</a>
+        <a href="createAccount.html">Sign up</a>
+        <a href="myAccount.html">My Account</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!--Preferences-->
+    <dl>
+      <dt>
+        <div id="pref">
+          <table>
+            <th> Change Email/Password </th>
+            <th> </th>
+            <tr>
+              <td> Email Address </td>
+              <td>
+                <form action="/action_page.php">
+                  <input type="text" id="email" name="emailaddress" placeholder="jonhsmith123@site.com">
+              </td>
+            </tr>
+            <tr>
+              <td> Password </td>
+              <td>
+                <input type="text" id="pass" name="password" placeholder="Password1234">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="submit" name="Change Password">
+              </td>
+            </tr>
+          </table>
+        </div>
+      </dt>
+    </dl>
+
+    <!--Privacy-->
+
+
+    <dl>
+      <dt>
+        <div id="priv">
+          <table>
+            <th> Change Personal Info </th>
+            <th> </th>
+            <tr>
+              <td>First Name</td>
+              <td>
+                <input type="text" id="fname" name="firstname" placeholder="John">
+              </td>
+            </tr>
+            <tr>
+              <td>Last Name </td>
+              <td>
+                <input type="text" id="lname" name="lastname" placeholder="Smith">
+              </td>
+            </tr>
+            <tr>
+              <td> City </td>
+              <td>
+                <input type="text" id="city" name="cityname" placeholder="Albany">
+              </td>
+            </tr>
+            <tr>
+              <td> State </td>
+              <td>
+                <input type="text" id="state" name="statename" placeholder="New York">
+              </td>
+            </tr>
+            <tr>
+              <td> Zip Code </td>
+              <td>
+                <input type="text" id="zip" name="zipcode" placeholder="12084">
+              </td>
+            </tr>
+            <tr>
+              <td> Phone Number </td>
+              <td>
+                <input type="text" id="phone" name="phonenumber" placeholder="123-4567-8900">
+              </td>
+            </tr>
+            <tr>
+              <td> Credit Card Number</td>
+              <td>
+                <input type="text" id="card" name="creditcard" placeholder="XXXX-XXXX-XXXX-1234">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="submit" name="Change Password">
+              </td>
+            </tr>
+          </table>
+        </div>
+      </dt>
+    </dl>
+
+
+
+
+
+  </main>
+
+
+
+
+</body>
+
+</html>
