@@ -20,31 +20,33 @@
           </div>
         <div class = "signupform">
             <h1> Create Account Now </h1>
-            <form action="createAccount.jsp">
+            <form action="../createAccount.jsp" method="post">
                 <label>First Name:</label> <br>
-                <input type = "field" class = "input-box" placeholder = "Alec"> <br>
+                <input type = "field" class = "input-box" placeholder = "Alec" name="firstName"> <br>
                 <label>Last Name: </label> <br> 
-                <input type = "field" class = "input-box" placeholder = "Rebadavia"> <br>
+                <input type = "field" class = "input-box" placeholder = "Rebadavia" name="lastName"> <br>
                 <label>Address:</label><br>
-                <input type = "field" class = "input-box" placeholder = "16 Seminary Place"> <br>
+                <input type = "field" class = "input-box" placeholder = "16 Seminary Place" name="address"> <br>
                 <label> City: </label> <br>
-                <input type = "field" class = "input-box" placeholder  = "New Brunswick"> <br>
+                <input type = "field" class = "input-box" placeholder  = "New Brunswick" name="city"> <br>
                 <label> State:</label> <br>
-                <input type = "field" class = "input-box" placeholder = "New Jersey"> <br>
-                <label>Zipcode:</label> <br>
-                <input type = "field" class = "input-box" placeholder = "08901"><br>
+                <input type = "field" class = "input-box" placeholder = "New Jersey" name="state"> <br>
+                <label>Zip Code:</label> <br>
+                <input type = "field" class = "input-box" placeholder = "08901" name="zipCode"><br>
                 <label>Phone Number:</label><br>
-                <input type = "field" class = "input-box" placeholder = "732-357-9753"> <br>
+                <input type = "field" class = "input-box" placeholder = "732-357-9753" name="telephone"> <br>
                 <label> Email: </label> <br>            
-                <input type = "field" class = "input-box" placeholder = "vandyck@gmail.com"> <br>
+                <input type = "field" class = "input-box" placeholder = "vandyck@gmail.com" name="email"> <br>
+                <label> Credit Card: </label><br>
+                <input type = "field" class = "input-box" placeholder = "XXXXXXXXXXXXXXXX" name="creditCardNum"> <br>
                 <label>Password: </label> <br>
-                <input type = "field" class = "input-box" placeholder = "Your Password"> <br>
+                <input type = "field" class = "input-box" placeholder = "Your Password" name="password"> <br>
                 <label>Confirm Password:</label> <br>
-                <input type = "field" class = "input-box" placeholder = "Confirm Password"> <br>
+                <input type = "field" class = "input-box" placeholder = "Confirm Password" name="confirmPassword"> <br>
                 <p></p>
                 <input type = "submit" name = "Create Account">
-                <p>Already have an account? Login <a href="login.html" target="_self">Here</a></p>
             </form>
+             <p>Already have an account? Login <a href="login.html" target="_self">Here</a></p>
         </div>
     </body>
 </html>

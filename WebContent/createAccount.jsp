@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!--Import some libraries that have classes that we need -->
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="java.io.*,java.util.*,java.sql.Date,java.sql.*"%>
 <%@ page import=" java.util.regex.Pattern"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html>
@@ -22,9 +22,11 @@
 	String city = request.getParameter("city");
 	String state = request.getParameter("state");
 	String zipCode = request.getParameter("zipCode");
-	String phoneNumber = request.getParameter("telephone");
+	String telephone = request.getParameter("telephone");
 	String email = request.getParameter("email");
+	String creditCardNum = request.getParameter("creditCardNum");
 	String password = request.getParameter("password");
+	String confirmPassword = request.getParameter("confirmPassword");
 	
 	
 	try {
@@ -35,13 +37,15 @@
 		Class.forName("com.mysql.jdbc.Driver");
 
 		//Create a connection to your DB
-		Connection con = DriverManager.getConnection(url, "bbq", "12345678");
+		Connection con = DriverManager.getConnection(url, "root", "gameboy*1");
 
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		
+		System.out.println(city);
+		
 		// 1. check empty
-		if( firstName.equals("") || lastName.equals("") || address.equals("") || city.equals("") || state.equals("") || zipCode.equals("") || phoneNumber.equals("") || email.equals("") || password.equals("")){
+		if( firstName.equals("") || lastName.equals("") || address.equals("") || city.equals("") || state.equals("") || zipCode.equals("") || telephone.equals("") || email.equals("") || creditCardNum.equals("") || password.equals("")){
 			System.out.println("empty detected!");
 			%> 
 			<!-- if error, show the alert and go back to login page --> 
@@ -78,7 +82,7 @@
 			%> 
 			<!-- if error, show the alert and go back to login page --> 
 			<script> 
-			    alert("Sorry, but the email you entered has been used");
+			    alert("email is currently in use");
 			    <%--window.location.href = "login.jsp?signup"; --%>
 			</script>
 			<%
@@ -103,27 +107,69 @@
 			<!-- if error, show the alert and go back to login page --> 
 			<script> 
 			    alert("Sorry, the password should be at most 45 characters");
-			    <%--window.location.href = "login.jsp?signup";--%>
+			    <%--window.location.href = "createAccount.jsp";--%>
 			</script>
 			<%
 			return;			
 		}
 		
-		Date creationDate = new Date();
+		if(!password.equals(confirmPassword)) {
+			System.out.println("Passwords do not match");
+			%> 
+			<!-- if error, show the alert and go back to login page --> 
+			<script> 
+			    alert("Passwords do not match");
+			    <%--window.location.href = "createAccount.jsp";--%>
+			</script>
+			<%
+			return;	
+		}
+		
+		if(creditCardNum.length() != 16) {
+			System.out.println("Invalid Credit Card Number");
+			%> 
+			<!-- if error, show the alert and go back to login page --> 
+			<script> 
+			    alert("Invalid Credit Card Number");
+			    <%--window.location.href = "createAccount.jsp";--%>
+			</script>
+			<%
+			return;	
+		}
+		
+		long millis = System.currentTimeMillis();
+		java.sql.Date creationDate = new java.sql.Date(millis);
 		//Make an insert statement for the accounts table:
-		String insert = "INSERT INTO accounts (, , password, email, )"
-				+ " VALUES (?, ?, 0, '')";
+		String insert = "INSERT INTO accounts (creationDate, accountPassword, email, preferences)"
+				+ " VALUES (?, ?, ?, '')";
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
 		System.out.println(insert);
 
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
-		ps.setString(1, newName);
-		ps.setString(2, newEmail);
-		ps.setString(3, newPswd);
+		ps.setDate(1, creationDate);
+		ps.setString(2, password);
+		ps.setString(3, email);
 		//Run the query against the DB
 		
 		ps.executeUpdate();
+		ps.close();
+		
+		String insertIntoCustomers = "Insert INTO customer (lastName, firstName, address, city, state, zipCode, telephone, creditCardNum)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement psc = con.prepareStatement(insertIntoCustomers);
+		System.out.println(insertIntoCustomers);
+		
+		psc.setString(1, lastName);
+		psc.setString(2, firstName);
+		psc.setString(3, address);
+		psc.setString(4, city);
+		psc.setString(5, state);
+		psc.setString(6, zipCode);
+		psc.setString(7, telephone);
+		psc.setString(8, creditCardNum);
+		
+		psc.executeUpdate();
 
 		//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.
 		con.close();
@@ -131,8 +177,8 @@
 
 		//out.print("new user has been created!");
 
-		session.setAttribute("user_name", newName);
-		session.setAttribute("user_email", newEmail);
+		//session.setAttribute("user_name", newName);
+		//session.setAttribute("user_email", newEmail);
 		%>
 		<script> 
 		    alert("Congratulation! Your new account is created!");
@@ -140,12 +186,12 @@
 		</script>
 		<%
 	} catch (Exception ex) {
-		System.out.println("insert error");
+		ex.printStackTrace();
 		%> 
 		<!-- if error, show the alert and go back to login page --> 
 		<script> 
 		    alert("Sorry, something went wrong on our server, failed to create your account");
-		    window.location.href = "login.jsp?signup";
+		    <%--window.location.href = "login.jsp?signup";--%>
 		</script>
 		<%
 		return;
