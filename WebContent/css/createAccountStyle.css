@@ -54,7 +54,7 @@ input[type = submit] {
 }
 
 /*The default appearance of the tabs in the navigation bar*/
-.topnav #ReservationLink, #HomeLink {
+.topnav #ReservationLink, #HomeLink, #ManagerLink {
     float: left;
     color: #f2f2f2;
     text-align: center;
