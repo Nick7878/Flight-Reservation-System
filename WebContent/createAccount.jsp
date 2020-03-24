@@ -170,8 +170,8 @@
 		con.close();
 		%>
 		<script> 
-		    alert("Congratulation! Your new account is created!");
-	    	window.location.href = "login.html";
+		    alert("Congratulations! Your new account is created!");
+	    	window.location.href = "html/login.html";
 		</script>
 		<%
 	} catch (Exception ex) {
@@ -180,7 +180,7 @@
 		<!-- if error, show the alert and go back to login page --> 
 		<script> 
 		    alert("Sorry, something went wrong on our server, failed to create your account");
-		    window.location.href = "createAccount.html";
+		    window.location.href = "html/createAccount.html";
 		</script>
 		<%
 		return;

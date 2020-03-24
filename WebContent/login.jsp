@@ -37,7 +37,7 @@
 				%>
 				<script> 
 				    alert("Please enter your email and password");
-				    window.location.href = "login.jsp";
+				    window.location.href = "login.html";
 				</script>
 				<% 
 			} else {
