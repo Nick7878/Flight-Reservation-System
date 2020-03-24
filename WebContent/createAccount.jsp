@@ -157,8 +157,8 @@
 		ps.executeUpdate();
 		ps.close();
 		
-		String insertIntoCustomers = "Insert INTO customer (lastName, firstName, address, city, state, zipCode, telephone, creditCardNum)"
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String insertIntoCustomers = "Insert INTO customer (lastName, firstName, address, city, state, zipCode, telephone, creditCardNum,isManager)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement psc = con.prepareStatement(insertIntoCustomers);
 		System.out.println(insertIntoCustomers);
 		
@@ -170,6 +170,7 @@
 		psc.setString(6, zipCode);
 		psc.setString(7, telephone);
 		psc.setString(8, creditCardNum);
+		pcs.setString(9, isManager);
 		
 		psc.executeUpdate();
 
