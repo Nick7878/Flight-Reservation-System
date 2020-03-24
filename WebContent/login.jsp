@@ -42,13 +42,21 @@
 				<% 
 			} else {
 				String str = "SELECT * FROM accounts WHERE email='" + email + "' AND accountPassword='" + password + "'";
-	
+				
+
+
 				//Run the query against the database.
 				ResultSet result = stmt.executeQuery(str);
 				//System.out.println(str);
 	
 				if (result.next()) {
 					//close the connection.
+					if(result.getBoolean("isManager")){
+						<script>
+						document.getElementById("ManagerLinkManager").style.property.opacity = 100;
+						</script>
+					} 
+					
 					%>
 					<script> 
 			    		window.location.href = "html/homepage.html";
@@ -69,8 +77,8 @@
 		} catch (Exception e) {
 			out.print("failed");
 			%>
-			<script> 
-		    	alert("Sorry, unexcepted error happens.");
+			<script>
+				alert("Sorry, unexcepted error happens.");
 		    	window.location.href = "login.jsp";
 			</script>
 			<%			
