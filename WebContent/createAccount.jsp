@@ -87,6 +87,12 @@
 			<%
 			return;
 		}
+
+		boolean isManager = false;
+		//3.5 check if user is manager 
+		if(checkEmailStr.contains("@group15")){
+			isManager = true;
+		}
 		
 		// 4. check the password length
 		if(password.length() < 8){
