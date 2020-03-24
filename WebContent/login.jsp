@@ -50,7 +50,7 @@
 					%>
 					<script> 
 				 	   //alert("login success!");
-			    		window.location.href = "homepage.html";
+			    		window.location.href = "html/homepage.html";
 					</script>
 					<%				
 				} else {
@@ -58,7 +58,7 @@
 					%>
 					<script> 
 				    	alert("User not found, or you entered a wrong password.");
-				    	window.location.href = "login.html";
+				    	window.location.href = "html/login.html";
 					</script>
 					<%  
 				}
