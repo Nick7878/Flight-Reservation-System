@@ -16,11 +16,13 @@
 
 		try {
 			//Create a connection string
+			//name the schema cs336project otherwise this url will not work!
 			String url = "jdbc:mysql://localhost:3306/cs336project?useSSL=false";
 			//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 			Class.forName("com.mysql.jdbc.Driver");
 
 			//Create a connection to your DB
+			//the second argument is the username, and the third argument is the password. Password will be different for everyone
 			Connection con = DriverManager.getConnection(url, "root", "gameboy*1");
 			
 			//Create a SQL statement
@@ -49,7 +51,6 @@
 					//close the connection.
 					%>
 					<script> 
-				 	   //alert("login success!");
 			    		window.location.href = "html/homepage.html";
 					</script>
 					<%				

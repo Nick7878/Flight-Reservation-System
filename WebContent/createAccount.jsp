@@ -36,7 +36,7 @@
 		//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 		Class.forName("com.mysql.jdbc.Driver");
 
-		//Create a connection to your DB
+		//Create a connection to the DB
 		Connection con = DriverManager.getConnection(url, "root", "gameboy*1");
 
 		//Create a SQL statement
@@ -48,13 +48,12 @@
 		if( firstName.equals("") || lastName.equals("") || address.equals("") || city.equals("") || state.equals("") || zipCode.equals("") || telephone.equals("") || email.equals("") || creditCardNum.equals("") || password.equals("")){
 			System.out.println("empty detected!");
 			%> 
-			<!-- if error, show the alert and go back to login page --> 
+			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Sorry, but all fields must be filled to create a new account.");
 			    window.location.href = "html/createAccount.html";
 			</script>
 			<%
-			//response.sendRedirect("emptyInput.html");
 			return;
 		}
 		
@@ -63,7 +62,7 @@
         if( !ptr.matcher(email).matches()){
 			System.out.println("email format error!");
 			%> 
-			<!-- if error, show the alert and go back to login page --> 
+			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Sorry, it seems that the email you entered is not in correct format");
 			    window.location.href = "html/createAccount.html";
@@ -93,7 +92,7 @@
 		if(password.length() < 8){
 			System.out.println("password too short!");
 			%> 
-			<!-- if error, show the alert and go back to login page --> 
+			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Sorry, the password should be at least 8 characters");
 			    window.location.href = "html/createAccount.html";
@@ -104,7 +103,7 @@
 		else if( password.length() > 20 ){
 			System.out.println("password too long!");
 			%> 
-			<!-- if error, show the alert and go back to login page --> 
+			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Sorry, the password should be at most 45 characters");
 			    window.location.href = "html/createAccount.html";
@@ -116,7 +115,7 @@
 		if(!password.equals(confirmPassword)) {
 			System.out.println("Passwords do not match");
 			%> 
-			<!-- if error, show the alert and go back to login page --> 
+			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Passwords do not match");
 			    window.location.href = "html/createAccount.html";
@@ -128,7 +127,7 @@
 		if(creditCardNum.length() != 16) {
 			System.out.println("Invalid Credit Card Number");
 			%> 
-			<!-- if error, show the alert and go back to login page --> 
+			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Invalid Credit Card Number");
 			    window.location.href = "html/createAccount.html";
@@ -139,18 +138,15 @@
 		
 		long millis = System.currentTimeMillis();
 		java.sql.Date creationDate = new java.sql.Date(millis);
-		//Make an insert statement for the accounts table:
 		String insert = "INSERT INTO accounts (creationDate, accountPassword, email, preferences)"
 				+ " VALUES (?, ?, ?, '')";
-		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
+
 		PreparedStatement ps = con.prepareStatement(insert);
 		System.out.println(insert);
 
-		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 		ps.setDate(1, creationDate);
 		ps.setString(2, password);
 		ps.setString(3, email);
-		//Run the query against the DB
 		
 		ps.executeUpdate();
 		ps.close();
@@ -171,18 +167,11 @@
 		
 		psc.executeUpdate();
 
-		//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.
 		con.close();
-
-
-		//out.print("new user has been created!");
-
-		//session.setAttribute("user_name", newName);
-		//session.setAttribute("user_email", newEmail);
 		%>
 		<script> 
 		    alert("Congratulation! Your new account is created!");
-	    	window.location.href = "driverOrPassenger.jsp";
+	    	window.location.href = "login.html";
 		</script>
 		<%
 	} catch (Exception ex) {
@@ -191,7 +180,7 @@
 		<!-- if error, show the alert and go back to login page --> 
 		<script> 
 		    alert("Sorry, something went wrong on our server, failed to create your account");
-		    <%--window.location.href = "login.jsp?signup";--%>
+		    window.location.href = "createAccount.html";
 		</script>
 		<%
 		return;
