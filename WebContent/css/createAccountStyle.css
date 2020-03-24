@@ -47,6 +47,16 @@ input[type = submit] {
     border-radius: 4px;
     box-sizing: border-box;
   }
+  
+   input[type=number]{
+    width: 56%;
+    padding: 5px 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
 
 .topnav {
     overflow: hidden;
