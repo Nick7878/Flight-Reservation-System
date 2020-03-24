@@ -170,7 +170,7 @@
 		psc.setString(6, zipCode);
 		psc.setString(7, telephone);
 		psc.setString(8, creditCardNum);
-		pcs.setString(9, isManager);
+		psc.setBoolean(9, isManager);
 		
 		psc.executeUpdate();
 
