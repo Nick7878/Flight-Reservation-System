@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="../css/managerAccount.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!--Navigation Bar -->
+  <div class="topnav">
+    <img id="Logo" src="../images/logo.png" alt="Logo" />
+    <a id="HomeLink" href="homepage.html">Home</a>
+    <a id="ReservationLink" href="myReservationsAndFlightHistory.html">My Reservations/Flight History</a>
+    <div class="dropdown">
+      <img id="AccountLogo" src="../images/account_iconBlackBorder.png" alt="Account Logo" />
+      <div class="dropdown-content">
+        <a href="login.html">Log in</a>
+        <a href="createAccount.html">Sign up</a>
+        <a href="myAccount.html">My Account</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!--Customer information table -->
+    <h2>Customer Information</h2>
+
+    
+    <table align="center" style="width: 100%;">
+      
+      <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Adress</th>
+        <th>City</th>
+        <th>State</th>
+        <th>ipCode</th>
+        <th>Telephone</th>
+        <th>Credicard?</th>
+        <th> Option</th>
+      </tr>
+      <!--Place holder for the sql information-->
+      <tr>
+        <th>Place-holder</th>
+        <th>Place-holder</th>
+        <th>Place-holder</th>
+        <th>Place-holder</th>
+        <th>Place-holder</th>
+        <th>Place-holder</th>
+        <th>Place-holder</th>
+        <th>Place-holder</th>
+        <th>edit</th> <!--Edit button will provide options to add delet or change information-->
+      </tr>
+      
+    </table align="center">
+
+    <!-- Sales report for months-->
+    <h2>Sales Report</h2>
+    <table id = "salesReport" align="center" style="width: 100%;">
+      
+      <tr>
+        <th>Jan</th>
+        <th>Feb</th>
+        <th>Mar</th>
+        <th>Apr</th>
+        <th>May</th>
+        <th>Jun</th>
+        <th>Jul</th>
+        <th>Aug</th>
+        <th>Sep</th>
+        <th>Oct</th>
+        <th>Nov</th>
+        <th>Dec</th>
+      </tr> 
+      <tr>
+        <th>Sales</th>
+        <th>Sales</th>
+        <th>Sales</th>
+        <th>Sales</th>
+        <th>Sales</th>
+        <th>Sales</th>
+        <th>Sales</th>
+        <th>Sales</th>
+        <th>Sales</th>
+        <th>Sales</th>
+        <th>Sales</th>
+        <th>Sales</th>
+      </tr> 
+    </table>
+
+    <!-- Flight history, must be combined with SQL data-->
+    <h2>All Reservations</h2>
+    <table align="center" style="width: 100%;">
+      <tr>
+          <th>Reservation #</th>
+          <th>Departure City/Airport</th>
+          <th>Arrival City/Airport</th>
+          <th>Departure Date/Time</th>
+          <th>Arrival Date/Time</th>
+          <th>Returning Departure Date/Time</th>
+          <th>Returning Arrival Date/Time</th>
+          <th>Stops</th>
+          <th>Seats</th>
+          <th>Total Cost</th>
+      </tr>
+      <tr>
+          <td>787878</td>
+          <td>Newark/Newark International Airport</td>
+          <td>San Francisco/San Francisco International Airport</td>
+          <td>3/15/20, 7:00 AM</td>
+          <td>3/15/20, 1:00 PM</td>
+          <td>3/21/20, 12:00 PM</td>
+          <td>3/21/20, 5:00 PM</td>
+          <td>Nonstop</td>
+          <td>3</td>
+          <td>$1800.00</td>
+      </tr>
+      <tr>
+          <td>787879</td>
+          <td>Newark/Newark International Airport</td>
+          <td>San Francisco/San Francisco International Airport</td>
+          <td>3/15/20, 7:00 AM</td>
+          <td>3/15/20, 1:00 PM</td>
+          <td>3/21/20, 12:00 PM</td>
+          <td>3/21/20, 5:00 PM</td>
+          <td>Nonstop</td>
+          <td>3</td>
+          <td>$1800.00</td>
+      </tr>
+  </table>
+
+
+  <!--List of Reservations for flight number -->
+  <h2>Reservations Flight Numbeer</h2>
+  <table align="center" style="width: 100%;">
+    <tr>
+      <th>Flight number</th>
+      <th>Reservations</th>
+    </tr>
+    <!--Place holder for the SQL code-->
+    <tr>
+      <th>Place-holder</th>
+      <th>Place-holder</th>
+    </tr>
+  </table>
+  <!--List of Reservations for customer name  -->
+  <h2>Reservations Customer Names</h2>
+  <table align="center" style="width: 100%;">
+    <tr>
+      <th>Firsrt Nmae</th>
+      <th>Last Name</th>
+      <th>Reservations</th>
+    </tr>
+    <!--Place holder for the SQL code-->
+    <tr>
+      <th>Place-holder</th>
+      <th>Place-holder</th>
+      <th>Place-holder</th>
+    </tr>
+  </table>
+
+  <!--Revenue Table for flights -->
+  <h3>Revenue List: Flight</h3>
+  <table align="center" style="width: 50%;">
+    <tr> 
+      <th> Flight </th>
+      <th> Revenue</th>
+    </tr>
+    <tr>
+      <th>Place-holder</th>
+      <th>Place-holder</th>
+    </tr>
+  </table>
+  <!--Revenue Table for Destination City-->
+  <h3>Revenue List: Destination City</h3>
+  <table align="center" style="width: 50%;">
+    <tr>
+      <th>Destination City</th>
+      <th>Revenue</th>
+    </tr>
+    <tr>
+      <th>Place-holder</th>
+      <th>Place-holder</th>
+    </tr>
+  </table>
+  <!--Revenue Table for Customer-->
+  <h3>Revenue List: Customer</h3>
+  <table align="center" style="width: 50%;">
+    <tr>
+      <!--Customer should be ordered from highest to lowest to satisfy #6-->
+      <th>Customer</th>
+      <th>Revenue</th>
+    </tr>
+    <tr>
+      <th>Place-holder</th>
+      <th>Place-holder</th>
+    </tr>
+  </table>
+
+
+    <!--#6 - #10 List of most active flights and other activities-->
+  <h2> Manager Table </h2>
+  <table align="center" style="width: 100%;">
+    <tr>
+      <th></th>
+    </tr>
+  </table>
+
+  </main>
+</body>
+</html>
