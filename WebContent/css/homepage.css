@@ -77,6 +77,14 @@ ul {
     column-width: 100px;
 }
 
+#loginDropdown {
+    display: block;
+}
+
+#createAccountDropdown {
+	display: block;
+}
+
 
 /*Use this for the search function */
 

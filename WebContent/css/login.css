@@ -49,6 +49,14 @@ main [type = submit]{
   text-align: center;
 }
 
+#loginDropdown {
+    display: block;
+}
+
+#createAccountDropdown {
+	display: block;
+}
+
 
 .topnav {
   overflow: hidden;

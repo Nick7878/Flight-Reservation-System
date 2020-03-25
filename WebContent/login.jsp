@@ -51,15 +51,20 @@
 	
 				if (result.next()) {
 					//close the connection.
+					System.out.println("isManager: " + result.getBoolean("isManager"));
 					if(result.getBoolean("isManager")){
+						%>
 						<script>
-						document.getElementById("ManagerLinkManager").style.property.opacity = 100;
+						document.getElementById("ManagerLink").style.property.opacity = 100;
 						</script>
+						<%
 					} 
 					
 					%>
 					<script> 
-			    		window.location.href = "html/homepage.html";
+			    		window.location.href = "html/login.html";
+			    		document.getElementById("loginDropdown").style.display = "none";
+			    		document.getElementById("createAccountDropdown").style.display = "none";
 					</script>
 					<%				
 				} else {
@@ -75,11 +80,11 @@
 			con.close();
 
 		} catch (Exception e) {
-			out.print("failed");
+			e.printStackTrace();
 			%>
 			<script>
 				alert("Sorry, unexcepted error happens.");
-		    	window.location.href = "login.jsp";
+		    	window.location.href = "html/login.html";
 			</script>
 			<%			
 		}
