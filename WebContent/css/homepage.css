@@ -96,6 +96,10 @@ ul {
 #ManagerLink{
     opacity: 0%;
   }
+
+#login{
+    display: block;
+}
   
 
 /*The default appearance of the tabs in the navigation bar*/
