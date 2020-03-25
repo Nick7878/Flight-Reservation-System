@@ -7,6 +7,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/login.css">
+<script src="check.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
@@ -55,7 +56,7 @@
 					if(result.getBoolean("isManager")){
 						%>
 						<script>
-						document.getElementById("ManagerLink").style.property.opacity = 100;
+						document.getElementById("ManagerLink").style.opacity = "100%";
 						</script>
 						<%
 					} 
@@ -63,12 +64,11 @@
 					%>
 					<script> 
 			    		window.location.href = "html/login.html";
-			    		document.getElementById("loginDropdown").style.display = "none";
-			    		document.getElementById("createAccountDropdown").style.display = "none";
+			    		loggedIn = true;
 					</script>
 					<%				
 				} else {
-					out.print("User not found");
+					System.out.print("User not found");
 					%>
 					<script> 
 				    	alert("User not found, or you entered a wrong password.");
