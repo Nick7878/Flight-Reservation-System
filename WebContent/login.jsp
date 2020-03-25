@@ -64,7 +64,7 @@
 					%>
 					<script> 
 			    		window.location.href = "html/login.html";
-			    		loggedIn = true;
+			    		login();
 					</script>
 					<%				
 				} else {
