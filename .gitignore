@@ -1,6 +1,4 @@
 /build/
-/.classpath
-/*.project
 /.settings
 .idea/
 /group15_DB_Project_2.iml
