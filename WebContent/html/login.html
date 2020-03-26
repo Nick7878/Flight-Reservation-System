@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login page</title>
 <link href="../css/login.css" rel="stylesheet" type="text/css" />
-<script src = ../check.js ></script>
+<script src = "../check.js" ></script>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
 		<!--- main will contain a table that holds login + password info -->
 		<h2 id="loginText">Login</h2>
 
-		<form action="../login.jsp" method="post">
+		<form action="login.jsp" method="post">
 			<table>
 				<!--- row for email -->
 				<tr>
@@ -48,12 +48,10 @@
 			<table>
 
 				<tr>
-					<td><input type="submit" value="Login"></td>
-					<!-- <td><input type="submit" value="Forgot Password" action="">
-					</td> -->
+					<td><button id="submit"> Login </button></td>
 				</tr>
 				<!-- FIX FORMATTING -->
-		</form>
+		
 				<div class="row">
 
 					<td>New user?</td>
@@ -68,6 +66,7 @@
 
 				</div>
 			</table>
+		</form>
 	</main>
 </body>
 
