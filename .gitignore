@@ -1,10 +1,11 @@
 .idea/
 /group15_DB_Project_2.iml
+
 /build/
 .settings/
 
 # Eclipse Core      
 .project
 
-# JDT-specific (Eclipse Java Development Tools)     
+# JDT-specific (Eclipse Java Development Tools)
 .classpath
