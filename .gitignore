@@ -2,3 +2,5 @@
 /group15_DB_Project_2.iml
 /build/
 .project
+.classpath
+.settings/
