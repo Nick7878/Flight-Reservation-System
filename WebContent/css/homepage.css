@@ -94,8 +94,16 @@ ul {
 }
 
 #ManagerLink{
-    opacity: 0%;
-  }
+    
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
+}
 
 #login{
     display: block;

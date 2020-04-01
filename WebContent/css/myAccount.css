@@ -86,7 +86,15 @@ table {
 }
 
 #ManagerLink{
-  opacity: 0%;
+  
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
 }
 
 

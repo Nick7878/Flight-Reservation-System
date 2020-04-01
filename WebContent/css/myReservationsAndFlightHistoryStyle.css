@@ -5,8 +5,16 @@
 }
 
 #ManagerLink{
-    opacity: 0%;
-  }
+    
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
+}
   
 
 /*The default appearance of the tabs in the navigation bar*/

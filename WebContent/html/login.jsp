@@ -53,27 +53,25 @@
 	
 				if (result.next()) {
 					//close the connection.
-					System.out.println("isManager: " + result.getBoolean("isManager"));
-					if(result.getBoolean("isManager")){
+					if(result.getBoolean("isManager")) {
 						%>
 						<script>
-							showManagerLink();
+							let email = "<%=email%>";
+							
+							setCookie(email, true);
 						</script>
 						<%
 					} else {
 						%>
 						<script>
-							hideManagerLink();
+							let email = "<%=email%>";
+							
+							setCookie(email, false);
 						</script>
 						<%
-					} 
-					
-					%>
-					<script> 
-			    		//window.location.href = "login.html";
-			    		login();
-					</script>
-					<%				
+					}
+					System.out.println("isManager: " + result.getBoolean("isManager"));
+								
 				} else {
 					System.out.print("User not found");
 					%>
