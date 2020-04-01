@@ -89,6 +89,22 @@ table {
   
 }
 
+#myAccountDropdown {
+	display: block;
+}
+
+#loginDropdown {
+    display: block;
+}
+
+#createAccountDropdown {
+	display: block;
+}
+
+#signOutDropdown {
+	display: block;
+}
+
 .hidden {
 	visibility: hidden;
 }

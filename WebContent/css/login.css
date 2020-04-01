@@ -60,11 +60,19 @@ main [type = submit]{
   text-align: center;
 }
 
+#myAccountDropdown {
+	display: block;
+}
+
 #loginDropdown {
     display: block;
 }
 
 #createAccountDropdown {
+	display: block;
+}
+
+#signOutDropdown {
 	display: block;
 }
 

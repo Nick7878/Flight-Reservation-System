@@ -77,11 +77,19 @@ ul {
     column-width: 100px;
 }
 
+#myAccountDropdown {
+	display: block;
+}
+
 #loginDropdown {
     display: block;
 }
 
 #createAccountDropdown {
+	display: block;
+}
+
+#signOutDropdown {
 	display: block;
 }
 

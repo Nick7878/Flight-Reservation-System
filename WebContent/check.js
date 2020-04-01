@@ -30,9 +30,13 @@ document.addEventListener("DOMContentLoaded" , () =>{
         }
         document.getElementById("loginDropdown").style.display = "block";
         document.getElementById("createAccountDropdown").style.display = "block";
+        document.getElementById("myAccountDropdown").style.display = "none";
+        document.getElementById("signOutDropdown").style.display = "none";
     }else{
         document.getElementById("loginDropdown").style.display = "none";
         document.getElementById("createAccountDropdown").style.display = "none";
+        document.getElementById("myAccountDropdown").style.display = "block";
+        document.getElementById("signOutDropdown").style.display = "block";
     }
 });
 
@@ -49,6 +53,10 @@ function setCookie(email, isManager) {
 
 function readCookie() {
 	let allCookies = document.cookie;
+	if(allCookies === "") {
+		hideManagerLink();
+		return;
+	}
 	//document.write ("All Cookies : " + allCookies);
 	
 	let cookieArray = allCookies.split(";");
