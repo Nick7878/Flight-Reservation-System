@@ -144,8 +144,8 @@
 		
 		long millis = System.currentTimeMillis();
 		java.sql.Date creationDate = new java.sql.Date(millis);
-		String insert = "INSERT INTO accounts (creationDate, accountPassword, email, preferences)"
-				+ " VALUES (?, ?, ?, '')";
+		String insert = "INSERT INTO accounts (creationDate, accountPassword, email, preferences, isManager)"
+				+ " VALUES (?, ?, ?, '', ?)";
 
 		PreparedStatement ps = con.prepareStatement(insert);
 		System.out.println(insert);
@@ -153,12 +153,13 @@
 		ps.setDate(1, creationDate);
 		ps.setString(2, password);
 		ps.setString(3, email);
+		ps.setBoolean(4, isManager);
 		
 		ps.executeUpdate();
 		ps.close();
 		
-		String insertIntoCustomers = "Insert INTO customer (lastName, firstName, address, city, state, zipCode, telephone, creditCardNum,isManager)"
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String insertIntoCustomers = "Insert INTO customer (lastName, firstName, address, city, state, zipCode, telephone, creditCardNum)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement psc = con.prepareStatement(insertIntoCustomers);
 		System.out.println(insertIntoCustomers);
 		
@@ -170,7 +171,6 @@
 		psc.setString(6, zipCode);
 		psc.setString(7, telephone);
 		psc.setString(8, creditCardNum);
-		psc.setBoolean(9, isManager);
 		
 		psc.executeUpdate();
 
