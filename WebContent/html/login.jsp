@@ -2,12 +2,13 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+<%@ include file = "login.html" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/login.css">
-<script src="check.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/login.css">
+
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
@@ -38,7 +39,7 @@
 				%>
 				<script> 
 				    alert("Please enter your email and password");
-				    window.location.href = "login.html";
+				    //window.location.href = "login.html";
 				</script>
 				<% 
 			} else {
@@ -52,27 +53,31 @@
 	
 				if (result.next()) {
 					//close the connection.
-					System.out.println("isManager: " + result.getBoolean("isManager"));
-					if(result.getBoolean("isManager")){
+					if(result.getBoolean("isManager")) {
 						%>
 						<script>
-						document.getElementById("ManagerLink").style.opacity = "100%";
+							let email = "<%=email%>";
+							
+							setCookie(email, true);
 						</script>
 						<%
-					} 
-					
-					%>
-					<script> 
-			    		window.location.href = "html/login.html";
-			    		login();
-					</script>
-					<%				
+					} else {
+						%>
+						<script>
+							let email = "<%=email%>";
+							
+							setCookie(email, false);
+						</script>
+						<%
+					}
+					System.out.println("isManager: " + result.getBoolean("isManager"));
+								
 				} else {
 					System.out.print("User not found");
 					%>
 					<script> 
 				    	alert("User not found, or you entered a wrong password.");
-				    	window.location.href = "html/login.html";
+				    	//window.location.href = "login.html";
 					</script>
 					<%  
 				}
@@ -84,7 +89,7 @@
 			%>
 			<script>
 				alert("Sorry, unexcepted error happens.");
-		    	window.location.href = "html/login.html";
+		    	//window.location.href = "login.html";
 			</script>
 			<%			
 		}

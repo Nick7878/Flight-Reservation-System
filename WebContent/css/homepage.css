@@ -77,11 +77,19 @@ ul {
     column-width: 100px;
 }
 
+#myAccountDropdown {
+	display: block;
+}
+
 #loginDropdown {
     display: block;
 }
 
 #createAccountDropdown {
+	display: block;
+}
+
+#signOutDropdown {
 	display: block;
 }
 
@@ -94,8 +102,16 @@ ul {
 }
 
 #ManagerLink{
-    opacity: 0%;
-  }
+    
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
+}
 
 #login{
     display: block;

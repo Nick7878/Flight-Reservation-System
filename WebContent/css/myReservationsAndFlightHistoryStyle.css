@@ -4,9 +4,33 @@
     background-color: #333;
 }
 
+#myAccountDropdown {
+	display: block;
+}
+
+#loginDropdown {
+    display: block;
+}
+
+#createAccountDropdown {
+	display: block;
+}
+
+#signOutDropdown {
+	display: block;
+}
+
 #ManagerLink{
-    opacity: 0%;
-  }
+    
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
+}
   
 
 /*The default appearance of the tabs in the navigation bar*/

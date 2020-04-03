@@ -33,8 +33,32 @@ body {
   background-color: #333;
 }
 
+#myAccountDropdown {
+	display: block;
+}
+
+#loginDropdown {
+    display: block;
+}
+
+#createAccountDropdown {
+	display: block;
+}
+
+#signOutDropdown {
+	display: block;
+}
+
 #ManagerLink{
-  opacity: 0%;
+    
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
 }
 
 

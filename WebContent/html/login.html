@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login page</title>
 <link href="../css/login.css" rel="stylesheet" type="text/css" />
-<script src = ../check.js ></script>
+<script src = "../check.js" ></script>
 </head>
 
 <body>
@@ -20,9 +20,10 @@
 			<img id="AccountLogo" src="../images/account_iconBlackBorder.png"
 				alt="Account Logo" />
 			<div class="dropdown-content">
-				<a id="loginDropdown" href="login.html">Log in</a>
-          		<a id="createAccountDropdown" href="createAccount.html">Sign up</a> 
-				<a href="myAccount.html">My Account</a>
+				<a id="myAccountDropdown" href="myAccount.html">My Account</a>
+                <a id="loginDropdown" href="login.html">Log in</a>
+          		<a id="createAccountDropdown" href="createAccount.html">Sign up</a>
+          		<a id="signOutDropdown" href="homepage.html">Logout</a>
 			</div>
 		</div>
 	</div>
@@ -31,12 +32,12 @@
 		<!--- main will contain a table that holds login + password info -->
 		<h2 id="loginText">Login</h2>
 
-		<form action="../login.jsp" method="post">
+		<form action="login.jsp" method="post">
 			<table>
 				<!--- row for email -->
 				<tr>
 					<td align="left">Email:</td>
-					<td><input type="text" size="25px" name="email"></td>
+					<td><input type="text" id="emailLogin"size="25px" name="email"></td>
 				</tr>
 				<!--- row for password -->
 				<tr>
@@ -48,12 +49,10 @@
 			<table>
 
 				<tr>
-					<td><input type="submit" value="Login"></td>
-					<!-- <td><input type="submit" value="Forgot Password" action="">
-					</td> -->
+					<td><button id="submit"> Login </button></td>
 				</tr>
 				<!-- FIX FORMATTING -->
-		</form>
+		
 				<div class="row">
 
 					<td>New user?</td>
@@ -68,6 +67,7 @@
 
 				</div>
 			</table>
+		</form>
 	</main>
 </body>
 

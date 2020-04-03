@@ -86,7 +86,31 @@ table {
 }
 
 #ManagerLink{
-  opacity: 0%;
+  
+}
+
+#myAccountDropdown {
+	display: block;
+}
+
+#loginDropdown {
+    display: block;
+}
+
+#createAccountDropdown {
+	display: block;
+}
+
+#signOutDropdown {
+	display: block;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
 }
 
 
