@@ -28,11 +28,14 @@ document.addEventListener("DOMContentLoaded" , () =>{
         if(!manager.classList.contains("hidden")){
             manager.classList.add("hidden");
         }
+        document.getElementById("ReservationLink").classList.add("hidden");
         document.getElementById("loginDropdown").style.display = "block";
         document.getElementById("createAccountDropdown").style.display = "block";
         document.getElementById("myAccountDropdown").style.display = "none";
         document.getElementById("signOutDropdown").style.display = "none";
-    }else{
+        
+    } else{
+    	document.getElementById("ReservationLink").classList.remove("hidden");
         document.getElementById("loginDropdown").style.display = "none";
         document.getElementById("createAccountDropdown").style.display = "none";
         document.getElementById("myAccountDropdown").style.display = "block";
