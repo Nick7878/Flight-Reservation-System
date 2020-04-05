@@ -7,6 +7,7 @@
   <title>Document</title>
   <link href="../css/managerAccount.css" type="text/css" rel="stylesheet" />
   <script src = ../check.js ></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -31,7 +32,7 @@
   <main>
 
     <!--Customer information table -->
-    <h2>Customer Information</h2>
+    <h2>Customer Info</h2>
 
     
     <table align="center" style="width: 100%;">
@@ -39,13 +40,13 @@
       <tr>
         <th>Last Name</th>
         <th>First Name</th>
-        <th>Adress</th>
+        <th>Address</th>
         <th>City</th>
         <th>State</th>
-        <th>ipCode</th>
+        <th>Zip code</th>
         <th>Telephone</th>
-        <th>Credicard?</th>
-        <th> Option</th>
+        <th>Credit card?</th>
+        <th>Option</th>
       </tr>
       <!--Place holder for the sql information-->
       <tr>
@@ -60,10 +61,35 @@
         <th>edit</th> <!--Edit button will provide options to add delet or change information-->
       </tr>
       
-    </table align="center">
+    </table>
 
     <!-- Sales report for months-->
     <h2>Sales Report</h2>
+    <div class="monthDropdown">
+  		<button class="monthButton">Select Month</button>
+  		<div id="myDropdown" class="months-content">
+    	<a href="#">January</a>
+    	<a href="#">February</a>
+    	<a href="#">March</a>
+    	<a href="#">April</a>
+    	<a href="#">May</a>
+    	<a href="#">June</a>
+    	<a href="#">July</a>
+    	<a href="#">August</a>
+    	<a href="#">September</a>
+    	<a href="#">October</a>
+    	<a href="#">November</a>
+    	<a href="#">December</a>
+  		</div>
+	</div>
+	<script>
+		$(function () {
+	        $("#myDropdown a").click(function () {
+	            let selText = $(this).text();
+	            $(".monthButton").html(selText);
+	        });
+		});
+	</script>
     <table id = "salesReport" align="center" style="width: 100%;">
       
       <tr>
@@ -81,18 +107,18 @@
         <th>Dec</th>
       </tr> 
       <tr>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
       </tr> 
     </table>
 
