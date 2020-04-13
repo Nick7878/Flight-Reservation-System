@@ -66,21 +66,23 @@
     <!-- Sales report for months-->
     <h2>Sales Report</h2>
     <div class="monthDropdown">
-  		<button class="monthButton">Select Month</button>
-  		<div id="myDropdown" class="months-content">
-    	<a href="#">January</a>
-    	<a href="#">February</a>
-    	<a href="#">March</a>
-    	<a href="#">April</a>
-    	<a href="#">May</a>
-    	<a href="#">June</a>
-    	<a href="#">July</a>
-    	<a href="#">August</a>
-    	<a href="#">September</a>
-    	<a href="#">October</a>
-    	<a href="#">November</a>
-    	<a href="#">December</a>
+    	<form method="get">
+    		<button type="submit" class="monthButton" name="monthDropdown">Select Month</button>
+	  		<div id="myDropdown" class="months-content">
+	    	<a href="managerFunctionsSalesReport.jsp?value=01">January</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=02">February</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=03">March</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=04">April</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=05">May</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=06">June</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=07">July</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=08">August</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=09">September</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=10">October</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=11">November</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=12">December</a>	
   		</div>
+  		</form>
 	</div>
 	<script>
 		$(function () {
@@ -95,18 +97,12 @@
       <tr>
         <th>Flight #</th>
         <th>Airline</th>
+        <th>AirportTo/From</th>
         <th>Departing Date/Time</th>
         <th>Arrival Date/Time</th>
+        <th>Stops</th>
+        <th>Cost of Flight</th>
         <th>Total Revenue</th>
-        <!--
-        <th>Jun</th>
-        <th>Jul</th>
-        <th>Aug</th>
-        <th>Sep</th>
-        <th>Oct</th>
-        <th>Nov</th>
-        <th>Dec</th> 
-         -->
       </tr> 
       <tr>
         <td>Sales</td>
@@ -114,15 +110,9 @@
         <td>Sales</td>
         <td>Sales</td>
         <td>Sales</td>
-        <!--
         <td>Sales</td>
         <td>Sales</td>
         <td>Sales</td>
-        <td>Sales</td>
-        <td>Sales</td>
-        <td>Sales</td>
-        <td>Sales</td> 
-         -->
       </tr> 
     </table>
 

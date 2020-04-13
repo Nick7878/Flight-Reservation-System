@@ -52,7 +52,6 @@
 				//System.out.println(str);
 	
 				if (result.next()) {
-					//close the connection.
 					if(result.getBoolean("isManager")) {
 						%>
 						<script>
