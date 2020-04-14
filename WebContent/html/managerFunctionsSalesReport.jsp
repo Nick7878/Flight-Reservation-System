@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="java.io.*,java.util.*, java.sql.Date, java.sql.*"%>
+<%@ page import="java.text.SimpleDateFormat, java.text.DateFormat"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <%@ include file = "managerAccount.html" %>
 
@@ -32,7 +33,8 @@
 		
 		if(request.getParameter("value") != null) {
 			for(int monthIndex = 0; monthIndex < 12; monthIndex++) {
-				if(request.getParameter("value").equals(months[monthIndex][0])) {
+				System.out.println(request.getParameter("value"));
+				if(request.getParameter("value").equals(months[monthIndex][1])) {
 					month = months[monthIndex][1];
 				}
 			}
@@ -51,15 +53,21 @@
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		//Get the combobox from the HelloWorld.jsp
-		String january = request.getParameter("value");
-		System.out.println(january);
+		System.out.println(month);
 		
 		String str = "SELECT flightNum, airline, airportTo, airportFrom, fares, stops, departureDate, departureTime, arrivalDate, arrivalTime FROM flight";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
 		while(result.next()) {
-			System.out.println(result.getString("Airline"));
+			//Convert the date we got from the Database to a String so we can compare it to our month string.
+			Date departureDate = result.getDate("departureDate");
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
+			String strDate = dateFormat.format(departureDate);
+			
+			if(strDate.substring(5,7).equals(month)) {
+				
+			}
 		}
 	} catch(Exception e) {
 		e.printStackTrace();
