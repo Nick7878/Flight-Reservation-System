@@ -129,3 +129,38 @@ input {
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+/*Select Month Drop down*/
+.monthDropdown {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.months-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.months-content a{
+  color: black;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  border: 1px solid black;
+}
+
+.months-content a:hover {background-color: #ddd;}
+
+.monthDropdown:hover .months-content {
+	display: block;
+}
+
+.monthButton {
+	width: 100px;
+}
+
+
