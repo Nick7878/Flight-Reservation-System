@@ -16,10 +16,22 @@ table, th, td {
   border: 1px solid black;
 }</style>
 </head>
+<p> <br> </p>
+<div class = "row">
+<div class = "col">
+<h3>Hello There</h3>
+<!--  there was once a link here goign to something we are no longer using-->
+</div>
+
+</div>
+
+
+
 
  <table class = "table">
  	<thead>
  	<tr>
+ 		<th> Account Number </th>
  		<th> LastName </th>
  		<th> FirstName </th>
  		<th> Address </th>
@@ -28,6 +40,7 @@ table, th, td {
  		<th> Zipcode </th>
  		<th> Telephone </th>
  		<th> CreditCardNumber </th>
+ 		<th class = "text-center" > Action </th>
  	</tr>
  	</thead>
  	<tbody>
@@ -44,6 +57,7 @@ table, th, td {
  	while(res.next()){
  	%>
  	<tr>
+ 		<td><%=res.getString("accountNum") %></td>
  		<td><%=res.getString("lastname") %></td>
  		<td><%=res.getString("firstname") %></td>
  		<td><%=res.getString("address") %></td>
@@ -52,6 +66,7 @@ table, th, td {
  		<td><%=res.getString("zipCode") %></td>
  		<td><%=res.getString("telephone") %></td>
  		<td><%=res.getString("creditCardNum") %></td>
+ 		<td> <a href = 'managerEdit.jsp?u=<%=res.getString("accountNum")%>' class = "btn w"> Edit </a>
  	</tr>
  	<%
  	}
