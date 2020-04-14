@@ -14,64 +14,67 @@
 <head> </head>
 <p><br></p>
 <%
-String host = "jdbc:mysql://localhost:3306/cs336project?useSSL=false";
-Statement stat = null;
-ResultSet res = null;
+
+try{
+	
+} catch(Exception e) {
+	e.printStackTrace();
+}
 PreparedStatement stmt = null;
-Connection conn = null;
-Class.forName("com.mysql.jdbc.Driver").newInstance();
-conn = DriverManager.getConnection(host, "root", "gameboy*1");
+String host = "jdbc:mysql://localhost:3306/cs336project?useSSL=false";
+Class.forName("com.mysql.jdbc.Driver");
+Connection conn = DriverManager.getConnection(host, "root", "gameboy*1");
 
 
 %>
-<form action =" " method = "post">
+<form action ="" method = "post">
 	<%
-	stat = conn.createStatement();
-	String u = request.getParameter("u");
-	int num = Integer.parseInt(u);
-	String data = "SELECT * FROM customer WHERE accountNum = " + num +" ";
-	res = stat.executeQuery(data);
-	while(res.next()){
+	Statement statement = conn.createStatement();
+	String accountNumber = request.getParameter("u");
+	int accountNum = Integer.parseInt(accountNumber);
+	String customersWithAccountNumQuery = "SELECT * FROM customer WHERE accountNum = " + accountNum;
+	ResultSet resultSet = statement.executeQuery(customersWithAccountNumQuery);
+	while(resultSet.next()){
 	%>
-	<input type = "hidden" name = "id" value = <%=res.getString("accountNum") %> />
+	<input type = "hidden" name = "accNum" value = <%=resultSet.getString("accountNum") %> />
 	<div class = "form-group">
-	<label> Last Name </label>
-	<input type = "text" class = "form-control" name = "ln" value = <%=res.getString("lastName") %> />
+		<label> Last Name </label>
+		<input type = "text" class = "form-control" name = "lastName" value = <%=resultSet.getString("lastName") %> />
 	</div>
 	
 	<div class = "form-group">
-	<label> First Name</label>
-	<input type = "text" class = "form-control" name = "fn" value = <%=res.getString("firstName") %> />
+		<label> First Name</label>
+		<input type = "text" class = "form-control" name = "firstName" value = <%=resultSet.getString("firstName") %> />
 	</div>
 	
 	<div class = "form-group">
-	<label> Address </label>
-	<input type = "text" class = "form-control" name = "adr" value = <%=res.getString("address") %> />
+		<label> AddresultSets </label>
+		<input type = "text" class = "form-control" name = "address" value = <%=resultSet.getString("addresultSets") %> />
 	</div>
 	
 	<div class = "form-group">
-	<label> City</label>
-	<input type = "text" class = "form-control" name = "ci" value = <%=res.getString("city") %> />
+		<label> City</label>
+		<input type = "text" class = "form-control" name = "city" value = <%=resultSet.getString("city") %> />
 	</div>
 	
 	<div class = "form-group">
-	<label> State </label>
-	<input type = "text" class = "form-control" name = "st" value = <%=res.getString("state") %> />
+		<label> State </label>
+		<input type = "text" class = "form-control" name = "state" value = <%=resultSet.getString("state") %> />
 	</div>
 	
 	<div class = "form-group">
-	<label> Zipcode</label>
-	<input type = "text" class = "form-control" name = "zip" value = <%=res.getString("zipCode") %> />
+		<label> Zipcode</label>
+		<input type = "text" class = "form-control" name = "zip" value = <%=resultSet.getString("zipCode") %> />
 	</div>
 	
 	<div class = "form-group">
-	<label> Telephone</label>
-	<input type = "text" class = "form-control" name = "tel" value = <%=res.getString("telephone") %> />
+		<label> Telephone</label>
+		<input type = "text" class = "form-control" name = "telephone" value = <%=resultSet.getString("telephone") %> />
 	</div>
 	
 	<div class = "form-group">
-	<label> Credit Card Number</label>
-	<input type = "text" class = "form-control" name = "ccn" value = <%=res.getString("creditCardNum") %> />
+		<label> Credit Card Number</label>
+		<input type = "text" class = "form-control" name = "creditCard" value = <%=resultSet.getString("creditCardNum") %> />
 	</div>
 	<%
 	}
@@ -79,20 +82,25 @@ conn = DriverManager.getConnection(host, "root", "gameboy*1");
 	<button type = "submit" class = "btnwa"> Update</button>
 	<a href = "managerTest.jsp" class = "btn-def"> Back </a>
 	</form>
-</html>
 <%
-String z = request.getParameter("id");
-String a = request.getParameter("ln");
-String b = request.getParameter("fn");
-String c = request.getParameter("adr");
-String d = request.getParameter("ci");
-String e = request.getParameter("st");
+String z = request.getParameter("accNum");
+String a = request.getParameter("lastName");
+String b = request.getParameter("firstName");
+String c = request.getParameter("address");
+String d = request.getParameter("city");
+String e = request.getParameter("state");
 String f = request.getParameter("zip");
-String g = request.getParameter("tel");
-String h = request.getParameter("ccn");
+String g = request.getParameter("telephone");
+String h = request.getParameter("creditCard");
 
 if(a!=null && b!=null && c!=null && d!=null && e!=null&& f!=null && g!=null && h !=null){
-	String query = "UPDATE customer SET lastName = ?, firstName = ?, address = ?, city = ?, state = ?, zipCode = ?, telephone = ?, creditCardNum = ? WHERE accountNum = " + z + " ";
+	%>
+	<script>
+		alert("Please make sure all fields have values!");
+		window.location.href = "managerEdit.jsp";
+	</script>
+	<%
+	String query = "UPDATE customer SET lastName = ?, firstName = ?, address = ?, city = ?, state = ?, zipCode = ?, telephone = ?, creditCardNum = ? WHERE accountNum = " + z;
 	stmt = conn.prepareStatement(query);
 	stmt.setString(1,a);
 	stmt.setString(2,b);
@@ -103,8 +111,14 @@ if(a!=null && b!=null && c!=null && d!=null && e!=null&& f!=null && g!=null && h
 	stmt.setString(7,g);
 	stmt.setString(8,h);
 	stmt.executeUpdate();
+	%>
+	<script>
+		alert("Update Successful!");
+	</script>
+	<%
 	response.sendRedirect("managerTest.jsp");
 }
 
 
 %>
+</html>
