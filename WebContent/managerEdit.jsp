@@ -19,6 +19,7 @@ try{
 	
 } catch(Exception e) {
 	e.printStackTrace();
+	//make an alert and redirect back to managerTest using Javascript
 }
 PreparedStatement stmt = null;
 String host = "jdbc:mysql://localhost:3306/cs336project?useSSL=false";
@@ -118,6 +119,8 @@ if(a!=null && b!=null && c!=null && d!=null && e!=null&& f!=null && g!=null && h
 	<%
 	response.sendRedirect("managerTest.jsp");
 }
+
+//Surround this code in try
 
 
 %>
