@@ -3,8 +3,13 @@ body {
     background-image: url('../images/background.png');
 }
 
-h5 {
+form {
 	text-align: center;
+}
+
+input {
+	margin-left: 10px;
+	margin-bottom: 10px;
 }
 
 .fsize {
