@@ -147,7 +147,7 @@
 		String insert = "INSERT INTO accounts (creationDate, accountPassword, email, preferences, isManager)"
 				+ " VALUES (?, ?, ?, '', ?)";
 
-		PreparedStatement ps = con.prepareStatement(insert);
+		PreparedStatement ps = con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 		System.out.println(insert);
 
 		ps.setDate(1, creationDate);
@@ -156,10 +156,13 @@
 		ps.setBoolean(4, isManager);
 		
 		ps.executeUpdate();
+		ResultSet rs = ps.getGeneratedKeys();
+		rs.next();
+		int accountNum = rs.getInt(1);
 		ps.close();
 		
-		String insertIntoCustomers = "Insert INTO customer (lastName, firstName, address, city, state, zipCode, telephone, creditCardNum)"
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String insertIntoCustomers = "Insert INTO customer (lastName, firstName, address, city, state, zipCode, telephone, creditCardNum, accountNum)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement psc = con.prepareStatement(insertIntoCustomers);
 		System.out.println(insertIntoCustomers);
 		
@@ -171,6 +174,7 @@
 		psc.setString(6, zipCode);
 		psc.setString(7, telephone);
 		psc.setString(8, creditCardNum);
+		psc.setInt(9, accountNum);
 		
 		psc.executeUpdate();
 
