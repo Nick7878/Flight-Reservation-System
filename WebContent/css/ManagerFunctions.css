@@ -3,6 +3,10 @@ body {
     background-image: url('../images/background.png');
 }
 
+h5 {
+	text-align: center;
+}
+
 .fsize {
     font-size: 15pt;
 }
