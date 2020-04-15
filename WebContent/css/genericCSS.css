@@ -1,0 +1,117 @@
+body {
+    background-image: url('../images/background.png');
+}
+
+#myAccountDropdown {
+	display: block;
+}
+
+#loginDropdown {
+    display: block;
+}
+
+#createAccountDropdown {
+	display: block;
+}
+
+#signOutDropdown {
+	display: block;
+}
+
+
+/*Use this for the search function */
+
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+#ManagerLink{
+    
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
+}
+
+#login{
+    display: block;
+}
+
+#ReservationLink {
+	
+}
+  
+
+/*The default appearance of the tabs in the navigation bar*/
+.topnav #ReservationLink, #HomeLink, #ManagerLink {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 23px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Changes the appearance of the tab when you hover over it*/
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/*Alters the appearance of the tab that is currently active*/
+.topnav a.activeTab {
+    background-color: lightgreen;
+    color: white;
+}
+
+/*Alters the physical properties of the image(logo)*/
+.topnav #Logo {
+    float: left;
+    padding-top: 6px;
+    padding-left: 31px;
+    padding-right: 6px;
+}
+
+.topnav #AccountLogo {
+    padding-top: 6px;
+    padding-left: 31px;
+    padding-right: 30px;
+    width: 50px;
+}
+
+.topnav .dropdown {
+    float: right;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}

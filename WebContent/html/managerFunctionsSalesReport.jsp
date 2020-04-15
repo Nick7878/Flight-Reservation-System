@@ -3,42 +3,19 @@
 <%@ page import="java.io.*,java.util.*, java.sql.Date, java.sql.*"%>
 <%@ page import="java.text.SimpleDateFormat, java.text.DateFormat"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+<%@ include file = "genericPage.html" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Sales Report</title>
-<link rel = "stylesheet" href = "../css/createAccountStyle.css"><!-- Will change the css file later! -->
+<link rel = "stylesheet" href = "../css/genericCSS.css">
 </head>
 <body>
 	<%
 	try{
-		String january = "01";
-		String February = "02";
-		String March = "03";
-		String April = "04";
-		String May = "05";
-		String June = "06";
-		String July = "07";
-		String August = "08";
-		String September = "09";
-		String October = "10";
-		String November = "11";
-		String December = "12";
 		
-		String[][] months = new String[][]{{"January", "01"}, {"February", "02"}, {"March", "03"}, {"April", "04"}, {"May", "05"}, {"June", "06"}, {"July", "07"}, {"August", "08"}, {"September", "09"}, {"October", "10"}, {"November", "11"}, {"December", "12"}};
-		
-		String month = "01";
-		
-		if(request.getParameter("value") != null) {
-			for(int monthIndex = 0; monthIndex < 12; monthIndex++) {
-				System.out.println(request.getParameter("value"));
-				if(request.getParameter("value").equals(months[monthIndex][1])) {
-					month = months[monthIndex][1];
-				}
-			}
-		}
 		
 		//Create a connection string
 		//name the schema cs336project otherwise this url will not work!
@@ -53,7 +30,7 @@
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		//Get the combobox from the HelloWorld.jsp
-		System.out.println(month);
+		System.out.println(request.getParameter("value"));
 		
 		String str = "SELECT flightNum, airline, airportTo, airportFrom, fares, stops, departureDate, departureTime, arrivalDate, arrivalTime FROM flight";
 		//Run the query against the database.
@@ -84,7 +61,7 @@
 			System.out.println("substring: " + strDate.substring(5,7));
 			System.out.println("Departure date: " + departureDate);
 			
-			if(strDate.substring(5,7).equals(month)) {
+			if(strDate.substring(5,7).equals(request.getParameter("value"))) {
 				%>
 				<tr>
 					<td><%=result.getInt("flightNum") %></td>
@@ -97,6 +74,7 @@
 					<td><%=result.getTime("departureTime") %></td>
 					<td><%=result.getDate("arrivalDate") %></td>
 					<td><%=result.getTime("arrivalTime") %></td>
+					<!-- Add a total revenue field from every flight -->
 				</tr>
 				<%
 			}
