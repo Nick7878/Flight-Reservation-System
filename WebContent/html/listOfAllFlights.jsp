@@ -32,7 +32,7 @@
 		//Get the combobox from the HelloWorld.jsp
 		System.out.println(request.getParameter("value"));
 		
-		String str = "SELECT * FROM flight;";
+		String str = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, numOfSeats, availableSeats, fares, departureDate, departureTime, arrivalDate, arrivalTime FROM flight JOIN airline ON flight.airline = airline.airlineCode  JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode;";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
@@ -43,10 +43,9 @@
 			<th>Airline</th>
 			<th>To Airport</th>
 			<th>From Airport</th>
-			<th>Working Days</th>
-			<th># Of Seats</th>
+			<th># of Seats</th>
+			<th># of Available Seats</th>
 			<th>Fare</th>
-			<th>Stops</th>
 			<th>Departure Date</th>
 			<th>Departure Time</th>
 			<th>Arrival Date</th>
@@ -59,18 +58,16 @@
 			%>
 			<tr>
 				<td><%=result.getInt("flightNum") %></td>
-				<td><%=result.getString("airline") %></td>
+				<td><%=result.getString("airlineName") %></td>
 				<td><%=result.getString("airportTo") %></td>
 				<td><%=result.getString("airportFrom") %></td>
-				<td><%=result.getInt("workingDays") %></td>
-				<td><%=result.getInt("numOfSeats") %>
+				<td><%=result.getInt("numOfSeats") %></td>
+				<td><%=result.getInt("availableSeats") %>
 				<td><%=result.getInt("fares") %></td>
-				<td><%=result.getInt("stops") %></td>
 				<td><%=result.getDate("departureDate") %></td>
 				<td><%=result.getTime("departureTime") %></td>
 				<td><%=result.getDate("arrivalDate") %></td>
 				<td><%=result.getTime("arrivalTime") %></td>
-				<!-- Add a total revenue field from every flight -->
 			</tr>
 			<%
 		}
