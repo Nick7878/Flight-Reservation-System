@@ -32,7 +32,7 @@
 		Statement stmt = con.createStatement();
 		//Get the combobox from the HelloWorld.jsp
 		
-		String str = "SELECT accountNum, email, firstName, lastName, address, city, state, zipCode, telephone, totalFare FROM customer JOIN accounts USING(accountNum) JOIN reservation USING(accountNum) JOIN flight USING(flightNum) WHERE flightNum = '" + flightNum + "';";
+		String str = "SELECT accountNum, email, firstName, lastName, address, city, state, zipCode, telephone FROM customer JOIN accounts USING(accountNum) JOIN reservations USING(accountNum) JOIN reservationflights USING(reservationCode) JOIN flight USING(flightNum) WHERE flightNum = '" + flightNum + "' GROUP BY accountNum;";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
@@ -48,7 +48,6 @@
 			<th>State</th>
 			<th>ZipCode</th>
 			<th>Phone Number</th>
-			<th>Total Cost</th>
 			</tr>
 		<%
 		
@@ -64,8 +63,6 @@
 				<td><%=result.getString("state") %></td>
 				<td><%=result.getString("zipCode") %></td>
 				<td><%=result.getString("telephone") %></td>
-				<td>$<%=result.getDouble("totalFare") %></td>
-				<!-- Add a total revenue field from every flight -->
 			</tr>
 			<%
 		}
