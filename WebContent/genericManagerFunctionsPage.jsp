@@ -53,31 +53,21 @@
 		<%
 		
 		while(result.next()) {
-			//Convert the date we got from the Database to a String so we can compare it to our month string.
-			Date departureDate = result.getDate("departureDate");
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
-			String strDate = dateFormat.format(departureDate);
-			
-			System.out.println("substring: " + strDate.substring(5,7));
-			System.out.println("Departure date: " + departureDate);
-			
-			if(strDate.substring(5,7).equals(request.getParameter("value"))) {
-				%>
-				<tr>
-					<td><%=result.getInt("flightNum") %></td>
-					<td><%=result.getString("airline") %></td>
-					<td><%=result.getString("airportTo") %></td>
-					<td><%=result.getString("airportFrom") %></td>
-					<td><%=result.getInt("fares") %></td>
-					<td><%=result.getInt("stops") %></td>
-					<td><%=result.getDate("departureDate") %></td>
-					<td><%=result.getTime("departureTime") %></td>
-					<td><%=result.getDate("arrivalDate") %></td>
-					<td><%=result.getTime("arrivalTime") %></td>
-					<!-- Add a total revenue field from every flight -->
-				</tr>
-				<%
-			}
+			%>
+			<tr>
+				<td><%=result.getInt("flightNum") %></td>
+				<td><%=result.getString("airline") %></td>
+				<td><%=result.getString("airportTo") %></td>
+				<td><%=result.getString("airportFrom") %></td>
+				<td><%=result.getInt("fares") %></td>
+				<td><%=result.getInt("stops") %></td>
+				<td><%=result.getDate("departureDate") %></td>
+				<td><%=result.getTime("departureTime") %></td>
+				<td><%=result.getDate("arrivalDate") %></td>
+				<td><%=result.getTime("arrivalTime") %></td>
+				<!-- Add a total revenue field from every flight -->
+			</tr>
+			<%
 		}
 		%>
 		</table>

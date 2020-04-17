@@ -50,7 +50,7 @@ Connection conn = DriverManager.getConnection(host, "root", "gameboy*1");
 	
 	<div class = "form-group">
 		<label> AddresultSets </label>
-		<input type = "text" class = "form-control" name = "address" value = <%=resultSet.getString("addresultSets") %> />
+		<input type = "text" class = "form-control" name = "address" value = <%=resultSet.getString("address") %> />
 	</div>
 	
 	<div class = "form-group">
