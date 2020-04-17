@@ -3,7 +3,7 @@
 <%@ page import="java.io.*,java.util.*, java.sql.Date, java.sql.*"%>
 <%@ page import="java.text.SimpleDateFormat, java.text.DateFormat"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
-<%@ include file = "html/genericPage.html" %>
+<%@ include file = "genericPage.html" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,7 @@
 	<%
 	try{
 		
+		String airportCode = request.getParameter("airportCode");
 		
 		//Create a connection string
 		//name the schema cs336project otherwise this url will not work!
@@ -32,7 +33,7 @@
 		//Get the combobox from the HelloWorld.jsp
 		System.out.println(request.getParameter("value"));
 		
-		String str = "";
+		String str = "SELECT DISTINCT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, numOfSeats, availableSeats, fares, departureDate, departureTime, arrivalDate, arrivalTime FROM flight JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE airportFrom = '" + airportCode + "';";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
@@ -43,8 +44,9 @@
 			<th>Airline</th>
 			<th>To Airport</th>
 			<th>From Airport</th>
+			<th># of Seats</th>
+			<th># of Seats Left</th>
 			<th>Fare</th>
-			<th>Stops</th>
 			<th>Departure Date</th>
 			<th>Departure Time</th>
 			<th>Arrival Date</th>
@@ -56,16 +58,16 @@
 			%>
 			<tr>
 				<td><%=result.getInt("flightNum") %></td>
-				<td><%=result.getString("airline") %></td>
+				<td><%=result.getString("airlineName") %></td>
 				<td><%=result.getString("airportTo") %></td>
 				<td><%=result.getString("airportFrom") %></td>
-				<td><%=result.getInt("fares") %></td>
-				<td><%=result.getInt("stops") %></td>
+				<td><%=result.getInt("numOfSeats") %></td>
+				<td><%=result.getInt("availableSeats") %></td>
+				<td>$<%=result.getInt("fares") %></td>
 				<td><%=result.getDate("departureDate") %></td>
 				<td><%=result.getTime("departureTime") %></td>
 				<td><%=result.getDate("arrivalDate") %></td>
 				<td><%=result.getTime("arrivalTime") %></td>
-				<!-- Add a total revenue field from every flight -->
 			</tr>
 			<%
 		}

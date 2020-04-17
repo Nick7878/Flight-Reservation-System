@@ -3,7 +3,7 @@
 <%@ page import="java.io.*,java.util.*, java.sql.Date, java.sql.*"%>
 <%@ page import="java.text.SimpleDateFormat, java.text.DateFormat"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
-<%@ include file = "html/genericPage.html" %>
+<%@ include file = "genericPage.html" %>
 
 <!DOCTYPE html>
 <html>
@@ -15,6 +15,9 @@
 <body>
 	<%
 	try{
+		String flightNum = request.getParameter("flightNumber");
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
 		
 		
 		//Create a connection string
@@ -32,40 +35,45 @@
 		//Get the combobox from the HelloWorld.jsp
 		System.out.println(request.getParameter("value"));
 		
-		String str = "";
+		String str = "SELECT reservationCode, totalFare, travelDate, bookFee, passengers, flightNum, accountNum, reservationType FROM reservations JOIN reservationFlights USING(reservationCode) JOIN customer USING(accountNum) JOIN flight USING(flightNum) WHERE (firstName = '" + firstName + "' AND lastName = '" + lastName + "') OR (flightNum = '" + flightNum + "');";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
 		%>
 		<table style="border: 1px solid black;">
 			<tr>
-			<th>Flight Number</th>
-			<th>Airline</th>
-			<th>To Airport</th>
-			<th>From Airport</th>
-			<th>Fare</th>
-			<th>Stops</th>
-			<th>Departure Date</th>
-			<th>Departure Time</th>
-			<th>Arrival Date</th>
-			<th>Arrival Time</th>
+			<th>Reservation Code</th>
+			<th>Total Cost</th>
+			<th>Travel Date</th>
+			<th>Booking Fee</th>
+			<th># of Passengers</th>
+			<th>Flight #</th>
+			<th>Account #</th>
+			<th>Reservation Type</th>
 			</tr>
 		<%
 		
 		while(result.next()) {
+			//Convert the date we got from the Database to a String so we can compare it to our month string.
+			String reservationType = "";
+			if(result.getInt("reservationType") == 1) {
+				reservationType = "One-Way";
+			} else if(result.getInt("reservationType") == 2) {
+				reservationType = "Round-Trip";
+			} else {
+				reservationType = "Multi-Leg";
+			}
+			
 			%>
 			<tr>
+				<td><%=result.getString("reservationCode") %></td>
+				<td>$<%=result.getDouble("totalFare") %></td>
+				<td><%=result.getDate("travelDate") %></td>
+				<td>$<%=result.getDouble("bookFee") %></td>
+				<td><%=result.getInt("passengers") %></td>
 				<td><%=result.getInt("flightNum") %></td>
-				<td><%=result.getString("airline") %></td>
-				<td><%=result.getString("airportTo") %></td>
-				<td><%=result.getString("airportFrom") %></td>
-				<td><%=result.getInt("fares") %></td>
-				<td><%=result.getInt("stops") %></td>
-				<td><%=result.getDate("departureDate") %></td>
-				<td><%=result.getTime("departureTime") %></td>
-				<td><%=result.getDate("arrivalDate") %></td>
-				<td><%=result.getTime("arrivalTime") %></td>
-				<!-- Add a total revenue field from every flight -->
+				<td><%=result.getInt("accountNum") %></td>
+				<td><%=reservationType %></td>
 			</tr>
 			<%
 		}

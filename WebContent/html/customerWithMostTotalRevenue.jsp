@@ -3,7 +3,7 @@
 <%@ page import="java.io.*,java.util.*, java.sql.Date, java.sql.*"%>
 <%@ page import="java.text.SimpleDateFormat, java.text.DateFormat"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
-<%@ include file = "html/genericPage.html" %>
+<%@ include file = "genericPage.html" %>
 
 <!DOCTYPE html>
 <html>
@@ -32,40 +32,29 @@
 		//Get the combobox from the HelloWorld.jsp
 		System.out.println(request.getParameter("value"));
 		
-		String str = "";
+		String str = "SELECT MAX(TR.totalRevenue) AS totalRev, accountNum, firstName, lastName, email FROM (SELECT accountNum, SUM(totalFare) AS totalRevenue, customer.firstName, customer.lastName, accounts.email FROM reservations JOIN customer USING(accountNum) JOIN accounts USING(accountNum) GROUP BY accountNum) AS TR;";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
 		%>
 		<table style="border: 1px solid black;">
 			<tr>
-			<th>Flight Number</th>
-			<th>Airline</th>
-			<th>To Airport</th>
-			<th>From Airport</th>
-			<th>Fare</th>
-			<th>Stops</th>
-			<th>Departure Date</th>
-			<th>Departure Time</th>
-			<th>Arrival Date</th>
-			<th>Arrival Time</th>
+			<th>Account #</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>Total Revenue</th>
 			</tr>
 		<%
 		
 		while(result.next()) {
 			%>
 			<tr>
-				<td><%=result.getInt("flightNum") %></td>
-				<td><%=result.getString("airline") %></td>
-				<td><%=result.getString("airportTo") %></td>
-				<td><%=result.getString("airportFrom") %></td>
-				<td><%=result.getInt("fares") %></td>
-				<td><%=result.getInt("stops") %></td>
-				<td><%=result.getDate("departureDate") %></td>
-				<td><%=result.getTime("departureTime") %></td>
-				<td><%=result.getDate("arrivalDate") %></td>
-				<td><%=result.getTime("arrivalTime") %></td>
-				<!-- Add a total revenue field from every flight -->
+				<td><%=result.getInt("accountNum") %></td>
+				<td><%=result.getString("firstName") %></td>
+				<td><%=result.getString("lastName") %></td>
+				<td><%=result.getString("email") %></td>
+				<td>$<%=result.getInt("totalRev") %></td>
 			</tr>
 			<%
 		}
