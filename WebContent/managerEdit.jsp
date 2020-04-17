@@ -17,10 +17,7 @@
 
 try{
 	
-} catch(Exception e) {
-	e.printStackTrace();
-	//make an alert and redirect back to managerTest using Javascript
-}
+
 PreparedStatement stmt = null;
 String host = "jdbc:mysql://localhost:3306/cs336project?useSSL=false";
 Class.forName("com.mysql.jdbc.Driver");
@@ -50,7 +47,7 @@ Connection conn = DriverManager.getConnection(host, "root", "gameboy*1");
 	
 	<div class = "form-group">
 		<label> AddresultSets </label>
-		<input type = "text" class = "form-control" name = "address" value = <%=resultSet.getString("address") %> />
+		<input type = "text" class = "form-control" name = "address" value = <%=resultSet.getString("addresultSets") %> />
 	</div>
 	
 	<div class = "form-group">
@@ -84,43 +81,51 @@ Connection conn = DriverManager.getConnection(host, "root", "gameboy*1");
 	<a href = "managerTest.jsp" class = "btn-def"> Back </a>
 	</form>
 <%
-String z = request.getParameter("accNum");
-String a = request.getParameter("lastName");
-String b = request.getParameter("firstName");
-String c = request.getParameter("address");
-String d = request.getParameter("city");
-String e = request.getParameter("state");
-String f = request.getParameter("zip");
-String g = request.getParameter("telephone");
-String h = request.getParameter("creditCard");
+String accNum= request.getParameter("id");
+String sqlLastName = request.getParameter("ln");
+String sqlFirstName = request.getParameter("fn");
+String sqlAddress = request.getParameter("adr");
+String sqlCity = request.getParameter("ci");
+String sqlState = request.getParameter("st");
+String sqlZip = request.getParameter("zip");
+String sqlTelephone = request.getParameter("tel");
+String sqlCreditCard = request.getParameter("ccn");
 
-if(a!=null && b!=null && c!=null && d!=null && e!=null&& f!=null && g!=null && h !=null){
-	%>
-	<script>
-		alert("Please make sure all fields have values!");
-		window.location.href = "managerEdit.jsp";
-	</script>
-	<%
-	String query = "UPDATE customer SET lastName = ?, firstName = ?, address = ?, city = ?, state = ?, zipCode = ?, telephone = ?, creditCardNum = ? WHERE accountNum = " + z;
+if(sqlLastName!=null && sqlFirstName!=null && sqlAddress!=null && sqlCity!=null && sqlState!=null&& sqlZip!=null && sqlTelephone!=null && sqlCreditCard !=null){
+	String query = "UPDATE customer SET lastName = ?, firstName = ?, address = ?, city = ?, state = ?, zipCode = ?, telephone = ?, creditCardNum = ? WHERE accountNum = " + accNum + " ";
 	stmt = conn.prepareStatement(query);
-	stmt.setString(1,a);
-	stmt.setString(2,b);
-	stmt.setString(3,c);
-	stmt.setString(4,d);
-	stmt.setString(5,e);
-	stmt.setString(6,f);
-	stmt.setString(7,g);
-	stmt.setString(8,h);
+	stmt.setString(1,sqlLastName);
+	stmt.setString(2,sqlFirstName);
+	stmt.setString(3,sqlAddress);
+	stmt.setString(4,sqlCity);
+	stmt.setString(5,sqlState);
+	stmt.setString(6,sqlZip);
+	stmt.setString(7,sqlTelephone);
+	stmt.setString(8,sqlCreditCard);
 	stmt.executeUpdate();
-	%>
+	response.sendRedirect("managerTest.jsp");
+
+%>
+
+	
 	<script>
 		alert("Update Successful!");
 	</script>
 	<%
 	response.sendRedirect("managerTest.jsp");
 }
+} catch(Exception e) {
+	e.printStackTrace();
+	//make an alert and redirect back to managerTest using Javascript<!-- if error, show the alert and go back to login page --> 
+	%>
+	<script> 
+    alert("Sorry, something went wrong on our server, failed to create your account");
+    window.location.href = "html/createAccount.html";
+	</script>
+	<%
+}
 
-//Surround this code in try
+
 
 
 %>
