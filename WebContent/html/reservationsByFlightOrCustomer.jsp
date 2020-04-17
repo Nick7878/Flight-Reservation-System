@@ -35,37 +35,45 @@
 		//Get the combobox from the HelloWorld.jsp
 		System.out.println(request.getParameter("value"));
 		
-		String str = "SELECT reservationNum, totalFare, travelDate, legs, bookFee, passengers, flightNum, accountNum FROM reservation JOIN customer USING(accountNum) JOIN flight USING(flightNum) WHERE (firstName = '" + firstName + "' AND lastName = '" + lastName + "') OR (flightNum = '" + flightNum + "');";
+		String str = "SELECT reservationCode, totalFare, travelDate, bookFee, passengers, flightNum, accountNum, reservationType FROM reservations JOIN reservationFlights USING(reservationCode) JOIN customer USING(accountNum) JOIN flight USING(flightNum) WHERE (firstName = '" + firstName + "' AND lastName = '" + lastName + "') OR (flightNum = '" + flightNum + "');";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
 		%>
 		<table style="border: 1px solid black;">
 			<tr>
-			<th>Reservation #</th>
+			<th>Reservation Code</th>
 			<th>Total Cost</th>
 			<th>Travel Date</th>
-			<th>Layover's</th>
 			<th>Booking Fee</th>
-			<th>Passengers</th>
+			<th># of Passengers</th>
 			<th>Flight #</th>
 			<th>Account #</th>
+			<th>Reservation Type</th>
 			</tr>
 		<%
 		
 		while(result.next()) {
 			//Convert the date we got from the Database to a String so we can compare it to our month string.
+			String reservationType = "";
+			if(result.getInt("reservationType") == 1) {
+				reservationType = "One-Way";
+			} else if(result.getInt("reservationType") == 2) {
+				reservationType = "Round-Trip";
+			} else {
+				reservationType = "Multi-Leg";
+			}
+			
 			%>
 			<tr>
-				<td><%=result.getInt("reservationNum") %></td>
-				<td><%=result.getDouble("totalFare") %></td>
+				<td><%=result.getString("reservationCode") %></td>
+				<td>$<%=result.getDouble("totalFare") %></td>
 				<td><%=result.getDate("travelDate") %></td>
-				<td><%=result.getInt("legs") %></td>
-				<td><%=result.getInt("totalFare") %></td>
-				<td><%=result.getDouble("bookFee") %></td>
+				<td>$<%=result.getDouble("bookFee") %></td>
 				<td><%=result.getInt("passengers") %></td>
 				<td><%=result.getInt("flightNum") %></td>
 				<td><%=result.getInt("accountNum") %></td>
+				<td><%=reservationType %></td>
 			</tr>
 			<%
 		}
