@@ -43,6 +43,7 @@
 				</script>
 				<% 
 			} else {
+				//changed accounts to accounts
 				String str = "SELECT * FROM accounts WHERE email='" + email + "' AND accountPassword='" + password + "'";
 				
 
