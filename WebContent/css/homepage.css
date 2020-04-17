@@ -4,12 +4,11 @@ form {
     position: absolute;
     top: 50%;
     left: 50%;
-    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 250px;
     margin-left: auto;
     margin-right: auto;
-    text-align: auto;
+    text-align: left;
     padding: 50px;
     border-radius: 30px 30px 30px 30px;
     font-family: Arial bold, sans-serif;
@@ -17,13 +16,10 @@ form {
     font-weight: bold;
     line-height: 30pt;
     color: rgb(0, 0, 0);
-    font-style: bold;
     background-color: rgb(194, 220, 255);
 }
 
-body {
-    background-image: url('../images/background.png');
-}
+body {background-image: url('../images/background.png');}
 
 input[type=text], select {
     border-radius: 4px;
