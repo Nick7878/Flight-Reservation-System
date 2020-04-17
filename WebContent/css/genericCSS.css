@@ -2,22 +2,9 @@ body {
     background-image: url('../images/background.png');
 }
 
-#myAccountDropdown {
+#myAccountDropdown #loginDropdown #createAccountDropdown #signOutDropdown {
 	display: block;
 }
-
-#loginDropdown {
-    display: block;
-}
-
-#createAccountDropdown {
-	display: block;
-}
-
-#signOutDropdown {
-	display: block;
-}
-
 
 /*Use this for the search function */
 

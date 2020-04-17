@@ -53,14 +53,11 @@ button {
     cursor: pointer;
 }
 
-.fsize {
-    font-size: 15pt;
-}
+.fsize {font-size: 15pt;}
 
-ul {
-    list-style-type: none;
-}
+ul {list-style-type: none;}
 
+/*
 .column {
     float: right;
     margin-right: 20px;
@@ -76,51 +73,19 @@ ul {
     font-weight: bold;
     column-width: 100px;
 }
+*/
 
-#myAccountDropdown {
+#myAccountDropdown #loginDropdown #createAccountDropdown #signOutDropdown #login {
 	display: block;
 }
 
-#loginDropdown {
-    display: block;
-}
-
-#createAccountDropdown {
-	display: block;
-}
-
-#signOutDropdown {
-	display: block;
-}
-
-
-/*Use this for the search function */
+.hidden {visibility: hidden;}
+.visible {visibility: visible;}
 
 .topnav {
     overflow: hidden;
     background-color: #333;
 }
-
-#ManagerLink{
-    
-}
-
-.hidden {
-	visibility: hidden;
-}
-
-.visible {
-	visibility: visible;
-}
-
-#login{
-    display: block;
-}
-
-#ReservationLink {
-	
-}
-  
 
 /*The default appearance of the tabs in the navigation bar*/
 .topnav #ReservationLink, #HomeLink, #ManagerLink {
@@ -145,17 +110,20 @@ ul {
     color: white;
 }
 
-/*Alters the physical properties of the image(logo)*/
-.topnav #Logo {
-    float: left;
+
+#Logo #AccountLogo{
     padding-top: 6px;
     padding-left: 31px;
+}
+
+
+/*Alters the physical properties of the image(logo)*/
+ #Logo {
+    float: left;
     padding-right: 6px;
 }
 
-.topnav #AccountLogo {
-    padding-top: 6px;
-    padding-left: 31px;
+#AccountLogo {
     padding-right: 30px;
     width: 50px;
 }

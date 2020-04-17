@@ -60,22 +60,9 @@ main [type = submit]{
   text-align: center;
 }
 
-#myAccountDropdown {
+#myAccountDropdown #loginDropdown #createAccountDropdown #signOutDropdown {
 	display: block;
 }
-
-#loginDropdown {
-    display: block;
-}
-
-#createAccountDropdown {
-	display: block;
-}
-
-#signOutDropdown {
-	display: block;
-}
-
 
 .topnav {
   overflow: hidden;

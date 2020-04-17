@@ -67,22 +67,9 @@ input[type = submit] {
   
 }
 
-#myAccountDropdown {
+#myAccountDropdown #loginDropdown #createAccountDropdown #signOutDropdown {
 	display: block;
 }
-
-#loginDropdown {
-    display: block;
-}
-
-#createAccountDropdown {
-	display: block;
-}
-
-#signOutDropdown {
-	display: block;
-}
-
 .hidden {
 	visibility: hidden;
 }
