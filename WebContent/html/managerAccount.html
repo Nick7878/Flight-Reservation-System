@@ -7,6 +7,7 @@
   <title>Document</title>
   <link href="../css/managerAccount.css" type="text/css" rel="stylesheet" />
   <script src = ../check.js ></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -31,7 +32,7 @@
   <main>
 
     <!--Customer information table -->
-    <h2>Customer Information</h2>
+    <h2>Customer Info</h2>
 
     
     <table align="center" style="width: 100%;">
@@ -39,13 +40,13 @@
       <tr>
         <th>Last Name</th>
         <th>First Name</th>
-        <th>Adress</th>
+        <th>Address</th>
         <th>City</th>
         <th>State</th>
-        <th>ipCode</th>
+        <th>Zip code</th>
         <th>Telephone</th>
-        <th>Credicard?</th>
-        <th> Option</th>
+        <th>Credit card?</th>
+        <th>Option</th>
       </tr>
       <!--Place holder for the sql information-->
       <tr>
@@ -60,39 +61,58 @@
         <th>edit</th> <!--Edit button will provide options to add delet or change information-->
       </tr>
       
-    </table align="center">
+    </table>
 
     <!-- Sales report for months-->
     <h2>Sales Report</h2>
+    <div class="monthDropdown">
+    	<form method="get">
+    		<button type="submit" class="monthButton" name="monthDropdown">Select Month</button>
+	  		<div id="myDropdown" class="months-content">
+	    	<a href="managerFunctionsSalesReport.jsp?value=01">January</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=02">February</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=03">March</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=04">April</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=05">May</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=06">June</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=07">July</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=08">August</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=09">September</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=10">October</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=11">November</a>
+	    	<a href="managerFunctionsSalesReport.jsp?value=12">December</a>	
+  		</div>
+  		</form>
+	</div>
+	<script>
+		$(function () {
+	        $("#myDropdown a").click(function () {
+	            let selText = $(this).text();
+	            $(".monthButton").html(selText);
+	        });
+		});
+	</script>
     <table id = "salesReport" align="center" style="width: 100%;">
       
       <tr>
-        <th>Jan</th>
-        <th>Feb</th>
-        <th>Mar</th>
-        <th>Apr</th>
-        <th>May</th>
-        <th>Jun</th>
-        <th>Jul</th>
-        <th>Aug</th>
-        <th>Sep</th>
-        <th>Oct</th>
-        <th>Nov</th>
-        <th>Dec</th>
+        <th>Flight #</th>
+        <th>Airline</th>
+        <th>AirportTo/From</th>
+        <th>Departing Date/Time</th>
+        <th>Arrival Date/Time</th>
+        <th>Stops</th>
+        <th>Cost of Flight</th>
+        <th>Total Revenue</th>
       </tr> 
       <tr>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
-        <th>Sales</th>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
+        <td>Sales</td>
       </tr> 
     </table>
 
