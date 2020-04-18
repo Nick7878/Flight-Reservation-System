@@ -4,12 +4,66 @@ body {
 }
 
 form {
-	text-align: center;
+    max-width: 450px;
+	background: #FAFAFA;
+	padding: 30px;
+	margin: 50px auto;
+	box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+	border-radius: 10px;
+	border: 6px solid #305A72;
+    text-align: center;
+}
+
+/*  */
+
+/* Headings */
+h5 {
+    font-family: Arial bold, sans-serif;
+    line-height: 1.25; 
+    font-size: 15px; 
+    font-weight: bold;
+    text-align: center;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
 }
 
 input {
 	margin-left: 10px;
-	margin-bottom: 10px;
+    margin-bottom: 10px;
+    display: inline-flex;
+    min-height: 35px;
+    box-sizing: border-box; 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box; 
+	padding: 8px;
+	outline: none;
+	border: 1px solid #B0CFE0;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+
+}
+
+label{
+	margin:0 0 3px 0;
+	padding:0px;
+	display: block;
+	font-weight: bold;
+}
+
+/* CSS for all buttons on site */
+button{
+    width: 150px;
+    background-color: rgb(76, 130, 175);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    cursor: pointer;
 }
 
 .fsize {
@@ -99,7 +153,7 @@ input {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 100px;
+    min-width: 125px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -128,7 +182,7 @@ input {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 100px;
+  min-width: 125px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -148,7 +202,13 @@ input {
 }
 
 .monthButton {
-	width: 100px;
-}
+    width: 150px;
+    background-color: rgb(76, 130, 175);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 
 
