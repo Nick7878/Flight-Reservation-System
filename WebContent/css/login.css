@@ -73,14 +73,8 @@ main [type = submit]{
 	
 }
 
-.hidden {
-	visibility: hidden;
-}
-
-.visible {
-	visibility: visible;
-}
-
+.hidden {visibility: hidden;}
+.visible {visibility: visible;}
 
 /*The default appearance of the tabs in the navigation bar*/
 .topnav #ReservationLink, #HomeLink, #ManagerLink {

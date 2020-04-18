@@ -107,21 +107,20 @@ ul {list-style-type: none;}
 }
 
 
-#Logo #AccountLogo{
-    padding-top: 6px;
-    padding-left: 31px;
-}
-
-
 /*Alters the physical properties of the image(logo)*/
- #Logo {
-    float: left;
-    padding-right: 6px;
+.topnav #Logo {
+  float: left;
+  
+  padding-top: 6px;
+  padding-left: 31px;
+  padding-right: 6px;
 }
 
-#AccountLogo {
-    padding-right: 30px;
-    width: 50px;
+.topnav #AccountLogo {
+  padding-top: 6px;
+  padding-left: 31px;
+  padding-right: 30px;
+  width: 50px;
 }
 
 .topnav .dropdown {
