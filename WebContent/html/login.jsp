@@ -31,9 +31,11 @@
 			Statement stmt = con.createStatement();
 			//Get the combobox from the HelloWorld.jsp
 			
-			//Get parameters from the HTML form at the login.jsp
+			//Get parameters from the HTML form at the myAccount.jsp
 		    String email = request.getParameter("email");
 		    String password = request.getParameter("password");
+		    
+		    
 		    
 			if ((email.equals(""))&&(password.equals(""))){
 				%>
