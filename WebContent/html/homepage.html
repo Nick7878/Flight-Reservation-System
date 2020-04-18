@@ -29,13 +29,13 @@
   </div>
 
   <main>
-    <form>
-      From: <input type="text" class="fsize" name="From" placeholder="EWR">      
-      To:  <input type="text" class="fsize" name="To" placeholder="HNL"> 
-      Departing: <input type="text" class="fsize" name="startDate" placeholder="yyyy-mm-dd"> 
-      Returning: <input type="text" class="fsize" name="endDate" placeholder="yyyy-mm-dd" disabled>
-      Round Trip <input type="checkbox" class="fsize" name ="returnTrip" id="return" onchange="change()"> 
-      Passengers <input type="number" class="fsize" name="passengers" id="passengers" min = "1" max ="6">
+    <form action="availableFlights.jsp" method="get">
+      From: <input type="text" class="fsize" name="fromAirport" placeholder="EWR">      
+      To:  <input type="text" class="fsize" name="toAirport" placeholder="HNL"> 
+      Departing: <input type="text" class="fsize" name="departureDate" placeholder="yyyy-mm-dd"> 
+      Returning: <input type="text" class="fsize" name="returnDate" placeholder="yyyy-mm-dd" disabled>
+      Round Trip <input type="checkbox" class="fsize" name ="roundTrip" id="return" onchange="change()"> 
+      Passengers <input type="number" class="fsize" name="numOfPassengers" id="passengers" min = "1" max ="6">
       <input type="submit" name="Search">
     </form>
 
