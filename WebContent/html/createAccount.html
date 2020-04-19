@@ -3,7 +3,14 @@
     <head>
         <title> Sign Up Form</title>
         <link rel = "stylesheet" href = "../css/createAccountStyle.css">
-        <script src = ../check.js ></script>
+        <script src = ../check.js >
+          function passvalues(){
+      var emaiL= document.getElementById(email).nodeValue;
+      localStorage.setItem("emailvalue", emaiL);
+      return false;
+
+    }
+        </script>
     </head>
     <body>
         <div class="topnav">
@@ -39,7 +46,7 @@
                 <label>Phone Number:</label><br>
                 <input type = "number" class = "input-box" placeholder = "7323579753" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="telephone"> <br>
                 <label> Email: </label> <br>            
-                <input type = "field" class = "input-box" placeholder = "vandyck@gmail.com" name="email"> <br>
+                <input type = "field" class = "input-box" placeholder = "vandyck@gmail.com" name="email" onclick="passvalues()"> <br>
                 <label> Credit Card: </label><br>
                 <input type = "number" class = "input-box" placeholder = "XXXXXXXXXXXXXXXX" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="creditCardNum"> <br>
                 <label>Password: </label> <br>
