@@ -17,9 +17,16 @@
 
 <body>
 	<%
-	    String email = request.getParameter("email");
-		String password = request.getParameter("password");	
-		String str = "UPDATE accounts SET email = '" + email + "', accountPassword = '" + password + "' WHERE accountNum ='1';";
+	String firstName = request.getParameter("firstname");
+	String lastName = request.getParameter("lastname");
+	String address = request.getParameter("address");
+	String city = request.getParameter("cityname");
+	String state = request.getParameter("statename");
+	String zipCode = request.getParameter("zipcode");
+	String phoneNumber = request.getParameter("phonenumber");
+	String creditCardNumber = request.getParameter("creditcard");
+	
+	String str = " UPDATE customer SET lastName= ' "+ lastName +" ', firstName = '"+ firstName +" ', address = '"+ address +" ', city = '"+ city +" ', state = '"+ state +" ', zipCode = '"+ zipCode +" ', telephone = '"+ phoneNumber +" ', creditCardNum = '"+ creditCardNumber +" ' WHERE accountNum = '1'; ";
 	try {
 		//Create a connection string
 		//name the schema cs336project otherwise this url will not work!
@@ -37,7 +44,7 @@
 			
 		//Get parameters from the HTML form at the myAccount.jsp
 		
-		stmt.executeUpdate(str);	
+		stmt.executeUpdate(str);
 		%>
 		<script>
 			//alert("Sorry, unexcepted error happens.");
