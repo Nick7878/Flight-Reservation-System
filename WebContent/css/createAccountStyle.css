@@ -4,6 +4,7 @@ body
 }
 .signupform 
 {
+  /* Old CSS
     margin: 0;
     position: absolute;
     top: 70%;
@@ -24,6 +25,17 @@ body
     font-style: bold;
     background-color: rgb(194, 220, 255);
     margin-bottom: 30px;
+    */
+
+    /* New CSS */
+    max-width: 450px;
+    background: #FAFAFA;
+    padding: 30px;
+    margin: 50px auto;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 6px solid #305A72;
+    text-align: center;
 }
 
 .acct
@@ -50,8 +62,22 @@ body
     margin-bottom: 30px;
 }
 
+label{
+	margin:0 0 3px 0;
+	padding:0px;
+	display: inline-block;
+  font-weight: bold;
+  font-family: Arial bold, sans-serif;
+  line-height: 1.25; 
+  font-size: 15px; 
+  font-weight: bold;
+  text-align: center;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
 
 input[type = submit] {
+  /* Old CSS
     width: 56%;
     background-color: rgb(76, 130, 175);
     color: white;
@@ -60,19 +86,49 @@ input[type = submit] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    */
+    
+    /* New CSS */
+    width: 150px;
+    background-color: rgb(76, 130, 175);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    cursor: pointer;
   }
 
   input[type=field], select {
+    /* Old CSS
     width: 56%;
     padding: 5px 5px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
+    box-sizing: border-box; */
+
+    /*New CSS */
+    margin-left: 10px;
+    margin-bottom: 10px;
+    display: inline-flex;
+    min-height: 35px;
+    box-sizing: border-box; 
+	  -webkit-box-sizing: border-box;
+	  -moz-box-sizing: border-box; 
+	  padding: 8px;
+	  outline: none;
+	  border: 1px solid #B0CFE0;
+	  -webkit-transition: all 0.30s ease-in-out;
+	  -moz-transition: all 0.30s ease-in-out;
+	  -ms-transition: all 0.30s ease-in-out;
+	  -o-transition: all 0.30s ease-in-out;
   }
   
    input[type=number]{
+    /* Old CSS
     width: 56%;
     padding: 5px 5px;
     margin: 8px 0;
@@ -80,7 +136,36 @@ input[type = submit] {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    */
+
+    /* New CSS */
+    margin-left: 10px;
+    margin-bottom: 10px;
+    display: inline-flex;
+    min-height: 35px;
+    box-sizing: border-box; 
+	  -webkit-box-sizing: border-box;
+	  -moz-box-sizing: border-box; 
+	  padding: 8px;
+	  outline: none;
+	  border: 1px solid #B0CFE0;
+	  -webkit-transition: all 0.30s ease-in-out;
+	  -moz-transition: all 0.30s ease-in-out;
+	  -ms-transition: all 0.30s ease-in-out;
+	  -o-transition: all 0.30s ease-in-out;
   }
+
+  /* This is for when we switch back to type=password for the passwords
+input[type=password]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+*/
 
 .topnav {
     overflow: hidden;

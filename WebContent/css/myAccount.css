@@ -24,6 +24,18 @@ input[type=submit] {
   cursor: pointer;
 }
 
+/* This is for when we switch back to type=password for the passwords
+input[type=password]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+*/
+
 body {
   background-image: url('../images/background.png');
 }
@@ -46,7 +58,6 @@ th, td {
 /* Heading CSS */
 
 th {
-  background-color: rgb(194, 220, 255);
   color: black;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -63,25 +74,25 @@ table {
 }
 
 #priv{
-  border-radius: 25px;
-  border: 2px solid rgb(219, 219, 219);
-  background-color: rgb(194, 220, 255);
-  height: 540px; 
-  margin: auto;
-  width: 600px;
-  padding: 10px;
-  margin-top: 10px;
+  max-width: 600px;
+	background: #FAFAFA;
+	padding: 30px;
+	margin: 50px auto;
+	box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+	border-radius: 10px;
+	border: 6px solid #305A72;
+  text-align: center;
 }
 
 #pref{
-  border-radius: 25px;
-  border: 2px solid rgb(219, 219, 219);
-  background-color: rgb(194, 220, 255);
-  height: 240px; 
-  width: 600px;
-  padding: 10px;
-  margin: auto;
-
+  max-width: 600px;
+	background: #FAFAFA;
+	padding: 30px;
+	margin: 50px auto;
+	box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+	border-radius: 10px;
+	border: 6px solid #305A72;
+  text-align: center;
 }
 
 .topnav {
