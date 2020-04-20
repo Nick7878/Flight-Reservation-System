@@ -13,6 +13,16 @@
 </head>
 <body>
 	<%
+	Cookie cookie = null;
+    Cookie[] cookies = null;
+
+    // Get an array of Cookies associated with the this domain
+    cookies = request.getCookies();
+
+    //Gets AccountNum
+    cookie = cookies[0];
+    int accountNum = Integer.parseInt(cookie.getValue());
+	
 	try{
 		String airportTo = request.getParameter("toAirport");
 		String airportFrom = request.getParameter("fromAirport");
@@ -36,9 +46,14 @@
 		Statement flightsAvailableOnSpecificDayOneWayStatement = con.createStatement();
 		Statement flightsAvailableInCertainDateRangeOneWayStatement = con.createStatement();
 		
+		//gets flight on specific day
 		String flightAvailableOnSpecificDayOneWayQuery = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, availableSeats, fares, departureDate, departureTime, arrivalDate, arrivalTime FROM flight JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE (departureDate = '" + departureDate + "') AND (flight.airportTo = '" + airportTo + "' AND flight.airportFrom = '" + airportFrom + "') AND (NOT ((availableSeats - " + numOfPassengers + ") < 0));";
 		
+		//Gets flights in a certain date range
 		String flightAvailableOnCertainDateRangeOneWayQuery = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, availableSeats, fares, departureDate, departureTime, arrivalDate, arrivalTime FROM flight JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE ((departureDate BETWEEN '2020-04-08' AND '2020-04-11') OR (departureDate BETWEEN '2020-04-11' AND '2020-04-14')) AND (flight.airportTo = 'SAN' AND flight.airportFrom = 'EWR') AND (NOT ((availableSeats - 2) < 0));";
+		
+		//Gets last name for current account logged in
+		String lastNameQuery = "SELECT lastName FROM customer WHERE accountNum = '" + accountNum + "';";
 		//Run the query against the database.
 		ResultSet result = flightsAvailableOnSpecificDayOneWayStatement.executeQuery(flightAvailableOnSpecificDayOneWayQuery);
 		%>
@@ -66,7 +81,7 @@
 						<tr>
 							<td>
 			                    <div class="radio">
-			                         <label><input type="radio" name="selection"></label>
+			                         <label><input type="radio" name="one-way" value=<%=result.getInt("flightNum") %>></label>
 			                    </div>
 			               	</td>
 							<td><%=result.getInt("flightNum") %></td>
@@ -87,6 +102,8 @@
 		</div>
 		</div>
 		<% 
+		
+		System.out.println(request.getParameter("one-way"));
 	} catch(Exception e) {
 		e.printStackTrace();
 		%>

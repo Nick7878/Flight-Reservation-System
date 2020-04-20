@@ -42,13 +42,15 @@ document.addEventListener("DOMContentLoaded" , () =>{
     }
 });
 
-function setCookie(email, isManager) {
+function setCookie(accountNum, email, isManager) {
 	if(email === "") {
 		alert("enter your email");
 		return;
 	}
+	accountNum=escape(accountNum) + ";"
 	emailValue=escape(email) + ";"
 	isManagerValue=escape(isManager) + ";"
+	document.cookie = "accountNum=" + accountNum;
 	document.cookie = "email=" + emailValue;
 	document.cookie = " isManager=" + isManagerValue;
 }
@@ -62,8 +64,9 @@ function readCookie() {
 	//document.write ("All Cookies : " + allCookies);
 	
 	let cookieArray = allCookies.split(";");
-	let emailArray = cookieArray[0].split("=");
-	let isManagerArray = cookieArray[1].split("=");
+	let accountNumArray = cookieArray[0].split("=");
+	let emailArray = cookieArray[1].split("=");
+	let isManagerArray = cookieArray[2].split("=");
 	
 	if(emailArray[0] === "email" && emailArray[1] === "") {
 		logout();

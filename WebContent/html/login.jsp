@@ -58,7 +58,7 @@
 						<script>
 							let email = "<%=email%>";
 							
-							setCookie(email, true);
+							setCookie(<%=result.getInt("accountNum")%>, email, true);
 						</script>
 						<%
 					} else {
@@ -66,7 +66,7 @@
 						<script>
 							let email = "<%=email%>";
 							
-							setCookie(email, false);
+							setCookie(<%=result.getInt("accountNum")%>, email, false);
 						</script>
 						<%
 					}
