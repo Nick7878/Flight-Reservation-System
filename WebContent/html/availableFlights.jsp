@@ -97,6 +97,5 @@
 		<%	
 	}
 	%>
-	<script src = "../check.js" ></script>
 </body>
 </html>
