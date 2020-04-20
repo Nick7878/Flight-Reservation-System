@@ -3,14 +3,13 @@
 <%@ page import="java.io.*,java.util.*, java.sql.Date, java.sql.*"%>
 <%@ page import="java.text.SimpleDateFormat, java.text.DateFormat"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
-<%@ include file = "genericPage.html" %>
+<%@ include file = "reservationResults.html" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>title</title>
-<link rel = "stylesheet" href = "../css/genericCSS.css">
 </head>
 <body>
 	<%
@@ -42,41 +41,51 @@
 		String flightAvailableOnCertainDateRangeOneWayQuery = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, availableSeats, fares, departureDate, departureTime, arrivalDate, arrivalTime FROM flight JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE ((departureDate BETWEEN '2020-04-08' AND '2020-04-11') OR (departureDate BETWEEN '2020-04-11' AND '2020-04-14')) AND (flight.airportTo = 'SAN' AND flight.airportFrom = 'EWR') AND (NOT ((availableSeats - 2) < 0));";
 		//Run the query against the database.
 		ResultSet result = flightsAvailableOnSpecificDayOneWayStatement.executeQuery(flightAvailableOnSpecificDayOneWayQuery);
-		
 		%>
-		<table style="border: 1px solid black;">
-			<tr>
-			<th>Flight Number</th>
-			<th>Airline</th>
-			<th>To Airport</th>
-			<th>From Airport</th>
-			<th>Available Seats</th>
-			<th>Fare</th>
-			<th>Departure Date</th>
-			<th>Departure Time</th>
-			<th>Arrival Date</th>
-			<th>Arrival Time</th>
-			</tr>
-		<%
+		<div>
+	    <div class="depart">
+	            <table>
+	                <tr>
+	                	<th></th>
+						<th>Flight Number</th>
+						<th>Airline</th>
+						<th>To Airport</th>
+						<th>From Airport</th>
+						<th>Available Seats</th>
+						<th>Fare</th>
+						<th>Departure Date</th>
+						<th>Departure Time</th>
+						<th>Arrival Date</th>
+						<th>Arrival Time</th>
+					</tr>
+
+	                <%
 		
-		while(result.next()) {
-			%>
-			<tr>
-				<td><%=result.getInt("flightNum") %></td>
-				<td><%=result.getString("airlineName") %></td>
-				<td><%=result.getString("airportTo") %></td>
-				<td><%=result.getString("airportFrom") %></td>
-				<td><%=result.getInt("availableSeats") %></td>
-				<td><%=result.getInt("fares") %></td>
-				<td><%=result.getDate("departureDate") %></td>
-				<td><%=result.getTime("departureTime") %></td>
-				<td><%=result.getDate("arrivalDate") %></td>
-				<td><%=result.getTime("arrivalTime") %></td>
-			</tr>
-			<%
-		}
+					while(result.next()) {
+						%>
+						<tr>
+							<td>
+			                    <div class="radio">
+			                         <label><input type="radio" name="selection"></label>
+			                    </div>
+			               	</td>
+							<td><%=result.getInt("flightNum") %></td>
+							<td><%=result.getString("airlineName") %></td>
+							<td><%=result.getString("airportTo") %></td>
+							<td><%=result.getString("airportFrom") %></td>
+							<td><%=result.getInt("availableSeats") %></td>
+							<td>$<%=result.getInt("fares") %></td>
+							<td><%=result.getDate("departureDate") %></td>
+							<td><%=result.getTime("departureTime") %></td>
+							<td><%=result.getDate("arrivalDate") %></td>
+							<td><%=result.getTime("arrivalTime") %></td>
+						</tr>
+						<%
+					}
 		%>
 		</table>
+		</div>
+		</div>
 		<% 
 	} catch(Exception e) {
 		e.printStackTrace();
@@ -88,5 +97,6 @@
 		<%	
 	}
 	%>
+	<script src = "../check.js" ></script>
 </body>
 </html>

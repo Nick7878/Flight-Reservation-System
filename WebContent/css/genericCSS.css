@@ -102,3 +102,30 @@ body {
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    background-color: rgb(194, 220, 255);
+    width: 100%;
+    margin-left:auto; 
+    margin-right:auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+  }
+  
+  th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+  }
+
+  td {
+      background-color: #ddd;
+      font-family: arial, sans-serif;
+      padding: 8px;
+      border: 1px solid #000000;
+  }
+h3 {
+	text-align: right;
+}
