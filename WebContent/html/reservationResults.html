@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reservationResults</title>
+    <link href="reservationResults.css" rel="stylesheet" type="text/css" />
+</head>
+
+<!--Navigation Bar -->
+  <div class="topnav">
+        <img id="Logo" src="logo.png" alt="Logo" />
+        <a id="HomeLink" class="activeTab" href="homepage.html">Home</a>
+        <a id="ReservationLink" href="myReservationsAndFlightHistory.html">My Reservations/Flight History</a>
+        <div class="dropdown">
+            <img id="AccountLogo" src="account_iconBlackBorder.png" alt="Account Logo" />
+            <div class="dropdown-content">
+              <a href="login.html">Log in</a>
+              <a href="createAccount.html">Sign up</a>
+              <a href="myAccount.html">My Account</a>
+            </div>
+        </div>
+    </div>
+
+<!--HTML Code for Tables-->
+<body>
+<div>
+    <div class="depart">
+            <table>
+                <tr>
+                    <th>Outgoing</th>
+                    <th>Airline</th>
+                    <th>Airport</th>
+                    <th>Flight</th>
+                    <th>Departing</th>
+                    <th>Time</th>
+                    <th>Arriving</th>
+                    <th>Time</th>
+                </tr>
+
+                <td>
+                    <div class="radio">
+                         <label><input type="radio" name="selection"></label>
+                    </div>
+               </td>
+                    <td>United</td>
+                    <td>Newark (EWR)</td>
+                    <td>SW345</td>
+                    <td>08/01/2020</td> 
+                    <td>12:35PM</td>
+                    <td>08/01/2020</td>
+                    <td>5:05PM</td>
+                    
+            </table>
+    </div>
+
+    <div class="returning">
+        <table> 
+            <tr>
+                <th>Returning</th>
+                <th>Airline</th>
+                <th>Airport</th>
+                <th>Flight</th>
+                <th>Departing</th>
+                <th>Time</th>
+                <th>Arriving</th>
+                <th>Time</th>
+            </tr>
+
+            <td>
+                <div class="radio">
+                     <label><input type="radio" name="selection"></label>
+                </div>
+           </td>
+
+           <td>United</td>
+           <td>Newark (EWR)</td>
+           <td>SW345</td>
+           <td>08/01/2020</td> 
+           <td>12:35PM</td>
+           <td>08/01/2020</td>
+           <td>5:05PM</td>
+    </div>
+
+    <div><input type="submit" name="reserve"></div>
+</div>
+</body>
+</html>

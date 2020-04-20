@@ -3,6 +3,7 @@ body {
 }
 
 main {
+  /* Old CSS
   margin: 0;
   position: absolute;
   top: 50%;
@@ -23,17 +24,47 @@ main {
   color: rgb(0, 0, 0);
   font-style: bold;
   background-color: rgb(194, 220, 255);
+  */
+
+  /* New CSS */
+  max-width: 450px;
+	background: #FAFAFA;
+	padding: 30px;
+	margin: 50px auto;
+	box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+	border-radius: 10px;
+	border: 6px solid #305A72;
+  text-align: center;
   
 }
 
 main [type = text]{
+  /* Old CSS
   border-radius: 4px;
   padding: 8px 10px;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  */
+
+  /* New CSS */
+  margin-left: 10px;
+  margin-bottom: 10px;
+  display: inline-flex;
+  min-height: 35px;
+  box-sizing: border-box; 
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box; 
+  padding: 8px;
+  outline: none;
+  border: 1px solid #B0CFE0;
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+
 }
 
-main [type = submit]{
+main [id = submit]{
   
   width: 100%;
   background-color: rgb(76, 130, 175);
@@ -42,7 +73,19 @@ main [type = submit]{
   margin: 8px 0;
   border: none;
   border-radius: 4px;
-  cursor: pointer; 
+  cursor: pointer;
+  float: left ;
+}
+
+td{
+  font-family: Arial bold, sans-serif;
+  line-height: 1.25; 
+  font-size: 15px; 
+  font-weight: bold;
+  text-align: center;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
 }
 
 #submit {
@@ -56,8 +99,22 @@ main [type = submit]{
   cursor: pointer; 
 }
 
+main [type = submit]{
+  
+  width: 100%;
+  background-color: rgb(76, 130, 175);
+  color: white;
+  padding: 10px 15px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
 #loginText{
   text-align: center;
+
 }
 
 #myAccountDropdown #loginDropdown #createAccountDropdown #signOutDropdown {

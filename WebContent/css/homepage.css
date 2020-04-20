@@ -1,16 +1,14 @@
 /* Use for general images  image  */
 form {
-    margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 250px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-    padding: 50px;
-    border-radius: 30px 30px 30px 30px;
+	margin: 50px auto;
+    text-align: start;
+    padding: 30px;
+    border-radius: 30px;
     font-family: Arial bold, sans-serif;
     font-size: 15pt;
     font-weight: bold;
