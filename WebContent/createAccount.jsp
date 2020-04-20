@@ -176,11 +176,18 @@
 		psc.setString(8, creditCardNum);
 		psc.setInt(9, accountNum);
 		
+		
+		//session sets attribute aaccount Num to accountNum
+		//session.setAttribute("accountNum",accountNum);
+		//Cookie accountNumCookie = new Cookie("accountNum", request.getParameter("accountNum")); // sets cookie with value of accoutnNum
+		////accountNumCookie.setMaxAge(60*60*24); //sets cookie for 24 hours
+		//accountNumCookie.setPath("myAccountChangeEmailPassword.jsp"); // sent it to this location
 		psc.executeUpdate();
-
+		
 		con.close();
 		%>
 		<script> 
+			
 		    alert("Congratulations! Your new account is created!");
 	    	window.location.href = "html/login.html";
 		</script>

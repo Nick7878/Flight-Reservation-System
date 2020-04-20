@@ -4,7 +4,9 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <%@ page import=" java.util.regex.Pattern"%>
 <%@ include file = "myAccount.html" %>  
-    
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,10 +18,10 @@
 </head>
 
 <body>
+	
 	<%
-	    String email = request.getParameter("email");
-		String password = request.getParameter("password");	
-		String str = "UPDATE accounts SET email = '" + email + "', accountPassword = '" + password + "' WHERE accountNum ='1';";
+	   
+		
 	try {
 		//Create a connection string
 		//name the schema cs336project otherwise this url will not work!
@@ -36,7 +38,16 @@
 		//Get the combobox from the HelloWorld.jsp
 			
 		//Get parameters from the HTML form at the myAccount.jsp
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");	
 		
+		String sql = "SELECT accountNum FROM accounts A WHERE A.email = 'me@me.com' AND A.accountPassword = 'lalalala';";
+		
+		//get Attribute retrieves accountNum 
+		//String accountNum = (String)session.getAttribute("accountNum");
+		String str = "UPDATE accounts SET email = '" + email + "', accountPassword = '" + password + "' WHERE accountNum ='1';";
+		
+		  
 		stmt.executeUpdate(str);	
 		%>
 		<script>
