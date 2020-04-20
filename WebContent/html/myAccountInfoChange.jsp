@@ -17,6 +17,16 @@
 
 <body>
 	<%
+	Cookie cookie = null;
+	Cookie[] cookies = null;
+
+	// Get an array of Cookies associated with the this domain
+	cookies = request.getCookies();
+	
+	//Gets AccountNum
+	cookie = cookies[0];
+	int accountNum = Integer.parseInt(cookie.getValue());
+	
 	String firstName = request.getParameter("firstname");
 	String lastName = request.getParameter("lastname");
 	String address = request.getParameter("address");
@@ -26,7 +36,8 @@
 	String phoneNumber = request.getParameter("phonenumber");
 	String creditCardNumber = request.getParameter("creditcard");
 	
-	String str = " UPDATE customer SET lastName= ' "+ lastName +" ', firstName = '"+ firstName +" ', address = '"+ address +" ', city = '"+ city +" ', state = '"+ state +" ', zipCode = '"+ zipCode +" ', telephone = '"+ phoneNumber +" ', creditCardNum = '"+ creditCardNumber +" ' WHERE accountNum = '1'; ";
+	String changeCustomerInfoQuery = " UPDATE customer SET lastName= ' "+ lastName +" ', firstName = '"+ firstName +" ', address = '"+ address +" ', city = '"+ city +" ', state = '"+ state +" ', zipCode = '"+ zipCode +" ', telephone = '"+ phoneNumber +" ', creditCardNum = '"+ creditCardNumber +" ' WHERE accountNum = '" + accountNum + "';";
+	
 	try {
 		//Create a connection string
 		//name the schema cs336project otherwise this url will not work!
@@ -43,14 +54,8 @@
 		//Get the combobox from the HelloWorld.jsp
 			
 		//Get parameters from the HTML form at the myAccount.jsp
+		System.out.println("Change Info");
 		
-		stmt.executeUpdate(str);
-		%>
-		<script>
-			//alert("Sorry, unexcepted error happens.");
-	    	window.location.href = "homepage.html";
-		</script>
-		<%	
 		con.close();
 	} catch(Exception e) {
 		e.printStackTrace();

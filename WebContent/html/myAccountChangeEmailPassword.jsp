@@ -3,10 +3,8 @@
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <%@ page import=" java.util.regex.Pattern"%>
-<%@ include file = "myAccount.html" %> 
-
-
-
+<%@ include file = "myAccount.html" %>  
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,10 +16,10 @@
 </head>
 
 <body>
-
-<%
-	   
-		
+	<%
+	
+	String str = "";
+	
 	try {
 		//Create a connection string
 		//name the schema cs336project otherwise this url will not work!
@@ -35,20 +33,11 @@
 			
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
+		System.out.println("Change email and password");
 		//Get the combobox from the HelloWorld.jsp
 			
 		//Get parameters from the HTML form at the myAccount.jsp
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");	
 		
-		String sql = "SELECT accountNum FROM accounts A WHERE A.email = 'me@me.com' AND A.accountPassword = 'lalalala';";
-		
-		//get Attribute retrieves accountNum 
-		//String accountNum = (String)session.getAttribute("accountNum");
-		String str = "UPDATE accounts SET email = '" + email + "', accountPassword = '" + password + "' WHERE accountNum ='1';";
-		
-		  
-		stmt.executeUpdate(str);	
 		con.close();
 	} catch(Exception e) {
 		e.printStackTrace();
@@ -60,109 +49,5 @@
 		<%	
 	}
 %>
-	<main>
-
-    <!--Preferences-->
- <form action="myAccountChangeEmailPassword.jsp" method="get">
-    <dl>
-      <dt>
-        <div id="pref">
-          <table>
-            <th> Change Email/Password </th>
-            <th> </th>
-            <tr>
-              <td> Email Address </td>
-              <td>
-                <form action="/action_page.php">
-                  <input type="text" id="email" name="email" placeholder="jonhsmith123@site.com">
-              </td>
-            </tr>
-            <tr>
-              <td> Password </td>
-              <td>
-                <input type="text" id="pass" name="password" placeholder="Password1234">
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="submit" name="Change Password">
-              </td>
-            </tr>
-          </table>
-        </div>
-      </dt>
-    </dl>
-</form>
-    <!--Privacy-->
-<script>
-  
-</script>
-<form action="myAccountInfoChange.jsp" method="get" >
-    <dl>
-      <dt>
-        <div id="priv">
-          <table>
-            <th> Change Personal Info </th>
-            <th> </th>
-            <tr>
-              <td>First Name</td>
-              <td>
-                <input type="text" id="fname" name="firstname" placeholder="John">
-              </td>
-            </tr>
-            <tr>
-              <td>Last Name </td>
-              <td>
-                <input type="text" id="lname" name="lastname" placeholder="Smith">
-              </td>
-            </tr>
-            <tr>
-              <td> Address </td>
-              <td>
-                <input type="text" id="address" name="address" placeholder="123 Spruce Street">
-              </td>
-            </tr>
-            <tr>
-              <td> City </td>
-              <td>
-                <input type="text" id="city" name="cityname" placeholder="Albany">
-              </td>
-            </tr>
-            <tr>
-              <td> State </td>
-              <td>
-                <input type="text" id="state" name="statename" placeholder="New York">
-              </td>
-            </tr>
-            <tr>
-              <td> Zip Code </td>
-              <td>
-                <input type="text" id="zip" name="zipcode" placeholder="12084">
-              </td>
-            </tr>
-            <tr>
-              <td> Phone Number </td>
-              <td>
-                <input type="text" id="phone" name="phonenumber" placeholder="123-4567-8900">
-              </td>
-            </tr>
-            <tr>
-              <td> Credit Card Number</td>
-              <td>
-                <input type="text" id="card" name="creditcard" placeholder="XXXX-XXXX-XXXX-1234">
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="submit" name="Change Password">
-              </td>
-            </tr>
-          </table>
-        </div>
-      </dt>
-    </dl>
-</form>
-  </main>
-	
 </body>
 </html>
