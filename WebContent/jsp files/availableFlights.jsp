@@ -3,7 +3,7 @@
 <%@ page import="java.io.*,java.util.*, java.sql.Date, java.sql.*"%>
 <%@ page import="java.text.SimpleDateFormat, java.text.DateFormat"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
-<%@ include file = "reservationResults.html" %>
+<%@ include file = "../html/reservationResults.html" %>
 
 <!DOCTYPE html>
 <html>
@@ -100,10 +100,12 @@
 		%>
 		</table>
 		</div>
+		<form action="reservFlight.jsp" method="post">
+			<input type="submit" name="reserve">
+		</form>
 		</div>
 		<% 
 		
-		System.out.println(request.getParameter("one-way"));
 	} catch(Exception e) {
 		e.printStackTrace();
 		%>
