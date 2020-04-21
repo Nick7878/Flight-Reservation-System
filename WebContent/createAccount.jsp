@@ -76,7 +76,7 @@
 		System.out.println(checkEmailStr);
 
 		ResultSet checkEmailResult = stmt.executeQuery(checkEmailStr);
-		if( checkEmailResult.next() ){
+		if(checkEmailResult.next() ){
 			System.out.println("email is currently in use");
 			%> 
 			<!-- if error, show the alert and go back to login page --> 

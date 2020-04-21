@@ -52,11 +52,10 @@
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		//Get the combobox from the HelloWorld.jsp
-			
-		PreparedStatement psc = con.prepareStatement(changeCustomerInfoQuery);
-		psc.executeUpdate();
 		
 		System.out.println("Change Info");
+		
+		
 		
 		con.close();
 	} catch(Exception e) {

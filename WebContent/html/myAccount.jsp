@@ -12,7 +12,6 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="css/login.css">
  
  <title>Change my account Email and Password</title>
 </head>
@@ -47,14 +46,14 @@
 		//Get the combobox from the HelloWorld.jsp
 		
 		//Get all parameters to populate the table 
-		String populationTable = "SELECT email, accountPassword, lastName, firstName, address, city, state, zipCode, telephone, creditCardNum FROM accounts A , customer C WHERE A.accountNum ='"+accountNum +"';";
+		String populationTable = "select email, accountPassword, lastName, firstName, address, city, state, zipCode, telephone, creditCardNum FROM accounts JOIN customer USING(accountNum) WHERE accountNum = '" + accountNum + "';";
 		ResultSet result = stmt.executeQuery(populationTable);
 		
 		//String email = result.getString("email");
 		//String email = request.getParameter("email");
 		//result.getString("email");
 		
-		while(result.next()){
+		if(result.next()){
 	%> 
 		
 	<main>
@@ -157,6 +156,13 @@
 </form>
 </main>
 		<%
+	} else {
+		%>
+		<script>
+			alert("Sorry, could not bring up account info!");
+	    	window.location.href = "homepage.html";
+		</script>
+		<%	
 	}
 		con.close();
 		} catch(Exception e) {
