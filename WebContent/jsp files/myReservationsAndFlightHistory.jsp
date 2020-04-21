@@ -22,7 +22,7 @@
 
     //Gets AccountNum
     cookie = cookies[0];
-    int accountNum = Integer.parseInt(cookie.getValue());
+    int accountNumFromCookie = Integer.parseInt(cookie.getValue());
 	try{
 		
 		
