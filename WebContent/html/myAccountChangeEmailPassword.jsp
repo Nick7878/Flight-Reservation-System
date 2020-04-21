@@ -97,11 +97,18 @@
 			return;
 		}
 	    
-		//boolean isManager = false;
+		
+		//Updates accounts table  , isManager = '"+ isManager +"'
+		//String ps = "UPDATE accounts SET isManager = '"+ isManager +"' WHERE accountNum ='"+ accountNum +"';";
+		
+		//PreparedStatement insert = con.prepareStatement(ps);
+		//System.out.println(ps);
 		//3.5 check if user is manager 
 		//if(email.contains("@group15")){
-			//isManager = true;
+		//isManager = true;
 		//}
+		//stmt.executeUpdate(ps);
+		//insert.close();
 		
 		// 4. check the password length
 		if(password.length() < 8){
