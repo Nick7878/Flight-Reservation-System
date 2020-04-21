@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
-<%@ include file = "../html/login.html" %>
+<%@ include file = "login.html" %>
 
 <!DOCTYPE html>
 <html>
@@ -82,6 +82,14 @@
 					<%  
 				}
 			}
+			
+			%>
+			<script>
+				alert("Sorry, unexcepted error happens.");
+		    	window.location.href = "homepage.html";
+			</script>
+			<%	
+			
 			con.close();
 
 		} catch (Exception e) {
