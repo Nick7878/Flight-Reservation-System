@@ -29,7 +29,8 @@
 	//Gets AccountNum
 	cookie = cookies[0];
 	int accountNum = Integer.parseInt(cookie.getValue());
-		
+	
+	
 	try {
 		//Create a connection string
 		//name the schema cs336project otherwise this url will not work!
@@ -44,28 +45,18 @@
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		//Get the combobox from the HelloWorld.jsp
-			
-		//Get parameters from the HTML form at the myAccount.jsp
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");	
 		
-		String sql = "SELECT accountNum FROM accounts ";
+		//Get all parameters to populate the table 
+		String populationTable = "SELECT email, accountPassword, lastName, firstName, address, city, state, zipCode, telephone, creditCardNum FROM accounts A , customer C WHERE A.accountNum ='"+accountNum +"';";
+		ResultSet result = stmt.executeQuery(populationTable);
 		
-		//get Attribute retrieves accountNum 
-		//String accountNum = (String)session.getAttribute("accountNum");
-		String str = "UPDATE accounts SET email = '" + email + "', accountPassword = '" + password + "' WHERE accountNum ='1';";
+		//String email = result.getString("email");
+		//String email = request.getParameter("email");
+		//result.getString("email");
 		
-		con.close();
-	} catch(Exception e) {
-		e.printStackTrace();
-		%>
-		<script>
-			//alert("Sorry, unexcepted error happens.");
-	    	window.location.href = "homepage.html";
-		</script>
-		<%	
-	}
-%>
+		while(result.next()){
+	%> 
+		
 	<main>
 
     <!--Preferences-->
@@ -79,13 +70,13 @@
             <tr>
               <td> Email Address </td>
               <td>
-                  <input type="text" id="email" name="email" placeholder="jonhsmith123@site.com">
+                  <input type="text" id="email" name="email" placeholder="<%=result.getString("email")%>" >
               </td>
             </tr>
             <tr>
               <td> Password </td>
               <td>
-                <input type="text" id="pass" name="password" placeholder="Password1234">
+                <input type="text" id="pass" name="password" placeholder="<%=result.getString("email")%>">
               </td>
             </tr>
             <tr>
@@ -164,7 +155,22 @@
       </dt>
     </dl>
 </form>
-  </main>
+</main>
+		<%
+	}con.close();
+		} catch(Exception e) {
+		e.printStackTrace();
+		%>
+		<script>
+			//alert("Sorry, unexcepted error happens.");
+	    	window.location.href = "homepage.html";
+		</script>
+		<%	
+	}
+	
+	%>
+	
+  
 	
 </body>
 </html>

@@ -17,8 +17,24 @@
 
 <body>
 	<%
+		Cookie cookie = null;
+		Cookie[] cookies = null;
 	
-	String str = "";
+		// Get an array of Cookies associated with the this domain
+		cookies = request.getCookies();
+		
+		//Gets AccountNum
+		cookie = cookies[0];
+		int accountNum = Integer.parseInt(cookie.getValue());
+	
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");	
+	 
+		//Updates accounts table 
+		String updateTable = "UPDATE accounts SET email = '" + email + "', accountPassword = '" + password + "' WHERE accountNum ='"+ accountNum +"';";
+			
+			
+		
 	
 	try {
 		//Create a connection string
@@ -33,11 +49,11 @@
 			
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
-		System.out.println("Change email and password");
-		//Get the combobox from the HelloWorld.jsp
 			
-		//Get parameters from the HTML form at the myAccount.jsp
+		PreparedStatement psc = con.prepareStatement(updateTable);
+		psc.executeUpdate();
 		
+		System.out.println("Change email and password");
 		con.close();
 	} catch(Exception e) {
 		e.printStackTrace();

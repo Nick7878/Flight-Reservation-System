@@ -53,7 +53,9 @@
 		Statement stmt = con.createStatement();
 		//Get the combobox from the HelloWorld.jsp
 			
-		//Get parameters from the HTML form at the myAccount.jsp
+		PreparedStatement psc = con.prepareStatement(changeCustomerInfoQuery);
+		psc.executeUpdate();
+		
 		System.out.println("Change Info");
 		
 		con.close();
