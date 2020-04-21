@@ -120,7 +120,7 @@ if(sqlLastName!=null && sqlFirstName!=null && sqlAddress!=null && sqlCity!=null 
 	%>
 	<script> 
     alert("Sorry, something went wrong on our server, failed to create your account");
-    window.location.href = "html/createAccount.html";
+    window.location.href = "../html/createAccount.html";
 	</script>
 	<%
 }

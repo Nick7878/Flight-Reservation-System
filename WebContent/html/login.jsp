@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
-<%@ include file = "login.html" %>
+<%@ include file = "../html/login.html" %>
 
 <!DOCTYPE html>
 <html>
