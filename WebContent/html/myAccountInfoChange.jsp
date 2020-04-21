@@ -33,10 +33,9 @@
 	String city = request.getParameter("cityname");
 	String state = request.getParameter("statename");
 	String zipCode = request.getParameter("zipcode");
-	String phoneNumber = request.getParameter("phonenumber");
-	String creditCardNumber = request.getParameter("creditcard");
+	String telephone = request.getParameter("phonenumber");
+	String creditCardNum = request.getParameter("creditcard");
 	
-	String changeCustomerInfoQuery = " UPDATE customer SET lastName= ' "+ lastName +" ', firstName = '"+ firstName +" ', address = '"+ address +" ', city = '"+ city +" ', state = '"+ state +" ', zipCode = '"+ zipCode +" ', telephone = '"+ phoneNumber +" ', creditCardNum = '"+ creditCardNumber +" ' WHERE accountNum = '" + accountNum + "';";
 	
 	try {
 		//Create a connection string
@@ -53,10 +52,70 @@
 		Statement stmt = con.createStatement();
 		//Get the combobox from the HelloWorld.jsp
 		
+		String changeCustomerInfoQuery = " UPDATE customer SET lastName= ' "+ lastName +" ', firstName = '"+ firstName +" ', address = '"+ address +" ', city = '"+ city +" ', state = '"+ state +" ', zipCode = '"+ zipCode +" ', telephone = '"+ telephone +" ', creditCardNum = '"+ creditCardNum +" ' WHERE accountNum = '" + accountNum + "';";
+	
+		// 1. check empty
+		if( firstName.equals("") || lastName.equals("") || address.equals("") || city.equals("") || state.equals("") || zipCode.equals("") || telephone.equals("") || creditCardNum.equals("")){
+			System.out.println("empty detected!");
+			%> 
+			<!-- if error, show the alert and go back to create account page --> 
+			<script> 
+			    alert("Sorry, but all fields must be filled to create a new account.");
+			    window.location.href = "myAccount.jsp";
+			</script>
+			<%
+			return;
+		}
+		//checks if the zipcode is the correct lenght
+		if(state.length() != 2) {
+			System.out.println("Invalid Credit Card Number");
+			%> 
+			<!-- if error, show the alert and go back to create account page --> 
+			<script> 
+			    alert("Invalid State CODE");
+			    window.location.href = "myAccount.jsp";
+			</script>
+			<%
+			return;	
+		}		
+		
+		//checks if the zipcode is the correct lenght
+		if(telephone.length() != 5) {
+			System.out.println("Invalid Credit Card Number");
+			%> 
+			<!-- if error, show the alert and go back to create account page --> 
+			<script> 
+			    alert("Invalid zipcode");
+			    window.location.href = "myAccount.jsp";
+			</script>
+			<%
+			return;	
+		}			
+		//checks if phonenumber is the correct lenght
+		if(telephone.length() != 10) {
+			System.out.println("Invalid Credit Card Number");
+			%> 
+			<!-- if error, show the alert and go back to create account page --> 
+			<script> 
+			    alert("Invalid phonenumber");
+			    window.location.href = "myAccount.jsp";
+			</script>
+			<%
+			return;	
+		}
+		if(creditCardNum.length() != 16) {
+			System.out.println("Invalid Credit Card Number");
+			%> 
+			<!-- if error, show the alert and go back to create account page --> 
+			<script> 
+			    alert("Invalid Credit Card Number");
+			    window.location.href = "myAccount.jsp";
+			</script>
+			<%
+			return;	
+		}
+		stmt.executeUpdate(changeCustomerInfoQuery);
 		System.out.println("Change Info");
-		
-		
-		
 		con.close();
 	} catch(Exception e) {
 		e.printStackTrace();

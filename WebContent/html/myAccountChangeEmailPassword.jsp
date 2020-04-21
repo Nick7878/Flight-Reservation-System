@@ -29,9 +29,8 @@
 	
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");	
-	 
-		//Updates accounts table 
-		String updateTable = "UPDATE accounts SET email = '" + email + "', accountPassword = '" + password + "', isManager = '" + isManager + "' WHERE accountNum ='"+ accountNum +"';";
+		
+		//boolean isManager = Boolean.parseBoolean(request.getParameter("isManager"));
 			
 			
 		
@@ -50,6 +49,9 @@
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		
+				
+		//Updates accounts table  , isManager = '"+ isManager +"'
+		String updateTable = "UPDATE accounts SET email = '" + email + "', accountPassword = '" + password + "' WHERE accountNum ='"+ accountNum +"';";
 		
 		// 1. check empty
 		if(email.equals("") || password.equals("")){
@@ -72,14 +74,62 @@
 	    	<!-- if error show the alert and go back to myAccount.jsp page -->
 	    	<script>
 	    		alert("Sorry, it seems that the email you entered is not in proper format");
-	    		wintdow.location.href = "myAccount.jsp";
+	    		window.location.href = "myAccount.jsp";
 	    	</script>
 	    	<%
 	    	return;
 	    } 
 		
 	    //3. check if email is already taken
-	   	
+	    String checkEmailStr = "SELECT * FROM accounts WHERE email = '" + email + "' AND accountNum !='"+ accountNum +"';";
+		System.out.println(checkEmailStr);
+
+		ResultSet checkEmailResult = stmt.executeQuery(checkEmailStr);
+		if(checkEmailResult.next() ){
+			System.out.println("email is currently in use");
+			%> 
+			<!-- if error, show the alert and go back to login page --> 
+			<script> 
+			    alert("email is currently in use");
+			    window.location.href = "myAccount.jsp";
+			</script>
+			<%
+			return;
+		}
+	    
+		//boolean isManager = false;
+		//3.5 check if user is manager 
+		//if(email.contains("@group15")){
+			//isManager = true;
+		//}
+		
+		// 4. check the password length
+		if(password.length() < 8){
+			System.out.println("password too short!");
+			%> 
+			<!-- if error, show the alert and go back to create account page --> 
+			<script> 
+				 alert("Sorry, the password should be at least 8 characters");
+			 	 window.location.href = "html/createAccount.html";
+			</script>
+			<%
+			return;			
+		}
+		else if( password.length() > 20 ){
+			System.out.println("password too long!");
+			%> 
+			<!-- if error, show the alert and go back to create account page --> 
+			<script> 
+			    alert("Sorry, the password should be at most 45 characters");
+			    window.location.href = "myAccount.jsp";
+			</script>
+			<%
+			return;			
+		}
+	    
+	    
+		stmt.executeUpdate(updateTable);
+	    
 		
 		//System.out.println("Change email and password");
 		con.close();

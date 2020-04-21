@@ -49,9 +49,6 @@
 		String populationTable = "select email, accountPassword, lastName, firstName, address, city, state, zipCode, telephone, creditCardNum FROM accounts JOIN customer USING(accountNum) WHERE accountNum = '" + accountNum + "';";
 		ResultSet result = stmt.executeQuery(populationTable);
 		
-		//String email = result.getString("email");
-		//String email = request.getParameter("email");
-		//result.getString("email");
 		
 		if(result.next()){
 	%> 
@@ -69,13 +66,13 @@
             <tr>
               <td> Email Address </td>
               <td>
-                  <input type="text" id="email" name="email" placeholder="<%=result.getString("email")%>" >
+                  <input type="text" id="email" name="email" value="<%=result.getString("email")%>" >
               </td>
             </tr>
             <tr>
               <td> Password </td>
               <td>
-                <input type="text" id="pass" name="password" placeholder="<%=result.getString("accountPassword")%>">
+                <input type="text" id="pass" name="password" value="<%=result.getString("accountPassword")%>">
               </td>
             </tr>
             <tr>
@@ -99,49 +96,49 @@
             <tr>
               <td>First Name</td>
               <td>
-                <input type="text" id="fname" name="firstname" placeholder="<%=result.getString("firstName")%>">
+                <input type="text" id="fname" name="firstname" value="<%=result.getString("firstName")%>">
               </td>
             </tr>
             <tr>
               <td>Last Name </td>
               <td>
-                <input type="text" id="lname" name="lastname" placeholder="<%=result.getString("lastName")%>">
+                <input type="text" id="lname" name="lastname" value="<%=result.getString("lastName")%>">
               </td>
             </tr>
             <tr>
               <td> Address </td>
               <td>
-                <input type="text" id="address" name="address" placeholder="<%=result.getString("address")%>">
+                <input type="text" id="address" name="address" value="<%=result.getString("address")%>">
               </td>
             </tr>
             <tr>
               <td> City </td>
               <td>
-                <input type="text" id="city" name="cityname" placeholder="<%=result.getString("city")%>">
+                <input type="text" id="city" name="cityname" value="<%=result.getString("city")%>">
               </td>
             </tr>
             <tr>
               <td> State </td>
               <td>
-                <input type="text" id="state" name="statename" placeholder="<%=result.getString("state")%>">
+                <input type="text" id="state" name="statename" value="<%=result.getString("state")%>" maxlength="2">
               </td>
             </tr>
             <tr>
               <td> Zip Code </td>
               <td>
-                <input type="text" id="zip" name="zipcode" placeholder="<%=result.getString("zipCode")%>">
+                <input type="text" id="zip" name="zipcode" value="<%=result.getString("zipCode")%>" maxLength="5">
               </td>
             </tr>
             <tr>
               <td> Phone Number </td>
               <td>
-                <input type="text" id="phone" name="phonenumber" placeholder="<%=result.getString("telephone")%>">
+                <input type="text" id="phone" name="phonenumber" value="<%=result.getString("telephone")%>" maxlength="10" >
               </td>
             </tr>
             <tr>
               <td> Credit Card Number</td>
               <td>
-                <input type="text" id="card" name="creditcard" placeholder="<%=result.getString("creditCardNum")%>">
+                <input type="text" id="card" name="creditcard" value="<%=result.getString("creditCardNum")%> " maxlength="16">
               </td>
             </tr>
             <tr>
