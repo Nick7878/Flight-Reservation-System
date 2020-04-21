@@ -76,7 +76,7 @@
             <tr>
               <td> Password </td>
               <td>
-                <input type="text" id="pass" name="password" placeholder="<%=result.getString("email")%>">
+                <input type="text" id="pass" name="password" placeholder="<%=result.getString("accountPassword")%>">
               </td>
             </tr>
             <tr>
@@ -100,49 +100,49 @@
             <tr>
               <td>First Name</td>
               <td>
-                <input type="text" id="fname" name="firstname" placeholder="John">
+                <input type="text" id="fname" name="firstname" placeholder="<%=result.getString("firstName")%>">
               </td>
             </tr>
             <tr>
               <td>Last Name </td>
               <td>
-                <input type="text" id="lname" name="lastname" placeholder="Smith">
+                <input type="text" id="lname" name="lastname" placeholder="<%=result.getString("lastName")%>">
               </td>
             </tr>
             <tr>
               <td> Address </td>
               <td>
-                <input type="text" id="address" name="address" placeholder="123 Spruce Street">
+                <input type="text" id="address" name="address" placeholder="<%=result.getString("address")%>">
               </td>
             </tr>
             <tr>
               <td> City </td>
               <td>
-                <input type="text" id="city" name="cityname" placeholder="Albany">
+                <input type="text" id="city" name="cityname" placeholder="<%=result.getString("city")%>">
               </td>
             </tr>
             <tr>
               <td> State </td>
               <td>
-                <input type="text" id="state" name="statename" placeholder="New York">
+                <input type="text" id="state" name="statename" placeholder="<%=result.getString("state")%>">
               </td>
             </tr>
             <tr>
               <td> Zip Code </td>
               <td>
-                <input type="text" id="zip" name="zipcode" placeholder="12084">
+                <input type="text" id="zip" name="zipcode" placeholder="<%=result.getString("zipCode")%>">
               </td>
             </tr>
             <tr>
               <td> Phone Number </td>
               <td>
-                <input type="text" id="phone" name="phonenumber" placeholder="123-4567-8900">
+                <input type="text" id="phone" name="phonenumber" placeholder="<%=result.getString("telephone")%>">
               </td>
             </tr>
             <tr>
               <td> Credit Card Number</td>
               <td>
-                <input type="text" id="card" name="creditcard" placeholder="XXXX-XXXX-XXXX-1234">
+                <input type="text" id="card" name="creditcard" placeholder="<%=result.getString("creditCardNum")%>">
               </td>
             </tr>
             <tr>
