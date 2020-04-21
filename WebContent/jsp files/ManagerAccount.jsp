@@ -39,7 +39,7 @@
 		<!-- if error, show the alert and go back to login page --> 
 		<script> 
 		    alert("Sorry, something went wrong on our server, failed to create your account");
-		    window.location.href = "html/createAccount.html";
+		    window.location.href = "../html/createAccount.html";
 		</script>
 		<%
 		return;
