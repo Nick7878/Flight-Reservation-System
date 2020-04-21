@@ -79,6 +79,8 @@
 	    	return;
 	    } 
 		
+	    //3. check if email is already taken
+	   	
 		
 		//System.out.println("Change email and password");
 		con.close();
