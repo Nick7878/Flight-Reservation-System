@@ -78,7 +78,7 @@ Connection conn = DriverManager.getConnection(host, "root", "gameboy*1");
 	}
 	%>
 	<button type = "submit" class = "btnwa"> Update</button>
-	<a href = "managerTest.jsp" class = "btn-def"> Back </a>
+	<a href = "jspManagerTest.jsp" class = "btn-def"> Back </a>
 	</form>
 <%
 String accNum= request.getParameter("id");
@@ -112,7 +112,7 @@ if(sqlLastName!=null && sqlFirstName!=null && sqlAddress!=null && sqlCity!=null 
 		alert("Update Successful!");
 	</script>
 	<%
-	response.sendRedirect("managerTest.jsp");
+	response.sendRedirect("jspManagerTest.jsp");
 }
 } catch(Exception e) {
 	e.printStackTrace();
@@ -120,7 +120,7 @@ if(sqlLastName!=null && sqlFirstName!=null && sqlAddress!=null && sqlCity!=null 
 	%>
 	<script> 
     alert("Sorry, something went wrong on our server, failed to create your account");
-    window.location.href = "html/createAccount.html";
+    window.location.href = "jspManagerTest.jsp";
 	</script>
 	<%
 }

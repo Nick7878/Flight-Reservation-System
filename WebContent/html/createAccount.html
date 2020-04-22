@@ -30,7 +30,7 @@
           </div>
         <div class = "signupform">
             <h1> Create Account Now </h1>
-            <form action="../createAccount.jsp" method="post">
+            <form action="jspCreateAccount.jsp" method="post">
                 <label>First Name:</label> <br>
                 <input type = "field" class = "input-box" placeholder = "Alec" name="firstName"> <br>
                 <label>Last Name: </label> <br> 
@@ -42,13 +42,13 @@
                 <label> State:</label> <br>
                 <input type = "field" class = "input-box" placeholder = "NJ" maxlength="2" name="state"> <br>
                 <label>Zip Code:</label> <br>
-                <input type = "number" class = "input-box" placeholder = "08901" maxLength="5" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="zipCode"><br>
+                <input type = "number" class = "input-box" placeholder = "08901" maxLength="5" name="zipCode"><br>
                 <label>Phone Number:</label><br>
-                <input type = "number" class = "input-box" placeholder = "7323579753" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="telephone"> <br>
+                <input type = "number" class = "input-box" placeholder = "7323579753" maxlength="10"  name="telephone"> <br>
                 <label> Email: </label> <br>            
                 <input type = "field" class = "input-box" placeholder = "vandyck@gmail.com" name="email" onclick="passvalues()"> <br>
                 <label> Credit Card: </label><br>
-                <input type = "number" class = "input-box" placeholder = "XXXXXXXXXXXXXXXX" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="creditCardNum"> <br>
+                <input type = "number" class = "input-box" placeholder = "XXXXXXXXXXXXXXXX" maxlength="16" name="creditCardNum"> <br>
                 <label>Password: </label> <br>
                 <input type = "field" class = "input-box" placeholder = "Your Password" maxlength="20" name="password"> <br>
                 <label>Confirm Password:</label> <br>

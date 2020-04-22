@@ -66,7 +66,7 @@ table, th, td {
  		<td><%=res.getString("zipCode") %></td>
  		<td><%=res.getString("telephone") %></td>
  		<td><%=res.getString("creditCardNum") %></td>
- 		<td> <a href = 'managerEdit.jsp?u=<%=res.getString("accountNum")%>' class = "btn w"> Edit </a>
+ 		<td> <a href = 'jspManagerEdit.jsp?u=<%=res.getString("accountNum")%>' class = "btn w"> Edit </a>
  	</tr>
  	<%
  	}

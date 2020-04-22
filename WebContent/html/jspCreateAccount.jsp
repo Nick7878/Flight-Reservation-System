@@ -51,7 +51,7 @@
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Sorry, but all fields must be filled to create a new account.");
-			    window.location.href = "html/createAccount.html";
+			    window.location.href = "createAccount.html";
 			</script>
 			<%
 			return;
@@ -65,7 +65,7 @@
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Sorry, it seems that the email you entered is not in correct format");
-			    window.location.href = "html/createAccount.html";
+			    window.location.href = "createAccount.html";
 			</script>
 			<%
 			return;	
@@ -82,7 +82,7 @@
 			<!-- if error, show the alert and go back to login page --> 
 			<script> 
 			    alert("email is currently in use");
-			    window.location.href = "html/createAccount.html";
+			    window.location.href = "createAccount.html";
 			</script>
 			<%
 			return;
@@ -101,7 +101,7 @@
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Sorry, the password should be at least 8 characters");
-			    window.location.href = "html/createAccount.html";
+			    window.location.href = "createAccount.html";
 			</script>
 			<%
 			return;			
@@ -112,7 +112,7 @@
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Sorry, the password should be at most 45 characters");
-			    window.location.href = "html/createAccount.html";
+			    window.location.href = "createAccount.html";
 			</script>
 			<%
 			return;			
@@ -124,7 +124,7 @@
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Passwords do not match");
-			    window.location.href = "html/createAccount.html";
+			    window.location.href = "createAccount.html";
 			</script>
 			<%
 			return;	
@@ -136,7 +136,7 @@
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Invalid Credit Card Number");
-			    window.location.href = "html/createAccount.html";
+			    window.location.href = "createAccount.html";
 			</script>
 			<%
 			return;	
@@ -183,7 +183,7 @@
 		<script> 
 			
 		    alert("Congratulations! Your new account is created!");
-	    	window.location.href = "html/login.html";
+	    	window.location.href = "login.html";
 		</script>
 		<%
 	} catch (Exception ex) {
@@ -192,7 +192,7 @@
 		<!-- if error, show the alert and go back to login page --> 
 		<script> 
 		    alert("Sorry, something went wrong on our server, failed to create your account");
-		    window.location.href = "html/createAccount.html";
+		    window.location.href = "createAccount.html";
 		</script>
 		<%
 		return;

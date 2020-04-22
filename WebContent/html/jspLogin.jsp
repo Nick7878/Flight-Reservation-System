@@ -84,6 +84,14 @@
 					<%  
 				}
 			}
+			
+			%>
+			<script>
+				alert("Sorry, unexcepted error happens.");
+		    	window.location.href = "homepage.html";
+			</script>
+			<%	
+			
 			con.close();
 
 		} catch (Exception e) {
