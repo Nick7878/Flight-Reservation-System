@@ -62,7 +62,7 @@
 			<!-- if error, show the alert and go back to myAccount.jsp page --> 
 			<script> 
 			alert("Sorry, but all fields must be filled to update account info");
-			window.location.href = "myAccount.jsp";
+			window.location.href = "jspMyAccount.jsp";
 			</script>
 			<%
 			return;
@@ -76,7 +76,7 @@
 	    	<!-- if error show the alert and go back to myAccount.jsp page -->
 	    	<script>
 	    		alert("Sorry, it seems that the email you entered is not in proper format");
-	    		window.location.href = "myAccount.jsp";
+	    		window.location.href = "jspMyAccount.jsp";
 	    	</script>
 	    	<%
 	    	return;
@@ -93,7 +93,7 @@
 			<!-- if error, show the alert and go back to login page --> 
 			<script> 
 			    alert("email is currently in use");
-			    window.location.href = "myAccount.jsp";
+			    window.location.href = "jspMyAccount.jsp";
 			</script>
 			<%
 			return;
@@ -106,7 +106,7 @@
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 				 alert("Sorry, the password should be at least 8 characters");
-			 	 window.location.href = "myAccount.jsp";
+			 	 window.location.href = "jspMyAccount.jsp";
 			</script>
 			<%
 			return;			
@@ -117,7 +117,7 @@
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Sorry, the password should be at most 45 characters");
-			    window.location.href = "myAccount.jsp";
+			    window.location.href = "jspMyAccount.jsp";
 			</script>
 			<%
 			return;			

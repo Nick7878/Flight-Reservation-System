@@ -61,7 +61,7 @@
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Sorry, but all fields must be filled to create a new account.");
-			    window.location.href = "myAccount.jsp";
+			    window.location.href = "jspMyAccount.jsp";
 			</script>
 			<%
 			return;
@@ -73,20 +73,20 @@
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Invalid State Code");
-			    window.location.href = "myAccount.jsp";
+			    window.location.href = "jspMyAccount.jsp";
 			</script>
 			<%
 			return;	
 		}		
 		
-		//checks if the zipcode is the correct lenght
+		//checks if the zipcode is the correct length
 		if(zipCode.length() != 5) {
 			System.out.println("Invalid Zip Code");
 			%> 
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Invalid Zip Code");
-			    window.location.href = "myAccount.jsp";
+			    window.location.href = "jspMyAccount.jsp";
 			</script>
 			<%
 			return;	
@@ -98,7 +98,7 @@
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Invalid Phone Number");
-			    window.location.href = "myAccount.jsp";
+			    window.location.href = "jspMyAccount.jsp";
 			</script>
 			<%
 			return;	
@@ -109,7 +109,7 @@
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 			    alert("Invalid Credit Card Number");
-			    window.location.href = "myAccount.jsp";
+			    window.location.href = "jspMyAccount.jsp";
 			</script>
 			<%
 			return;	

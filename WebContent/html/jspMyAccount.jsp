@@ -56,7 +56,7 @@
 	<main>
 
     <!--Preferences-->
- <form action="myAccountChangeEmailPassword.jsp" method="get">
+ <form action="jspMyAccountChangeEmailPassword.jsp" method="get">
     <dl>
       <dt>
         <div id="pref">
@@ -86,7 +86,7 @@
     </dl>
 </form>
 
-<form action="myAccountInfoChange.jsp" method="get" >
+<form action="jspMyAccountInfoChange.jsp" method="get" >
     <dl>
       <dt>
         <div id="priv">

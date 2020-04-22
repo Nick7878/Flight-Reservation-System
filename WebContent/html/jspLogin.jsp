@@ -41,7 +41,6 @@
 				%>
 				<script> 
 				    alert("Please enter your email and password");
-				    //window.location.href = "login.html";
 				</script>
 				<% 
 			} else {
@@ -79,7 +78,6 @@
 					%>
 					<script> 
 				    	alert("User not found, or you entered a wrong password.");
-				    	//window.location.href = "login.html";
 					</script>
 					<%  
 				}
@@ -87,7 +85,7 @@
 			
 			%>
 			<script>
-				alert("Sorry, unexcepted error happens.");
+				alert("Login Successful!.");
 		    	window.location.href = "homepage.html";
 			</script>
 			<%	
@@ -99,7 +97,6 @@
 			%>
 			<script>
 				alert("Sorry, unexcepted error happens.");
-		    	//window.location.href = "login.html";
 			</script>
 			<%			
 		}
