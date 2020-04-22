@@ -65,6 +65,8 @@
 		//Gets flight for a round trip flight
 		String returningFlightQuery = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, availableSeats, fares, departureDate, departureTime, arrivalDate, arrivalTime FROM flight JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE (departureDate = '" + returnDate + "') AND (flight.airportTo = '" + airportFrom + "' AND flight.airportFrom = '" + airportTo + "') AND (NOT ((availableSeats - " + numOfPassengers + ") < 0));";
 				
+		String returningFlightDateRangeQuery = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, availableSeats, fares, departureDate, departureTime, arrivalDate, arrivalTime FROM flight JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE ((departureDate BETWEEN DAY('" + returnDate + "') - 3 AND '" + returnDate + "') OR (departureDate BETWEEN '" + returnDate + "' AND DAY('" + returnDate + "') + 3)) AND (flight.airportTo = '" + airportFrom + "' AND flight.airportFrom = '" + airportTo + "') AND (NOT ((availableSeats - '" + numOfPassengers + "') < 0));";
+				
 		System.out.println(flightAvailableOnCertainDateRangeOneWayQuery);
 				
 		
@@ -92,6 +94,7 @@
 					</script>
 					<%
 				}
+				
 				oneWayResult.previous();
 				%>
 				<form action="jspReserveFlightOneWay.jsp" method="post">
@@ -142,7 +145,23 @@
 				<%
 		 
 			} else {	//End of round trip checker IF
-				ResultSet oneWaySpecificDayResult = oneWayFlightStatement.executeQuery(flightAvailableOnSpecificDayOneWayQuery);
+				ResultSet roundTripDepartingResult = roundTripFlightStatement.executeQuery(flightAvailableOnSpecificDayOneWayQuery);
+				if(!roundTripDepartingResult.next()) {
+					roundTripDepartingResult = roundTripFlightStatement.executeQuery(flightAvailableOnCertainDateRangeOneWayQuery);
+					if(!roundTripDepartingResult.next()) {
+						%>
+						<script>
+							alert("No results for flight on specific date or date range. Returning to homepage");
+					    	window.location.href = "homepage.html";
+						</script>
+						<%	
+					}
+					%>
+					<script>
+						alert("No results for flight on specific date. Showing flights within 3 days of specified departure date");
+					</script>
+					<%
+				}
 			%>
 			<form action="jspReserveFlightRoundTrip.jsp" method="post">
 		    <div class="depart">
@@ -163,29 +182,48 @@
 
 		                <%
 
-						while(oneWaySpecificDayResult.next()) {
+						while(roundTripDepartingResult.next()) {
 							%>
 							<tr>
 								<td>
 				                    <div class="radio">
-				                         <label><input type="radio" name="one-way" value=<%=oneWaySpecificDayResult.getInt("flightNum") %>></label>
+				                         <label><input type="radio" name="one-way" value=<%=roundTripDepartingResult.getInt("flightNum") %>></label>
 				                    </div>
 				               	</td>
-								<td><%=oneWaySpecificDayResult.getInt("flightNum") %></td>
-								<td><%=oneWaySpecificDayResult.getString("airlineName") %></td>
-								<td><%=oneWaySpecificDayResult.getString("airportTo") %></td>
-								<td><%=oneWaySpecificDayResult.getString("airportFrom") %></td>
-								<td><%=oneWaySpecificDayResult.getInt("availableSeats") %></td>
-								<td>$<%=oneWaySpecificDayResult.getInt("fares") %></td>
-								<td><%=oneWaySpecificDayResult.getDate("departureDate") %></td>
-								<td><%=oneWaySpecificDayResult.getTime("departureTime") %></td>
-								<td><%=oneWaySpecificDayResult.getDate("arrivalDate") %></td>
-								<td><%=oneWaySpecificDayResult.getTime("arrivalTime") %></td>
+								<td><%=roundTripDepartingResult.getInt("flightNum") %></td>
+								<td><%=roundTripDepartingResult.getString("airlineName") %></td>
+								<td><%=roundTripDepartingResult.getString("airportTo") %></td>
+								<td><%=roundTripDepartingResult.getString("airportFrom") %></td>
+								<td><%=roundTripDepartingResult.getInt("availableSeats") %></td>
+								<td>$<%=roundTripDepartingResult.getInt("fares") %></td>
+								<td><%=roundTripDepartingResult.getDate("departureDate") %></td>
+								<td><%=roundTripDepartingResult.getTime("departureTime") %></td>
+								<td><%=roundTripDepartingResult.getDate("arrivalDate") %></td>
+								<td><%=roundTripDepartingResult.getTime("arrivalTime") %></td>
 							</tr>
 							<%
 						}
 			%>
 					</table>
+					<% 
+					ResultSet roundTripReturningResult = roundTripFlightStatement.executeQuery(returningFlightQuery);
+					if(!roundTripReturningResult.next()) {
+						roundTripReturningResult = roundTripFlightStatement.executeQuery(returningFlightDateRangeQuery);
+						if(!roundTripReturningResult.next()) {
+							%>
+							<script>
+								alert("No results for flight on specific date or date range. Returning to homepage");
+						    	window.location.href = "homepage.html";
+							</script>
+							<%	
+						}
+						%>
+						<script>
+							alert("No results for flight on specific date. Showing flights within 3 days of specified departure date");
+						</script>
+						<%
+					}
+					%>
 					
 					<table>
 						<tr>
@@ -203,25 +241,24 @@
 						</tr>
 					
 					<%
-					ResultSet roundTripSpecificDayResult = roundTripFlightStatement.executeQuery(returningFlightQuery);
-						while(roundTripSpecificDayResult.next()) {
+						while(roundTripReturningResult.next()) {
 					%>
 							<tr>
 								<td>
 				                    <div class="radio">
-				                         <label><input type="radio" name="round-trip" value=<%=roundTripSpecificDayResult.getInt("flightNum") %>></label>
+				                         <label><input type="radio" name="round-trip" value=<%=roundTripReturningResult.getInt("flightNum") %>></label>
 				                    </div>
 				               	</td>
-								<td><%=roundTripSpecificDayResult.getInt("flightNum") %></td>
-								<td><%=roundTripSpecificDayResult.getString("airlineName") %></td>
-								<td><%=roundTripSpecificDayResult.getString("airportTo") %></td>
-								<td><%=roundTripSpecificDayResult.getString("airportFrom") %></td>
-								<td><%=roundTripSpecificDayResult.getInt("availableSeats") %></td>
-								<td>$<%=roundTripSpecificDayResult.getInt("fares") %></td>
-								<td><%=roundTripSpecificDayResult.getDate("departureDate") %></td>
-								<td><%=roundTripSpecificDayResult.getTime("departureTime") %></td>
-								<td><%=roundTripSpecificDayResult.getDate("arrivalDate") %></td>
-								<td><%=roundTripSpecificDayResult.getTime("arrivalTime") %></td>
+								<td><%=roundTripReturningResult.getInt("flightNum") %></td>
+								<td><%=roundTripReturningResult.getString("airlineName") %></td>
+								<td><%=roundTripReturningResult.getString("airportTo") %></td>
+								<td><%=roundTripReturningResult.getString("airportFrom") %></td>
+								<td><%=roundTripReturningResult.getInt("availableSeats") %></td>
+								<td>$<%=roundTripReturningResult.getInt("fares") %></td>
+								<td><%=roundTripReturningResult.getDate("departureDate") %></td>
+								<td><%=roundTripReturningResult.getTime("departureTime") %></td>
+								<td><%=roundTripReturningResult.getDate("arrivalDate") %></td>
+								<td><%=roundTripReturningResult.getTime("arrivalTime") %></td>
 							</tr>
 							<%
 						}
