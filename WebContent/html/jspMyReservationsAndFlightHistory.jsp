@@ -92,6 +92,48 @@ table, th, td {
 		%>
 		</tbody>
 		</table>
+				<h2>Past Reservations</h2>
+
+        <table style = "width: 100%;">
+        <thead>
+            <tr>
+                <th>Reservation Code</th>
+                <th>Departure Date</th>
+                <th># of Passengers </th>
+                <th>Reservation Type </th>
+                <th>Total Cost </th>
+                
+            </tr>
+            </thead>
+            <tbody>
+	<%
+	
+		String str2 = "SELECT r.reservationCode, f.departureDate, r.passengers, CASE WHEN reservationType = 1 THEN 'One Way' WHEN reservationType = 2 THEN 'Round Trip' ELSE 'Invalid ReservationType' END AS reservationType, r.totalFare FROM flight f,reservationFlights rf ,reservations r WHERE f.flightNum = rf.flightNum AND r.reservationCode = rf.reservationCode AND f.departureDate <= CURDATE() AND r.accountNum = "  + accountNumFromCookie + " GROUP BY r.reservationCode";
+		//Run the query against the database.
+		ResultSet result2 = stmt.executeQuery(str2);
+		
+		%>
+
+		<%
+		
+		while(result2.next()) {
+			%>
+			<tr>
+				<td><%=result2.getString("reservationCode") %></td>
+				<td><%=result2.getDate("departureDate") %></td>
+				<td><%=result2.getInt("passengers") %></td>
+				<td><%=result2.getString("reservationType") %></td>
+				<td><%=result2.getDouble("totalFare") %></td>
+				
+				<!-- Add a total revenue field from every flight -->
+			</tr>
+			
+			<%
+		}
+		%>
+		</tbody>
+		</table>
+		
 		
 		<% 
 	} catch(Exception e) {
