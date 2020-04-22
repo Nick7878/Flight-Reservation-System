@@ -23,7 +23,7 @@
     //Gets AccountNum
     cookie = cookies[0];
     int accountNumFromCookie = Integer.parseInt(cookie.getValue());
-    System.out.println(cookie);
+    System.out.println(accountNumFromCookie);
 	try{
 		
 		
@@ -47,19 +47,21 @@
 		ResultSet result = stmt.executeQuery(str);
 		
 		%>
-		<table style="border: 1px solid black;">
-			<tr>
-			<th>Flight Number</th>
-			<th>Airline</th>
-			<th>To Airport</th>
-			<th>From Airport</th>
-			<th>Fare</th>
-			<th>Stops</th>
-			<th>Departure Date</th>
-			<th>Departure Time</th>
-			<th>Arrival Date</th>
-			<th>Arrival Time</th>
-			</tr>
+		<h2>Incoming Reservations</h2>
+
+        <table style="width: 100%;">
+            <tr>
+                <th>Reservation Code</th>
+                <th>Departure City/Airport</th>
+                <th>Arrival City/Airport</th>
+                <th>Departure Date/Time</th>
+                <th>Arrival Date/Time</th>
+                <th>Returning Departure Date/Time</th>
+                <th>Returning Arrival Date/Time</th>
+                <th>Stops</th>
+                <th>Seats</th>
+                <th>Total Cost</th>
+            </tr>
 		<%
 		
 		while(result.next()) {
