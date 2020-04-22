@@ -60,10 +60,14 @@
 		String flightAvailableOnSpecificDayOneWayQuery = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, availableSeats, fares, departureDate, departureTime, arrivalDate, arrivalTime FROM flight JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE (departureDate = '" + departureDate + "') AND (flight.airportTo = '" + airportTo + "' AND flight.airportFrom = '" + airportFrom + "') AND (NOT ((availableSeats - " + numOfPassengers + ") < 0));";
 		
 		//Gets flights in a certain date range
-		String flightAvailableOnCertainDateRangeOneWayQuery = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, availableSeats, fares, departureDate, departureTime, arrivalDate, arrivalTime FROM flight JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE ((departureDate BETWEEN '2020-04-08' AND '2020-04-11') OR (departureDate BETWEEN '2020-04-11' AND '2020-04-14')) AND (flight.airportTo = 'SAN' AND flight.airportFrom = 'EWR') AND (NOT ((availableSeats - 2) < 0));";
+		String flightAvailableOnCertainDateRangeOneWayQuery = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, availableSeats, fares, departureDate, departureTime, arrivalDate, arrivalTime FROM flight JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE ((departureDate BETWEEN DAY('" + departureDate + "') - 3 AND '" + departureDate + "') OR (departureDate BETWEEN '" + departureDate + "' AND DAY('" + departureDate + "') + 3)) AND (flight.airportTo = '" + airportTo + "' AND flight.airportFrom = '" + airportFrom + "') AND (NOT ((availableSeats - '" + numOfPassengers + "') < 0));";
 		
 		//Gets flight for a round trip flight
 		String returningFlightQuery = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, availableSeats, fares, departureDate, departureTime, arrivalDate, arrivalTime FROM flight JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE (departureDate = '" + returnDate + "') AND (flight.airportTo = '" + airportFrom + "' AND flight.airportFrom = '" + airportTo + "') AND (NOT ((availableSeats - " + numOfPassengers + ") < 0));";
+				
+		System.out.println(flightAvailableOnCertainDateRangeOneWayQuery);
+				
+		
 		
 		//Gets last name for current account logged in
 		String lastNameQuery = "SELECT lastName FROM customer WHERE accountNum = '" + accountNum + "';";
@@ -71,55 +75,73 @@
 		%>
 		<%
 			if(session.getAttribute("round-trip") == Integer.valueOf(1)) {
-				ResultSet oneWaySpecificDayResult = oneWayFlightStatement.executeQuery(flightAvailableOnSpecificDayOneWayQuery);
-		%>
-		<form action="jspReserveFlightOneWay.jsp" method="post">
-	    <div class="depart">
-	            <table>
-	                <tr>
-	                	<th></th>
-						<th>Flight Number</th>
-						<th>Airline</th>
-						<th>To Airport</th>
-						<th>From Airport</th>
-						<th>Available Seats</th>
-						<th>Fare</th>
-						<th>Departure Date</th>
-						<th>Departure Time</th>
-						<th>Arrival Date</th>
-						<th>Arrival Time</th>
-					</tr>
-
-	                <%
-		
-					while(oneWaySpecificDayResult.next()) {
+				ResultSet oneWayResult = oneWayFlightStatement.executeQuery(flightAvailableOnSpecificDayOneWayQuery);
+				if(!oneWayResult.next()) {
+					oneWayResult = oneWayFlightStatement.executeQuery(flightAvailableOnCertainDateRangeOneWayQuery);
+					if(!oneWayResult.next()) {
 						%>
-						<tr>
-							<td>
-			                    <div class="radio">
-			                         <label><input type="radio" name="one-way" value=<%=oneWaySpecificDayResult.getInt("flightNum") %>></label>
-			                    </div>
-			               	</td>
-							<td><%=oneWaySpecificDayResult.getInt("flightNum") %></td>
-							<td><%=oneWaySpecificDayResult.getString("airlineName") %></td>
-							<td><%=oneWaySpecificDayResult.getString("airportTo") %></td>
-							<td><%=oneWaySpecificDayResult.getString("airportFrom") %></td>
-							<td><%=oneWaySpecificDayResult.getInt("availableSeats") %></td>
-							<td>$<%=oneWaySpecificDayResult.getInt("fares") %></td>
-							<td><%=oneWaySpecificDayResult.getDate("departureDate") %></td>
-							<td><%=oneWaySpecificDayResult.getTime("departureTime") %></td>
-							<td><%=oneWaySpecificDayResult.getDate("arrivalDate") %></td>
-							<td><%=oneWaySpecificDayResult.getTime("arrivalTime") %></td>
-						</tr>
+						<script>
+							alert("No results for flight on specific date or date range. Returning to homepage");
+					    	window.location.href = "homepage.html";
+						</script>
+						<%	
+					} else {
+						%>
+						<script>
+							alert("No results for flight on specific date. Showing flights within 3 days of specified departure date");
+						</script>
+						<%
+						%>
+						<form action="jspReserveFlightOneWay.jsp" method="post">
+					    <div class="depart">
+					            <table>
+					                <tr>
+					                	<th></th>
+										<th>Flight Number</th>
+										<th>Airline</th>
+										<th>To Airport</th>
+										<th>From Airport</th>
+										<th>Available Seats</th>
+										<th>Fare</th>
+										<th>Departure Date</th>
+										<th>Departure Time</th>
+										<th>Arrival Date</th>
+										<th>Arrival Time</th>
+									</tr>
+
+					                <%
+					                oneWayResult.previous();
+									while(oneWayResult.next()) {
+										%>
+										<tr>
+											<td>
+							                    <div class="radio">
+							                         <label><input type="radio" name="one-way" value=<%=oneWayResult.getInt("flightNum") %>></label>
+							                    </div>
+							               	</td>
+											<td><%=oneWayResult.getInt("flightNum") %></td>
+											<td><%=oneWayResult.getString("airlineName") %></td>
+											<td><%=oneWayResult.getString("airportTo") %></td>
+											<td><%=oneWayResult.getString("airportFrom") %></td>
+											<td><%=oneWayResult.getInt("availableSeats") %></td>
+											<td>$<%=oneWayResult.getInt("fares") %></td>
+											<td><%=oneWayResult.getDate("departureDate") %></td>
+											<td><%=oneWayResult.getTime("departureTime") %></td>
+											<td><%=oneWayResult.getDate("arrivalDate") %></td>
+											<td><%=oneWayResult.getTime("arrivalTime") %></td>
+										</tr>
+										<%
+									}
+						%>
+								</table>
+								
+						<input type="submit" name="reserve">
+						</div>
+						</form>
 						<%
 					}
-		%>
-				</table>
-				
-		<input type="submit" name="reserve">
-		</div>
-		</form>
-		<% 
+				}
+		 
 			} else {
 				ResultSet oneWaySpecificDayResult = oneWayFlightStatement.executeQuery(flightAvailableOnSpecificDayOneWayQuery);
 			%>
