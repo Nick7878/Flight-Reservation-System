@@ -18,6 +18,7 @@
 <body>
 	<%
 		Cookie cookie = null;
+		Cookie isManagerCookie = null;
 		Cookie[] cookies = null;
 	
 		// Get an array of Cookies associated with the this domain
@@ -25,15 +26,14 @@
 		
 		//Gets AccountNum
 		cookie = cookies[0];
+		//isManagerCookie= cookies[2];
+		
 		int accountNum = Integer.parseInt(cookie.getValue());
+		//boolean isManager = Boolean.parseBoolean(isManagerCookie.getValue());
 	
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");	
-		
-		//boolean isManager = Boolean.parseBoolean(request.getParameter("isManager"));
-			
-			
-		
+		boolean isManager=false;
 	
 	try {
 		//Create a connection string
@@ -51,9 +51,10 @@
 		
 				
 		//Updates accounts table  , isManager = '"+ isManager +"'
-		String updateTable = "UPDATE accounts SET email = '" + email + "', accountPassword = '" + password + "' WHERE accountNum ='"+ accountNum +"';";
+		String updateTable = "UPDATE accounts SET email = '" + email + "', accountPassword = '" + password + "', isManager = "+ isManager +" WHERE accountNum ='"+ accountNum +"';";
 		
 		// 1. check empty
+		isManager = false; 
 		if(email.equals("") || password.equals("")){
 			System.out.println("empty detected!");
 			%> 
@@ -99,14 +100,14 @@
 	    
 		
 		//Updates accounts table  , isManager = '"+ isManager +"'
-		//String ps = "UPDATE accounts SET isManager = '"+ isManager +"' WHERE accountNum ='"+ accountNum +"';";
+		//String ps = "UPDATE accounts SET isManager = "+ isManager +" WHERE accountNum ='"+ accountNum +"';";
 		
 		//PreparedStatement insert = con.prepareStatement(ps);
 		//System.out.println(ps);
 		//3.5 check if user is manager 
-		//if(email.contains("@group15")){
-		//isManager = true;
-		//}
+		if(email.contains("@group15.com")){
+		isManager = true;
+		}
 		//stmt.executeUpdate(ps);
 		//insert.close();
 		
