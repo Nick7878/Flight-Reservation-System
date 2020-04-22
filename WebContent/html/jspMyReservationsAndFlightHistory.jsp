@@ -24,7 +24,7 @@ table, th, td {
 </head>
 
 
-		<h2>Incoming Reservations</h2>
+		<h2>Upcoming Reservations</h2>
 
         <table style = "width: 100%;">
         <thead>
@@ -67,7 +67,7 @@ table, th, td {
 		//Get the combobox from the HelloWorld.jsp
 		System.out.println(request.getParameter("value"));
 		
-		String str = "SELECT r.reservationCode, f.departureDate, r.passengers, CASE WHEN reservationType = 1 THEN 'One Way' WHEN reservationType = 2 THEN 'Round Trip' ELSE 'Invalid ReservationType' END AS reservationType, r.totalFare FROM flight f,reservationFlights rf ,reservations r WHERE f.flightNum = rf.flightNum AND r.reservationCode = rf.reservationCode AND f.departureDate >= CURDATE() AND r.accountNum = "  + accountNumFromCookie + " ";
+		String str = "SELECT r.reservationCode, f.departureDate, r.passengers, CASE WHEN reservationType = 1 THEN 'One Way' WHEN reservationType = 2 THEN 'Round Trip' ELSE 'Invalid ReservationType' END AS reservationType, r.totalFare FROM flight f,reservationFlights rf ,reservations r WHERE f.flightNum = rf.flightNum AND r.reservationCode = rf.reservationCode AND f.departureDate >= CURDATE() AND r.accountNum = "  + accountNumFromCookie + " GROUP BY r.reservationCode";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
@@ -86,10 +86,12 @@ table, th, td {
 				
 				<!-- Add a total revenue field from every flight -->
 			</tr>
-			</table>
+			
 			<%
 		}
 		%>
+		</tbody>
+		</table>
 		
 		<% 
 	} catch(Exception e) {
@@ -102,7 +104,5 @@ table, th, td {
 		<%	
 	}
 	%>
-	</tbody>
-	</table>
 
 </html>
