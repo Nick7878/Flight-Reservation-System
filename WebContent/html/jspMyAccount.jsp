@@ -96,49 +96,49 @@
             <tr>
               <td>First Name</td>
               <td>
-                <input type="text" id="fname" name="firstname" value="<%=result.getString("firstName")%>">
+                <input type="text" id="fname" name="firstname" value="<%=result.getString("firstName").trim()%>">
               </td>
             </tr>
             <tr>
               <td>Last Name </td>
               <td>
-                <input type="text" id="lname" name="lastname" value="<%=result.getString("lastName")%>">
+                <input type="text" id="lname" name="lastname" value="<%=result.getString("lastName").trim()%>">
               </td>
             </tr>
             <tr>
               <td> Address </td>
               <td>
-                <input type="text" id="address" name="address" value="<%=result.getString("address")%>">
+                <input type="text" id="address" name="address" value="<%=result.getString("address").trim()%>">
               </td>
             </tr>
             <tr>
               <td> City </td>
               <td>
-                <input type="text" id="city" name="cityname" value="<%=result.getString("city")%>">
+                <input type="text" id="city" name="cityname" value="<%=result.getString("city").trim()%>">
               </td>
             </tr>
             <tr>
               <td> State </td>
               <td>
-                <input type="text" id="state" name="statename" value="<%=result.getString("state")%>" maxlength="2">
+                <input type="text" id="state" name="statename" value="<%=result.getString("state").trim()%>" maxlength="2">
               </td>
             </tr>
             <tr>
               <td> Zip Code </td>
               <td>
-                <input type="text" id="zip" name="zipcode" value="<%=result.getString("zipCode")%>" maxLength="5">
+                <input type="text" id="zip" name="zipcode" value="<%=result.getString("zipCode").trim()%>" maxLength="5">
               </td>
             </tr>
             <tr>
               <td> Phone Number </td>
               <td>
-                <input type="text" id="phone" name="phonenumber" value="<%=result.getString("telephone")%>" maxlength="10" >
+                <input type="text" id="phone" name="phonenumber" value="<%=result.getString("telephone").trim()%>" maxlength="10" >
               </td>
             </tr>
             <tr>
               <td> Credit Card Number</td>
               <td>
-                <input type="text" id="card" name="creditcard" value="<%=result.getString("creditCardNum")%>" maxlength="16">
+                <input type="text" id="card" name="creditcard" value="<%=result.getString("creditCardNum").trim()%>" maxlength="16">
               </td>
             </tr>
             <tr>
