@@ -84,7 +84,7 @@ function readCookie() {
 function signOut() {
 	 let cookies = document.cookie;
      let cookieArray = cookies.split(";");
-     for(var i = 0; i <cookieArray.length; i++) {
+     for(var i = 0; i < cookieArray.length; i++) {
         var key = cookieArray[i].split("=");
         document.cookie = key[0]+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
      }
