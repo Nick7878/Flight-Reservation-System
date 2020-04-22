@@ -9,10 +9,35 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/myReservationsAndFlightHistoryStyle.css" />
 <title>title</title>
 <link rel = "stylesheet" href = "../css/genericCSS.css">
+
+<style> table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+  
+}</style>
 </head>
-<body>
+
+
+		<h2>Incoming Reservations</h2>
+
+        <table style = "width: 100%;">
+        <thead>
+            <tr>
+                <th>Reservation Code</th>
+                <th>Departure Date</th>
+                <th># of Passengers </th>
+                <th>Reservation Type </th>
+                <th>Total Cost </th>
+                
+            </tr>
+            </thead>
+            <tbody>
 	<%
 	Cookie cookie = null;
     Cookie[] cookies = null;
@@ -42,47 +67,30 @@
 		//Get the combobox from the HelloWorld.jsp
 		System.out.println(request.getParameter("value"));
 		
-		String str = "";
+		String str = "SELECT r.reservationCode, f.departureDate, r.passengers, CASE WHEN reservationType = 1 THEN 'One Way' WHEN reservationType = 2 THEN 'Round Trip' ELSE 'Invalid ReservationType' END AS reservationType, r.totalFare FROM flight f,reservationFlights rf ,reservations r WHERE f.flightNum = rf.flightNum AND r.reservationCode = rf.reservationCode AND f.departureDate >= CURDATE() AND r.accountNum = "  + accountNumFromCookie + " ";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
 		%>
-		<h2>Incoming Reservations</h2>
 
-        <table style="width: 100%;">
-            <tr>
-                <th>Reservation Code</th>
-                <th>Departure City/Airport</th>
-                <th>Arrival City/Airport</th>
-                <th>Departure Date/Time</th>
-                <th>Arrival Date/Time</th>
-                <th>Returning Departure Date/Time</th>
-                <th>Returning Arrival Date/Time</th>
-                <th>Stops</th>
-                <th>Seats</th>
-                <th>Total Cost</th>
-            </tr>
 		<%
 		
 		while(result.next()) {
 			%>
 			<tr>
-				<td><%=result.getInt("flightNum") %></td>
-				<td><%=result.getString("airline") %></td>
-				<td><%=result.getString("airportTo") %></td>
-				<td><%=result.getString("airportFrom") %></td>
-				<td><%=result.getInt("fares") %></td>
-				<td><%=result.getInt("stops") %></td>
+				<td><%=result.getString("reservationCode") %></td>
 				<td><%=result.getDate("departureDate") %></td>
-				<td><%=result.getTime("departureTime") %></td>
-				<td><%=result.getDate("arrivalDate") %></td>
-				<td><%=result.getTime("arrivalTime") %></td>
+				<td><%=result.getInt("passengers") %></td>
+				<td><%=result.getString("reservationType") %></td>
+				<td><%=result.getDouble("totalFare") %></td>
+				
 				<!-- Add a total revenue field from every flight -->
 			</tr>
+			</table>
 			<%
 		}
 		%>
-		</table>
+		
 		<% 
 	} catch(Exception e) {
 		e.printStackTrace();
@@ -94,5 +102,7 @@
 		<%	
 	}
 	%>
-</body>
+	</tbody>
+	</table>
+
 </html>
