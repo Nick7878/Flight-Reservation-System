@@ -85,64 +85,63 @@
 					    	window.location.href = "homepage.html";
 						</script>
 						<%	
-					} else {
-						%>
-						<script>
-							alert("No results for flight on specific date. Showing flights within 3 days of specified departure date");
-						</script>
-						<%
-						%>
-						<form action="jspReserveFlightOneWay.jsp" method="post">
-					    <div class="depart">
-					            <table>
-					                <tr>
-					                	<th></th>
-										<th>Flight Number</th>
-										<th>Airline</th>
-										<th>To Airport</th>
-										<th>From Airport</th>
-										<th>Available Seats</th>
-										<th>Fare</th>
-										<th>Departure Date</th>
-										<th>Departure Time</th>
-										<th>Arrival Date</th>
-										<th>Arrival Time</th>
-									</tr>
-
-					                <%
-					                oneWayResult.previous();
-									while(oneWayResult.next()) {
-										%>
-										<tr>
-											<td>
-							                    <div class="radio">
-							                         <label><input type="radio" name="one-way" value=<%=oneWayResult.getInt("flightNum") %>></label>
-							                    </div>
-							               	</td>
-											<td><%=oneWayResult.getInt("flightNum") %></td>
-											<td><%=oneWayResult.getString("airlineName") %></td>
-											<td><%=oneWayResult.getString("airportTo") %></td>
-											<td><%=oneWayResult.getString("airportFrom") %></td>
-											<td><%=oneWayResult.getInt("availableSeats") %></td>
-											<td>$<%=oneWayResult.getInt("fares") %></td>
-											<td><%=oneWayResult.getDate("departureDate") %></td>
-											<td><%=oneWayResult.getTime("departureTime") %></td>
-											<td><%=oneWayResult.getDate("arrivalDate") %></td>
-											<td><%=oneWayResult.getTime("arrivalTime") %></td>
-										</tr>
-										<%
-									}
-						%>
-								</table>
-								
-						<input type="submit" name="reserve">
-						</div>
-						</form>
-						<%
 					}
+					%>
+					<script>
+						alert("No results for flight on specific date. Showing flights within 3 days of specified departure date");
+					</script>
+					<%
 				}
+				oneWayResult.previous();
+				%>
+				<form action="jspReserveFlightOneWay.jsp" method="post">
+			    <div class="depart">
+			            <table>
+			                <tr>
+			                	<th></th>
+								<th>Flight Number</th>
+								<th>Airline</th>
+								<th>To Airport</th>
+								<th>From Airport</th>
+								<th>Available Seats</th>
+								<th>Fare</th>
+								<th>Departure Date</th>
+								<th>Departure Time</th>
+								<th>Arrival Date</th>
+								<th>Arrival Time</th>
+							</tr>
+
+			                <%
+							while(oneWayResult.next()) {
+								%>
+								<tr>
+									<td>
+					                    <div class="radio">
+					                         <label><input type="radio" name="one-way" value=<%=oneWayResult.getInt("flightNum") %>></label>
+					                    </div>
+					               	</td>
+									<td><%=oneWayResult.getInt("flightNum") %></td>
+									<td><%=oneWayResult.getString("airlineName") %></td>
+									<td><%=oneWayResult.getString("airportTo") %></td>
+									<td><%=oneWayResult.getString("airportFrom") %></td>
+									<td><%=oneWayResult.getInt("availableSeats") %></td>
+									<td>$<%=oneWayResult.getInt("fares") %></td>
+									<td><%=oneWayResult.getDate("departureDate") %></td>
+									<td><%=oneWayResult.getTime("departureTime") %></td>
+									<td><%=oneWayResult.getDate("arrivalDate") %></td>
+									<td><%=oneWayResult.getTime("arrivalTime") %></td>
+								</tr>
+								<%
+							}
+				%>
+						</table>
+						
+				<input type="submit" name="reserve">
+				</div>
+				</form>
+				<%
 		 
-			} else {
+			} else {	//End of round trip checker IF
 				ResultSet oneWaySpecificDayResult = oneWayFlightStatement.executeQuery(flightAvailableOnSpecificDayOneWayQuery);
 			%>
 			<form action="jspReserveFlightRoundTrip.jsp" method="post">
