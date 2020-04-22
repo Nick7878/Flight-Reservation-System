@@ -46,7 +46,7 @@
 		//Get the combobox from the HelloWorld.jsp
 		
 		//Get all parameters to populate the table 
-		String populationTable = "select email, accountPassword, lastName, firstName, address, city, state, zipCode, telephone, creditCardNum FROM accounts JOIN customer USING(accountNum) WHERE accountNum = '" + accountNum + "';";
+		String populationTable = "SELECT email, accountPassword, lastName, firstName, address, city, state, zipCode, telephone, creditCardNum FROM accounts JOIN customer USING(accountNum) WHERE accountNum = '" + accountNum + "';";
 		ResultSet result = stmt.executeQuery(populationTable);
 		
 		
@@ -138,7 +138,7 @@
             <tr>
               <td> Credit Card Number</td>
               <td>
-                <input type="text" id="card" name="creditcard" value="<%=result.getString("creditCardNum")%> " maxlength="16">
+                <input type="text" id="card" name="creditcard" value="<%=result.getString("creditCardNum")%>" maxlength="16">
               </td>
             </tr>
             <tr>

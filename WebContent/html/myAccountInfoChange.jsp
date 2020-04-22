@@ -27,14 +27,14 @@
 	cookie = cookies[0];
 	int accountNum = Integer.parseInt(cookie.getValue());
 	
-	String firstName = request.getParameter("firstname");
-	String lastName = request.getParameter("lastname");
-	String address = request.getParameter("address");
-	String city = request.getParameter("cityname");
-	String state = request.getParameter("statename");
-	String zipCode = request.getParameter("zipcode");
-	String telephone = request.getParameter("phonenumber");
-	String creditCardNum = request.getParameter("creditcard");
+	String firstName = request.getParameter("firstname").trim();
+	String lastName = request.getParameter("lastname").trim();
+	String address = request.getParameter("address").trim();
+	String city = request.getParameter("cityname").trim();
+	String state = request.getParameter("statename").trim();
+	String zipCode = request.getParameter("zipcode").trim();
+	String telephone = request.getParameter("phonenumber").trim();
+	String creditCardNum = request.getParameter("creditcard").trim();
 	
 	
 	try {
@@ -66,13 +66,13 @@
 			<%
 			return;
 		}
-		//checks if the zipcode is the correct lenght
+		//checks if the state is the correct length
 		if(state.length() != 2) {
-			System.out.println("Invalid Credit Card Number");
+			System.out.println("Invalid State");
 			%> 
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
-			    alert("Invalid State CODE");
+			    alert("Invalid State Code");
 			    window.location.href = "myAccount.jsp";
 			</script>
 			<%
@@ -80,12 +80,12 @@
 		}		
 		
 		//checks if the zipcode is the correct lenght
-		if(telephone.length() != 5) {
-			System.out.println("Invalid Credit Card Number");
+		if(zipCode.length() != 5) {
+			System.out.println("Invalid Zip Code");
 			%> 
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
-			    alert("Invalid zipcode");
+			    alert("Invalid Zip Code");
 			    window.location.href = "myAccount.jsp";
 			</script>
 			<%
@@ -93,11 +93,11 @@
 		}			
 		//checks if phonenumber is the correct lenght
 		if(telephone.length() != 10) {
-			System.out.println("Invalid Credit Card Number");
+			System.out.println("Invalid phone number");
 			%> 
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
-			    alert("Invalid phonenumber");
+			    alert("Invalid Phone Number");
 			    window.location.href = "myAccount.jsp";
 			</script>
 			<%
@@ -115,8 +115,13 @@
 			return;	
 		}
 		stmt.executeUpdate(changeCustomerInfoQuery);
-		System.out.println("Change Info");
 		con.close();
+		%>
+		<script>
+			alert("Information Change Successful!");
+	    	window.location.href = "homepage.html";
+		</script>
+		<%	
 	} catch(Exception e) {
 		e.printStackTrace();
 		%>

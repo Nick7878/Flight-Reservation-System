@@ -18,7 +18,6 @@
 <body>
 	<%
 		Cookie cookie = null;
-		Cookie isManagerCookie = null;
 		Cookie[] cookies = null;
 	
 		// Get an array of Cookies associated with the this domain
@@ -29,11 +28,14 @@
 		//isManagerCookie= cookies[2];
 		
 		int accountNum = Integer.parseInt(cookie.getValue());
-		//boolean isManager = Boolean.parseBoolean(isManagerCookie.getValue());
+		boolean isManager = false;
 	
 		String email = request.getParameter("email");
-		String password = request.getParameter("password");	
-		boolean isManager=false;
+		String password = request.getParameter("password");
+		
+		if(email.contains("@group15")) {
+			isManager = true;
+		}
 	
 	try {
 		//Create a connection string
@@ -54,7 +56,6 @@
 		String updateTable = "UPDATE accounts SET email = '" + email + "', accountPassword = '" + password + "', isManager = "+ isManager +" WHERE accountNum ='"+ accountNum +"';";
 		
 		// 1. check empty
-		isManager = false; 
 		if(email.equals("") || password.equals("")){
 			System.out.println("empty detected!");
 			%> 
@@ -97,19 +98,6 @@
 			<%
 			return;
 		}
-	    
-		
-		//Updates accounts table  , isManager = '"+ isManager +"'
-		//String ps = "UPDATE accounts SET isManager = "+ isManager +" WHERE accountNum ='"+ accountNum +"';";
-		
-		//PreparedStatement insert = con.prepareStatement(ps);
-		//System.out.println(ps);
-		//3.5 check if user is manager 
-		if(email.contains("@group15.com")){
-		isManager = true;
-		}
-		//stmt.executeUpdate(ps);
-		//insert.close();
 		
 		// 4. check the password length
 		if(password.length() < 8){
@@ -118,7 +106,7 @@
 			<!-- if error, show the alert and go back to create account page --> 
 			<script> 
 				 alert("Sorry, the password should be at least 8 characters");
-			 	 window.location.href = "html/createAccount.html";
+			 	 window.location.href = "myAccount.jsp";
 			</script>
 			<%
 			return;			
@@ -135,16 +123,14 @@
 			return;			
 		}
 	    
-	    
 		stmt.executeUpdate(updateTable);
 	    
-		
-		//System.out.println("Change email and password");
 		con.close();
 		%>
 		<script>
-	    	window.location.href = "homepage.html";
-	    	
+			alert("Information successfully changed! Please login again");
+	    	signOut();
+	    	window.location.href = "login.html";
 		</script>
 		<%	
 	} catch(Exception e) {
