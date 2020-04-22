@@ -3,7 +3,7 @@
 <%@ page import="java.io.*,java.util.*, java.sql.Date, java.sql.*"%>
 <%@ page import="java.text.SimpleDateFormat, java.text.DateFormat"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
-<%@ include file = "../html/reservationResults.html" %>
+<%@ include file = "reservationResults.html" %>
 
 <!DOCTYPE html>
 <html>
@@ -24,6 +24,16 @@
     int accountNum = Integer.parseInt(cookie.getValue());
 	
 	try{
+		System.out.println("Round Trip: " + request.getParameter("roundTrip"));
+		session.setAttribute("numberOfPassengers", request.getParameter("numOfPassengers"));
+		if(request.getParameter("roundTrip") == null) {
+			session.setAttribute("round-trip", 1);
+		} else {
+			session.setAttribute("round-trip", request.getParameter("roundTrip"));	
+		}
+		session.setAttribute("fromAirport", request.getParameter("fromAirport"));
+		session.setAttribute("toAirport", request.getParameter("toAirport"));
+		
 		String airportTo = request.getParameter("toAirport");
 		String airportFrom = request.getParameter("fromAirport");
 		String departureDate = request.getParameter("departureDate");
@@ -57,7 +67,7 @@
 		//Run the query against the database.
 		ResultSet result = flightsAvailableOnSpecificDayOneWayStatement.executeQuery(flightAvailableOnSpecificDayOneWayQuery);
 		%>
-		<div>
+		<form action="jspReserveFlightOneWay.jsp" method="post">
 	    <div class="depart">
 	            <table>
 	                <tr>
@@ -99,11 +109,9 @@
 					}
 		%>
 		</table>
+		<input type="submit" name="reserve">
 		</div>
-		<form action="reservFlight.jsp" method="post">
-			<input type="submit" name="reserve">
 		</form>
-		</div>
 		<% 
 		
 	} catch(Exception e) {

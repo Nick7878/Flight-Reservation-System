@@ -29,12 +29,12 @@
   </div>
 
   <main>
-    <form action="../jsp files/availableFlights.jsp" method="get">
+    <form action="jspAvailableFlights.jsp" method="get">
       From: <input type="text" class="fsize" name="fromAirport" placeholder="EWR">      
       To:  <input type="text" class="fsize" name="toAirport" placeholder="HNL"> 
       Departing: <input type="text" class="fsize" name="departureDate" placeholder="yyyy-mm-dd"> 
       Returning: <input type="text" class="fsize" name="returnDate" placeholder="yyyy-mm-dd" disabled>
-      Round Trip <input type="checkbox" class="fsize" name ="roundTrip" id="return" onchange="change()"> 
+      Round Trip <input type="checkbox" class="fsize" name ="roundTrip" value="2" id="return" onchange="change()"> 
       Passengers <input type="number" class="fsize" name="numOfPassengers" id="passengers" min = "1" max ="6">
       <input type="submit" name="Search">
     </form>
@@ -42,8 +42,8 @@
     <script>
 
       function change(){
-        const check = document.getElementsByName("returnTrip")[0]
-        document.getElementsByName('endDate')[0].disabled = !check.checked
+        const check = document.getElementsByName("roundTrip")[0]
+        document.getElementsByName('returnDate')[0].disabled = !check.checked
       }
     </script>
 

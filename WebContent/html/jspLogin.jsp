@@ -85,7 +85,7 @@
 			
 			%>
 			<script>
-				alert("Sorry, unexcepted error happens.");
+				alert("Login Successful!");
 		    	window.location.href = "homepage.html";
 			</script>
 			<%	
