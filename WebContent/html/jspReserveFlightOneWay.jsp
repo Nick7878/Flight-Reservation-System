@@ -138,7 +138,7 @@
 		%>
 		<script>
 			alert("Successfully reserved flight! Check the My Reservations tab to see information about your reservation.");
-	    	window.location.href = "myReservationsAndFlightHistory.html";
+	    	window.location.href = "jspMyReservationsAndFlightHistory.jsp";
 		</script>
 		<%
 	} catch(Exception e) {
