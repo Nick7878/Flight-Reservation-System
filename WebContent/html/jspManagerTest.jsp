@@ -3,6 +3,7 @@
  <%@page import ="java.sql.Statement"%>
  <%@page import ="java.sql.Connection"%> 
  <%@page contentType = "text/html" pageEncoding = "UTF-8"%>
+ <%@ include file = "genericPage.html" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,18 +17,8 @@ table, th, td {
   border: 1px solid black;
 }</style>
 </head>
-<p> <br> </p>
-<div class = "row">
-<div class = "col">
-<h3>Hello There</h3>
-<!--  there was once a link here goign to something we are no longer using-->
-</div>
-
-</div>
-
-
-
-
+<body>
+<h3 style="text-align: center">Edit Customer Information</h3>
  <table class = "table">
  	<thead>
  	<tr>
@@ -75,5 +66,5 @@ table, th, td {
  </table>
 
 
-
+</body>
 </html>
