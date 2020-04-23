@@ -26,6 +26,7 @@
     //gets flight number from previous page
     String departingFlightNum = request.getParameter("one-way");
     String returningFlightNum = request.getParameter("round-trip");
+    String departureDate = session.getAttribute("departureDate").toString();
     
 	try{
 		
@@ -42,6 +43,7 @@
 		//Checks to see is current user has a reservation for the flight they're choosing. If so, don't book
 		String checkForDuplicateReservationQuery = "SELECT * FROM reservationflights JOIN reservations USING(reservationCode) Where flightNum = '" + departingFlightNum + "' and accountNum = '" + accountNum + "';";
 		ResultSet duplicateResult = stmt.executeQuery(checkForDuplicateReservationQuery);
+		
 		if(duplicateResult.next()) {
 			%>
 			<script>
@@ -67,17 +69,19 @@
 		}
 		
 		//Get necessary info to create reservation
-		String getFlightInfoQuery = "SELECT fares, departureDate FROM flight WHERE flightNum IN ('" + departingFlightNum + "', '" + returningFlightNum + "');";
+		String getFlightInfoQuery = "SELECT departureDate, CASE WHEN DATEDIFF('" + departureDate + "', CURDATE()) <= 3 THEN fares-10 WHEN DATEDIFF('" + departureDate + "', CURDATE()) <= 7 THEN fares-20 WHEN DATEDIFF('" + departureDate + "', CURDATE()) <= 14 THEN fares-40 WHEN DATEDIFF('" + departureDate + "', CURDATE()) <= 21 THEN fares-60 WHEN DATEDIFF('" + departureDate + "', CURDATE()) <= 30 THEN fares-80 END AS fares FROM flight WHERE flightNum IN ('" + departingFlightNum + "', '" + returningFlightNum + "') ORDER BY departureDate ASC;";
 		
 		ResultSet flightResult = stmt.executeQuery(getFlightInfoQuery);
 		flightResult.next();
 		
 		int totalFare = flightResult.getInt("fares") + 20;
+		System.out.println("totalFare1: " + totalFare);
 		Date travelDate = flightResult.getDate("departureDate");
 		
 		flightResult.next();
 		
 		totalFare += flightResult.getInt("fares") + 20;
+		System.out.println("totalFare2: " + totalFare);
 		
 		String numberOfPassengers = session.getAttribute("numberOfPassengers").toString();
 		String reservationType = session.getAttribute("round-trip").toString();

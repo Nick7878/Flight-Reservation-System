@@ -66,7 +66,7 @@
 		}
 		
 		//Get necessary info to create reservation
-		String getFlightInfoQuery = "SELECT fares, departureDate FROM flight WHERE flightNum = '" + flightNum + "';";
+		String getFlightInfoQuery = "SELECT departureDate, CASE WHEN DATEDIFF(departureDate, CURDATE()) <= 3 THEN fares-10 WHEN DATEDIFF(departureDate, CURDATE()) <= 7 THEN fares-20 WHEN DATEDIFF(departureDate, CURDATE()) <= 14 THEN fares-40 WHEN DATEDIFF(departureDate, CURDATE()) <= 21 THEN fares-60 WHEN DATEDIFF(departureDate, CURDATE()) <= 30 THEN fares-80 END AS fares FROM flight WHERE flightNum = '" + flightNum + "';";
 		
 		ResultSet flightResult = stmt.executeQuery(getFlightInfoQuery);
 		flightResult.next();

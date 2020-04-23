@@ -82,7 +82,7 @@ table, th, td {
 				<td><%=result.getDate("departureDate") %></td>
 				<td><%=result.getInt("passengers") %></td>
 				<td><%=result.getString("reservationType") %></td>
-				<td><%=result.getDouble("totalFare") %></td>
+				<td>$<%=result.getDouble("totalFare") %></td>
 				
 				<!-- Add a total revenue field from every flight -->
 			</tr>
@@ -123,7 +123,7 @@ table, th, td {
 				<td><%=result2.getDate("departureDate") %></td>
 				<td><%=result2.getInt("passengers") %></td>
 				<td><%=result2.getString("reservationType") %></td>
-				<td><%=result2.getDouble("totalFare") %></td>
+				<td>$<%=result2.getDouble("totalFare") %></td>
 				
 				<!-- Add a total revenue field from every flight -->
 			</tr>
