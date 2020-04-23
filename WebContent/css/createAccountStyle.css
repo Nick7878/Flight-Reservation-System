@@ -189,7 +189,7 @@ input[type=password]{
 
 
 /*The default appearance of the tabs in the navigation bar*/
-.topnav #ReservationLink, #HomeLink, #ManagerLink {
+.topnav #ReservationLink, #HomeLink, #ManagerLink, #bestSellingFlightsLink {
     float: left;
     color: #f2f2f2;
     text-align: center;
