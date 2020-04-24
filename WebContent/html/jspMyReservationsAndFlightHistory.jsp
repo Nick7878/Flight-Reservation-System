@@ -23,13 +23,13 @@ table, th, td {
 }</style>
 </head>
 
-
+		
 		<h2>Upcoming Reservations</h2>
 
         <table style = "width: 100%;">
         <thead>
             <tr>
-                <th>Reservation Code</th>
+                <th>Reservation Code </th>
                 <th>Departure Date</th>
                 <th># of Passengers </th>
                 <th>Reservation Type </th>
@@ -39,6 +39,7 @@ table, th, td {
             </thead>
             <tbody>
 	<%
+	
 	Cookie cookie = null;
     Cookie[] cookies = null;
 
@@ -78,7 +79,8 @@ table, th, td {
 		while(result.next()) {
 			%>
 			<tr>
-				<td><%=result.getString("reservationCode") %></td>
+				
+				<td><a href="jspTravelItinerary.jsp?resCode=<%=result.getString("reservationCode")%>"><%=result.getString("reservationCode")%></a></td>
 				<td><%=result.getDate("departureDate") %></td>
 				<td><%=result.getInt("passengers") %></td>
 				<td><%=result.getString("reservationType") %></td>
@@ -91,12 +93,17 @@ table, th, td {
 		}
 		%>
 		</tbody>
+		
+		
+		
 		</table>
+		
 				<h2>Past Reservations</h2>
 
         <table style = "width: 100%;">
         <thead>
             <tr>
+            
                 <th>Reservation Code</th>
                 <th>Departure Date</th>
                 <th># of Passengers </th>
@@ -119,7 +126,8 @@ table, th, td {
 		while(result2.next()) {
 			%>
 			<tr>
-				<td><%=result2.getString("reservationCode") %></td>
+				
+				<td><a href="jspTravelItinerary.jsp?resCode=<%=result2.getString("reservationCode")%>"><%=result2.getString("reservationCode")%></a></td>
 				<td><%=result2.getDate("departureDate") %></td>
 				<td><%=result2.getInt("passengers") %></td>
 				<td><%=result2.getString("reservationType") %></td>
@@ -133,7 +141,6 @@ table, th, td {
 		%>
 		</tbody>
 		</table>
-		
 		
 		<% 
 	} catch(Exception e) {
