@@ -29,102 +29,56 @@
 		
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
-		//Get the combobox from the HelloWorld.jsp
-		System.out.println(request.getParameter("value"));
 		
-		//current time for today
-		
-		String str= "SELECT flightNum, airline, airportTo, airportFrom, numOfSeats, availableSeats, fares, departureDate, departureTime,arrivalDate, arrivalTime FROM flight WHERE departureDate >= (SELECT CURDATE()) OR (departureDate <=(SELECT CURDATE()) AND arrivalDate >(SELECT CURDATE())) AND departureDate IN (SELECT departureDate FROM flight WHERE departureTime <= (SELECT CURRENT_TIME()) AND arrivalTime <= (SELECT CURRENT_TIME()) ORDER BY flightNum)AND arrivalDate IN (SELECT arrivalDate FROM flight WHERE departureTime <= (SELECT CURRENT_TIME()) AND arrivalTime <= (SELECT CURRENT_TIME()) ORDER BY flightNum)ORDER BY flightNum;";
+		String str= "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, fares, departureDate, departureTime, actualDepartureTime, arrivalDate, arrivalTime, actualArrivalTime, flightStatus FROM flight JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode JOIN flightstatus USING(flightNum);";
 		//Run the query against the database.
-		ResultSet onTime = stmt.executeQuery(str);
+		ResultSet result = stmt.executeQuery(str);
 		
 		
 		
 		
 		%>
-		<h1>ONTIME</h1>
+		<h1 style="text-align: center">On-Time/Delayed Flights</h1>
 		<table style="border: 1px solid black;">
 			<tr>
 			<th>Flight Number</th>
 			<th>Airline</th>
 			<th>To Airport</th>
 			<th>From Airport</th>
-			<th># of Seats</th>
-			<th># of Available Seats</th>
 			<th>Fare</th>
 			<th>Departure Date</th>
 			<th>Departure Time</th>
+			<th>Actual Departure Time</th>
 			<th>Arrival Date</th>
 			<th>Arrival Time</th>
+			<th>Actual Arrival Time</th>
+			<th>Flight Status</th>
 			</tr>
 		<%
 		
-		while(onTime.next()) {
+		while(result.next()) {
 			//Convert the date we got from the Database to a String so we can compare it to our month string.
 			%>
 			<tr>
-				<td><%=onTime.getInt("flightNum") %></td>
-				<td><%=onTime.getString("airline") %></td>
-				<td><%=onTime.getString("airportTo") %></td>
-				<td><%=onTime.getString("airportFrom") %></td>
-				<td><%=onTime.getInt("numOfSeats") %></td>
-				<td><%=onTime.getInt("availableSeats") %>
-				<td><%=onTime.getInt("fares") %></td>
-				<td><%=onTime.getDate("departureDate") %></td>
-				<td><%=onTime.getTime("departureTime") %></td>
-				<td><%=onTime.getDate("arrivalDate") %></td>
-				<td><%=onTime.getTime("arrivalTime") %></td>
-			</tr>
-			<%
-			
-		}
-		String str2= "SELECT flightNum, airline, airportTo, airportFrom, numOfSeats, availableSeats, fares, departureDate, departureTime,arrivalDate, arrivalTime FROM flight WHERE departureDate <= (SELECT CURDATE()) AND arrivalDate < (SELECT CURDATE())ORDER BY flightnum;";
-		//Run the query against the database.
-		ResultSet delayed  = stmt.executeQuery(str2);
-		%>
-		</table>
-		<% 
-		%>
-		<h1>DELAYED</h1>
-		<table style="border: 1px solid black;">
-			<tr>
-			<th>Flight Number</th>
-			<th>Airline</th>
-			<th>To Airport</th>
-			<th>From Airport</th>
-			<th># of Seats</th>
-			<th># of Available Seats</th>
-			<th>Fare</th>
-			<th>Departure Date</th>
-			<th>Departure Time</th>
-			<th>Arrival Date</th>
-			<th>Arrival Time</th>
-			</tr>
-		<%
-		
-		while(delayed.next()) {
-			//Convert the date we got from the Database to a String so we can compare it to our month string.
-			%>
-			
-			<tr>
-				<td><%=delayed.getInt("flightNum") %></td>
-				<td><%=delayed.getString("airline") %></td>
-				<td><%=delayed.getString("airportTo") %></td>
-				<td><%=delayed.getString("airportFrom") %></td>
-				<td><%=delayed.getInt("numOfSeats") %></td>
-				<td><%=delayed.getInt("availableSeats") %>
-				<td><%=delayed.getInt("fares") %></td>
-				<td><%=delayed.getDate("departureDate") %></td>
-				<td><%=delayed.getTime("departureTime") %></td>
-				<td><%=delayed.getDate("arrivalDate") %></td>
-				<td><%=delayed.getTime("arrivalTime") %></td>
+				<td><%=result.getInt("flightNum") %></td>
+				<td><%=result.getString("airlineName") %></td>
+				<td><%=result.getString("airportTo") %></td>
+				<td><%=result.getString("airportFrom") %></td>
+				<td>$<%=result.getInt("fares") %></td>
+				<td><%=result.getDate("departureDate") %></td>
+				<td><%=result.getTime("departureTime") %></td>
+				<td><%=result.getTime("actualDepartureTime") %></td>
+				<td><%=result.getDate("arrivalDate") %></td>
+				<td><%=result.getTime("arrivalTime") %></td>
+				<td><%=result.getTime("actualArrivalTime") %></td>
+				<td><%=result.getString("flightStatus") %></td>
 			</tr>
 			<%
 			
 		}
 		%>
 		</table>
-		<% 
+		<%
 	} catch(Exception e) {
 		e.printStackTrace();
 		%>
