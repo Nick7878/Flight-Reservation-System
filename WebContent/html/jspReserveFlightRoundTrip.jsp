@@ -41,7 +41,7 @@
 		Statement stmt = con.createStatement();
 		
 		//Checks to see is current user has a reservation for the flight they're choosing. If so, don't book
-		String checkForDuplicateReservationQuery = "SELECT * FROM reservationflights JOIN reservations USING(reservationCode) Where flightNum = '" + departingFlightNum + "' and accountNum = '" + accountNum + "';";
+		String checkForDuplicateReservationQuery = "SELECT * FROM reservationflights JOIN reservations USING(reservationCode) Where flightNum = '" + departingFlightNum + "' and accountNum = '" + accountNum + "' AND travelDate >= CURDATE();";
 		ResultSet duplicateResult = stmt.executeQuery(checkForDuplicateReservationQuery);
 		
 		if(duplicateResult.next()) {
