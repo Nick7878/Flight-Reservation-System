@@ -39,19 +39,17 @@ table, th, td {
             </thead>
             <tbody>
 	<%
-	
-	Cookie cookie = null;
-    Cookie[] cookies = null;
-
-    // Get an array of Cookies associated with the this domain
-    cookies = request.getCookies();
-
-    //Gets AccountNum
-    cookie = cookies[0];
-    int accountNumFromCookie = Integer.parseInt(cookie.getValue());
-    System.out.println(accountNumFromCookie);
 	try{
-		
+		Cookie cookie = null;
+	    Cookie[] cookies = null;
+
+	    // Get an array of Cookies associated with the this domain
+	    cookies = request.getCookies();
+
+	    //Gets AccountNum
+	    cookie = cookies[0];
+	    int accountNumFromCookie = Integer.parseInt(cookie.getValue());
+	    System.out.println(accountNumFromCookie);
 		
 		//Create a connection string
 		//name the schema cs336project otherwise this url will not work!

@@ -18,12 +18,26 @@
 
     // Get an array of Cookies associated with the this domain
     cookies = request.getCookies();
-
-    //Gets AccountNum
-    cookie = cookies[0];
-    int accountNum = Integer.parseInt(cookie.getValue());
+	try{
+	    //Gets AccountNum. If it can't, throw an error because they're not logged in
+	    cookie = cookies[0];
+	    int accountNum = Integer.parseInt(cookie.getValue());
+	} catch(Exception e) {
+		e.printStackTrace();
+		%>
+		<script>
+			alert("Sorry, You have to be logged in to view flights");
+	    	window.location.href = "homepage.html";
+		</script>
+		<%
+	}
 	
 	try{
+	    //Gets AccountNum
+	    cookie = cookies[0];
+	    int accountNum = Integer.parseInt(cookie.getValue());
+	    System.out.println(accountNum);
+	    
 		System.out.println("Round Trip: " + request.getParameter("roundTrip"));
 		session.setAttribute("numberOfPassengers", request.getParameter("numOfPassengers"));
 		if(request.getParameter("roundTrip") == null) {

@@ -14,19 +14,18 @@
 </head>
 <body>
 	<%
-	Cookie cookie = null;
-    Cookie[] cookies = null;
-
-    // Get an array of Cookies associated with the this domain
-    cookies = request.getCookies();
-
-    //Gets AccountNum
-    cookie = cookies[0];
-    int accountNum = Integer.parseInt(cookie.getValue());
-    //gets flight number from previous page
-    String flightNum = request.getParameter("one-way");
-    
 	try{
+		Cookie cookie = null;
+	    Cookie[] cookies = null;
+
+	    // Get an array of Cookies associated with the this domain
+	    cookies = request.getCookies();
+
+	    //Gets AccountNum
+	    cookie = cookies[0];
+	    int accountNum = Integer.parseInt(cookie.getValue());
+	    //gets flight number from previous page
+	    String flightNum = request.getParameter("one-way");
 		
 		String url = "jdbc:mysql://localhost:3306/cs336project?useSSL=false";
 		//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.

@@ -19,20 +19,17 @@
 <body>
 
 <%
-	Cookie cookie = null;
-	Cookie[] cookies = null;
-
-	// Get an array of Cookies associated with the this domain
-	cookies = request.getCookies();
-	
-	//Gets AccountNum
-	cookie = cookies[0];
-	int accountNum = Integer.parseInt(cookie.getValue());
-	
-	
 	try {
-		//Create a connection string
-		//name the schema cs336project otherwise this url will not work!
+		Cookie cookie = null;
+		Cookie[] cookies = null;
+
+		// Get an array of Cookies associated with the this domain
+		cookies = request.getCookies();
+	
+		//Gets AccountNum
+		cookie = cookies[0];
+		int accountNum = Integer.parseInt(cookie.getValue());
+		
 		String url = "jdbc:mysql://localhost:3306/cs336project?useSSL=false";
 		//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 		Class.forName("com.mysql.jdbc.Driver");
