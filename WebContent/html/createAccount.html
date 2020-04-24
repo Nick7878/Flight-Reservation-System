@@ -4,12 +4,6 @@
         <title> Sign Up Form</title>
         <link rel = "stylesheet" href = "../css/createAccountStyle.css">
         <script src = ../check.js >
-          function passvalues(){
-      var emaiL= document.getElementById(email).nodeValue;
-      localStorage.setItem("emailvalue", emaiL);
-      return false;
-
-    }
         </script>
     </head>
     <body>
@@ -47,7 +41,7 @@
                 <label>Phone Number:</label><br>
                 <input type = "number" class = "input-box" placeholder = "7323579753" maxlength="10"  name="telephone"> <br>
                 <label> Email: </label> <br>            
-                <input type = "field" class = "input-box" placeholder = "vandyck@gmail.com" name="email" onclick="passvalues()"> <br>
+                <input type = "field" class = "input-box" placeholder = "vandyck@gmail.com" name="email"> <br>
                 <label> Credit Card: </label><br>
                 <input type = "number" class = "input-box" placeholder = "XXXXXXXXXXXXXXXX" maxlength="16" name="creditCardNum"> <br>
                 <label>Password: </label> <br>
