@@ -23,13 +23,12 @@ table, th, td {
 }</style>
 </head>
 
-		<form action="jspTravelItinerary.jps" method="get">
+		
 		<h2>Upcoming Reservations</h2>
 
         <table style = "width: 100%;">
         <thead>
             <tr>
-            	
                 <th>Reservation Code </th>
                 <th>Departure Date</th>
                 <th># of Passengers </th>
@@ -40,7 +39,7 @@ table, th, td {
             </thead>
             <tbody>
 	<%
-	//Hello
+	
 	Cookie cookie = null;
     Cookie[] cookies = null;
 
@@ -81,7 +80,7 @@ table, th, td {
 			%>
 			<tr>
 				
-				<td><a href="jspTravelItenerary.jsp" name="reservationCode"><%=result.getString("reservationCode")%></a></td>
+				<td><a href="jspTravelItinerary.jsp?resCode=<%=result.getString("reservationCode")%>"><%=result.getString("reservationCode")%></a></td>
 				<td><%=result.getDate("departureDate") %></td>
 				<td><%=result.getInt("passengers") %></td>
 				<td><%=result.getString("reservationType") %></td>
@@ -128,7 +127,7 @@ table, th, td {
 			%>
 			<tr>
 				
-				<td><a href="jspTravelItenerary.jsp" name="reservationCode"><%=result2.getString("reservationCode")%></a></td>
+				<td><a href="jspTravelItinerary.jsp?resCode=<%=result2.getString("reservationCode")%>"><%=result2.getString("reservationCode")%></a></td>
 				<td><%=result2.getDate("departureDate") %></td>
 				<td><%=result2.getInt("passengers") %></td>
 				<td><%=result2.getString("reservationType") %></td>
@@ -142,7 +141,6 @@ table, th, td {
 		%>
 		</tbody>
 		</table>
-		</form>
 		
 		<% 
 	} catch(Exception e) {

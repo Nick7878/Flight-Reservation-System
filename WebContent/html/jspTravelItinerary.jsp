@@ -35,7 +35,8 @@ table, th, td {
     int accountNumFromCookie = Integer.parseInt(cookie.getValue());
     System.out.println(accountNumFromCookie);
     
-    String reservationCode = request.getParameter("reservationCode");
+    String reservationCode = request.getParameter("resCode");
+    System.out.println("reservationCode: " + reservationCode);
 	try{
 		
 		
@@ -52,29 +53,26 @@ table, th, td {
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		//Get the combobox from the HelloWorld.jsp
-		System.out.println(request.getParameter("value"));
 		
-		String str = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, departureDate, departureTime, arrivalDate, arrivalTime FROM flight  JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE flightNum IN(SELECT flightNum FROM reservationflights rf Join reservations r ON (r.reservationCode = rf.reservationCode) WHERE r.reservationCode = '" +reservationCode + "');"; 
+		String str = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, departureDate, departureTime, arrivalDate, arrivalTime FROM flight  JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE flightNum IN(SELECT flightNum FROM reservationflights Join reservations USING(reservationCode) WHERE reservationCode = '" + reservationCode + "');"; 
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
 		%>
 			
-		<h2>One Way</h2>
+		<h2>Travel Itinerary</h2>
 
         <table style = "width: 100%;">
         <thead>
             <tr>
-            	
-			<th>Flight Number</th>
-			<th>Airline</th>
-			<th>To Airport</th>
-			<th>From Airport</th>
-			<th>Departure Date</th>
-			<th>Departure Time</th>
-			<th>Arrival Date</th>
-			<th>Arrival Time</th>
-                
+				<th>Flight Number</th>
+				<th>Airline</th>
+				<th>To Airport</th>
+				<th>From Airport</th>
+				<th>Departure Date</th>
+				<th>Departure Time</th>
+				<th>Arrival Date</th>
+				<th>Arrival Time</th>
             </tr>
             </thead>
             <tbody>
@@ -86,60 +84,13 @@ table, th, td {
 				
 				
 				<td><%=result.getString("flightNum") %></td>
-				<td><%=result.getString("airline") %></td>
+				<td><%=result.getString("airlineName") %></td>
 				<td><%=result.getString("airportTo") %></td>
 				<td><%=result.getString("airportFrom") %></td>
-				<td><%=result.getDate("departureDay") %></td>
-				<td><%=result.getDate("departureTime") %></td>
-				<td><%=result.getDate("arrivalDay") %></td>
-				<td><%=result.getDate("arrivalTime") %></td>
-				<!-- Add a total revenue field from every flight -->
-			</tr>
-			
-			<%
-		}
-		%>
-		</tbody>
-		
-		
-		
-		</table>
-		
-				<h2>Past Reservations</h2>
-
-        <table style = "width: 100%;">
-        <thead>
-            <tr>
-            
-                <th>Reservation Code</th>
-                <th>Departure Date</th>
-                <th># of Passengers </th>
-                <th>Reservation Type </th>
-                <th>Total Cost </th>
-                
-            </tr>
-            </thead>
-            <tbody>
-	<%
-	
-		String str2 = "SELECT r.reservationCode, f.departureDate, r.passengers, CASE WHEN reservationType = 1 THEN 'One Way' WHEN reservationType = 2 THEN 'Round Trip' ELSE 'Invalid ReservationType' END AS reservationType, r.totalFare FROM flight f,reservationFlights rf ,reservations r WHERE f.flightNum = rf.flightNum AND r.reservationCode = rf.reservationCode AND f.departureDate <= CURDATE() AND r.accountNum = "  + accountNumFromCookie + " GROUP BY r.reservationCode";
-		//Run the query against the database.
-		ResultSet result2 = stmt.executeQuery(str2);
-		
-		%>
-
-		<%
-		
-		while(result2.next()) {
-			%>
-			<tr>
-				
-				<td><a href="jspTravelItenerary.jsp" name="reservationCode"><%=result2.getString("reservationCode")%></a></td>
-				<td><%=result2.getDate("departureDate") %></td>
-				<td><%=result2.getInt("passengers") %></td>
-				<td><%=result2.getString("reservationType") %></td>
-				<td><%=result2.getDouble("totalFare") %></td>
-				
+				<td><%=result.getDate("departureDate") %></td>
+				<td><%=result.getTime("departureTime") %></td>
+				<td><%=result.getDate("arrivalDate") %></td>
+				<td><%=result.getTime("arrivalTime") %></td>
 				<!-- Add a total revenue field from every flight -->
 			</tr>
 			
@@ -148,8 +99,6 @@ table, th, td {
 		%>
 		</tbody>
 		</table>
-		</form>
-		
 		<% 
 	} catch(Exception e) {
 		e.printStackTrace();
