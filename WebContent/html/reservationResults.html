@@ -5,27 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>reservationResults</title>
-    <link href="reservationResults.css" rel="stylesheet" type="text/css" />
+    <link href="../css/reservationResults.css" rel="stylesheet" type="text/css" />
+    <script src="../check.js" ></script>
 </head>
 
 <!--Navigation Bar -->
-  <div class="topnav">
-        <img id="Logo" src="logo.png" alt="Logo" />
-        <a id="HomeLink" class="activeTab" href="homepage.html">Home</a>
-        <a id="ReservationLink" href="myReservationsAndFlightHistory.html">My Reservations/Flight History</a>
-        <div class="dropdown">
-            <img id="AccountLogo" src="account_iconBlackBorder.png" alt="Account Logo" />
-            <div class="dropdown-content">
-              <a href="login.html">Log in</a>
-              <a href="createAccount.html">Sign up</a>
-              <a href="myAccount.html">My Account</a>
-            </div>
-        </div>
-    </div>
+ <div class="topnav">
+    <img id="Logo" src="../images/logo.png" alt="Logo" />
+    <a id="HomeLink" class="activeTab" href="homepage.html">Home</a>
+    <a id="bestSellingFlightsLink" href="jspBestSellingFlight.jsp">Best Selling Flights</a>
+    <a id="ReservationLink" href="jspMyReservationsAndFlightHistory.jsp">My Reservations/Flight History</a>
+    <a id = "ManagerLink" href = "ManagerFunctions.html">Manage Accounts</a>
+    <div class="dropdown">
+        <img id="AccountLogo" src="../images/account_iconBlackBorder.png" alt="Account Logo" />
+        <div class="dropdown-content">
+          <a id="myAccountDropdown" href="jspMyAccount.jsp">My Account</a>
+          <a id="loginDropdown" href="login.html">Log in</a>
+          <a id="createAccountDropdown" href="createAccount.html">Sign up</a>
+          <a id="signOutDropdown" href="homepage.html" onclick="signOut()">Logout</a>
+    	</div>
+  	</div>
+  </div>
 
 <!--HTML Code for Tables-->
-
 <body>
+<!--
+<div>
     <div class="depart">
             <table>
                 <tr>
@@ -38,7 +43,8 @@
                     <th>Arriving</th>
                     <th>Time</th>
                 </tr>
-
+				
+				<tr>
                 <td>
                     <div class="radio">
                          <label><input type="radio" name="selection"></label>
@@ -51,6 +57,7 @@
                     <td>12:35PM</td>
                     <td>08/01/2020</td>
                     <td>5:05PM</td>
+                </tr>
                     
             </table>
     </div>
@@ -67,20 +74,27 @@
                 <th>Arriving</th>
                 <th>Time</th>
             </tr>
+            
+			<tr>
+	            <td>
+	                <div class="radio">
+	                     <label><input type="radio" name="selection"></label>
+	                </div>
+	           </td>
 
-            <td>
-                <div class="radio">
-                     <label><input type="radio" name="selection"></label>
-                </div>
-           </td>
-
-           <td>United</td>
-           <td>Newark (EWR)</td>
-           <td>SW345</td>
-           <td>08/01/2020</td> 
-           <td>12:35PM</td>
-           <td>08/01/2020</td>
-           <td>5:05PM</td>
+	           <td>United</td>
+	           <td>Newark (EWR)</td>
+	           <td>SW345</td>
+	           <td>08/01/2020</td> 
+	           <td>12:35PM</td>
+	           <td>08/01/2020</td>
+	           <td>5:05PM</td>
+           	</tr>
+         </table>
     </div>
 
+    <div><input type="submit" name="reserve"></div>
+</div>
+-->
 </body>
+</html>

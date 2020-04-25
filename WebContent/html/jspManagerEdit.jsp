@@ -8,6 +8,7 @@
 <%@ page import="java.io.*,java.util.*,java.sql.Date,java.sql.*"%>
 <%@ page import=" java.util.regex.Pattern"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+ <%@ include file = "genericPage.html" %>
 
 <!DOCTYPE html>
 <html>
@@ -41,44 +42,43 @@ Connection conn = DriverManager.getConnection(host, "root", "gameboy*1");
 	</div>
 	
 	<div class = "form-group">
-		<label> First Name</label>
+		<label>First Name: </label>
 		<input type = "text" class = "form-control" name = "firstName" value = <%=resultSet.getString("firstName") %> />
 	</div>
 	
 	<div class = "form-group">
-		<label> AddresultSets </label>
-		<input type = "text" class = "form-control" name = "address" value = <%=resultSet.getString("addresultSets") %> />
+		<label>Address: </label>
+		<input type = "text" class = "form-control" name = "address" value = <%=resultSet.getString("address") %> />
 	</div>
 	
 	<div class = "form-group">
-		<label> City</label>
+		<label>City: </label>
 		<input type = "text" class = "form-control" name = "city" value = <%=resultSet.getString("city") %> />
 	</div>
 	
 	<div class = "form-group">
-		<label> State </label>
-		<input type = "text" class = "form-control" name = "state" value = <%=resultSet.getString("state") %> />
+		<label>State: </label>
+		<input type = "text" class = "form-control" name = "state" value = <%=resultSet.getString("state") %> maxLength="2" />
 	</div>
 	
 	<div class = "form-group">
-		<label> Zipcode</label>
-		<input type = "text" class = "form-control" name = "zip" value = <%=resultSet.getString("zipCode") %> />
+		<label>Zipcode: </label>
+		<input type = "text" class = "form-control" name = "zip" value = <%=resultSet.getString("zipCode") %> maxLength="5" />
 	</div>
 	
 	<div class = "form-group">
-		<label> Telephone</label>
-		<input type = "text" class = "form-control" name = "telephone" value = <%=resultSet.getString("telephone") %> />
+		<label>Telephone: </label>
+		<input type = "text" class = "form-control" name = "telephone" value = <%=resultSet.getString("telephone") %> maxLength="10"/>
 	</div>
 	
 	<div class = "form-group">
-		<label> Credit Card Number</label>
-		<input type = "text" class = "form-control" name = "creditCard" value = <%=resultSet.getString("creditCardNum") %> />
+		<label>Credit Card #: </label>
+		<input type = "text" class = "form-control" name = "creditCard" value = <%=resultSet.getString("creditCardNum") %> maxLength="16"/>
 	</div>
 	<%
 	}
 	%>
-	<button type = "submit" class = "btnwa"> Update</button>
-	<a href = "managerTest.jsp" class = "btn-def"> Back </a>
+	<button type = "submit" id = "updateButton"> Update</button>
 	</form>
 <%
 String accNum= request.getParameter("id");
@@ -112,7 +112,7 @@ if(sqlLastName!=null && sqlFirstName!=null && sqlAddress!=null && sqlCity!=null 
 		alert("Update Successful!");
 	</script>
 	<%
-	response.sendRedirect("managerTest.jsp");
+	response.sendRedirect("jspManagerTest.jsp");
 }
 } catch(Exception e) {
 	e.printStackTrace();
@@ -120,7 +120,7 @@ if(sqlLastName!=null && sqlFirstName!=null && sqlAddress!=null && sqlCity!=null 
 	%>
 	<script> 
     alert("Sorry, something went wrong on our server, failed to create your account");
-    window.location.href = "html/createAccount.html";
+    window.location.href = "jspManagerTest.jsp";
 	</script>
 	<%
 }

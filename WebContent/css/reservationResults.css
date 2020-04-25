@@ -6,7 +6,7 @@
 }
 
 /*The default appearance of the tabs in the navigation bar*/
-.topnav #ReservationLink, #HomeLink {
+.topnav #ReservationLink, #HomeLink, #ManagerLink, #bestSellingFlightsLink {
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -51,6 +51,14 @@
     display: inline-block;
 }
 
+.hidden {
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -77,7 +85,7 @@
 /* Body */ 
 
 body {
-    background-image: url('background.png');
+    background-image: url('../images/background.png');
 }
 
 table {
@@ -89,8 +97,6 @@ table {
     margin-right:auto;
     margin-top: 100px;
     margin-bottom: 100px;
-    
-    
   }
   
   th {
@@ -104,4 +110,19 @@ table {
       font-family: arial, sans-serif;
       padding: 8px;
       border: 1px solid #000000;
+  }
+
+  input[type="submit"] {
+    position:absolute;
+    width: 25%;
+    background-color: rgb(76, 130, 175);
+    color: white;
+    padding: 14px 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: bottom;
+    bottom: 200px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
   }

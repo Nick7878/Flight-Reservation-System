@@ -3,17 +3,40 @@
 <%@ page import="java.io.*,java.util.*, java.sql.Date, java.sql.*"%>
 <%@ page import="java.text.SimpleDateFormat, java.text.DateFormat"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
-<%@ include file = "html/genericPage.html" %>
+<%@ include file = "genericPage.html" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="../css/myReservationsAndFlightHistoryStyle.css" />
 <title>title</title>
 <link rel = "stylesheet" href = "../css/genericCSS.css">
+
+<style> table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+  
+}</style>
 </head>
-<body>
 	<%
+	//Hello
+	Cookie cookie = null;
+    Cookie[] cookies = null;
+
+    // Get an array of Cookies associated with the this domain
+    cookies = request.getCookies();
+
+    //Gets AccountNum
+    cookie = cookies[0];
+    int accountNumFromCookie = Integer.parseInt(cookie.getValue());
+    System.out.println(accountNumFromCookie);
+    
+    String reservationCode = request.getParameter("resCode");
+    System.out.println("reservationCode: " + reservationCode);
 	try{
 		
 		
@@ -30,46 +53,51 @@
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		//Get the combobox from the HelloWorld.jsp
-		System.out.println(request.getParameter("value"));
 		
-		String str = "";
+		String str = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, departureDate, departureTime, arrivalDate, arrivalTime FROM flight  JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE flightNum IN(SELECT flightNum FROM reservationflights Join reservations USING(reservationCode) WHERE reservationCode = '" + reservationCode + "');"; 
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
 		%>
-		<table style="border: 1px solid black;">
-			<tr>
-			<th>Flight Number</th>
-			<th>Airline</th>
-			<th>To Airport</th>
-			<th>From Airport</th>
-			<th>Fare</th>
-			<th>Stops</th>
-			<th>Departure Date</th>
-			<th>Departure Time</th>
-			<th>Arrival Date</th>
-			<th>Arrival Time</th>
-			</tr>
+			
+		<h2>Travel Itinerary</h2>
+
+        <table style = "width: 100%;">
+        <thead>
+            <tr>
+				<th>Flight Number</th>
+				<th>Airline</th>
+				<th>To Airport</th>
+				<th>From Airport</th>
+				<th>Departure Date</th>
+				<th>Departure Time</th>
+				<th>Arrival Date</th>
+				<th>Arrival Time</th>
+            </tr>
+            </thead>
+            <tbody>
 		<%
 		
 		while(result.next()) {
 			%>
 			<tr>
-				<td><%=result.getInt("flightNum") %></td>
-				<td><%=result.getString("airline") %></td>
+				
+				
+				<td><%=result.getString("flightNum") %></td>
+				<td><%=result.getString("airlineName") %></td>
 				<td><%=result.getString("airportTo") %></td>
 				<td><%=result.getString("airportFrom") %></td>
-				<td><%=result.getInt("fares") %></td>
-				<td><%=result.getInt("stops") %></td>
 				<td><%=result.getDate("departureDate") %></td>
 				<td><%=result.getTime("departureTime") %></td>
 				<td><%=result.getDate("arrivalDate") %></td>
 				<td><%=result.getTime("arrivalTime") %></td>
 				<!-- Add a total revenue field from every flight -->
 			</tr>
+			
 			<%
 		}
 		%>
+		</tbody>
 		</table>
 		<% 
 	} catch(Exception e) {
@@ -82,5 +110,5 @@
 		<%	
 	}
 	%>
-</body>
+
 </html>

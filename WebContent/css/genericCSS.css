@@ -35,7 +35,7 @@ body {
   
 
 /*The default appearance of the tabs in the navigation bar*/
-.topnav #ReservationLink, #HomeLink, #ManagerLink {
+.topnav #ReservationLink, #HomeLink, #ManagerLink, #bestSellingFlightsLink {
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -102,3 +102,67 @@ body {
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    background-color: rgb(194, 220, 255);
+    width: 100%;
+    margin-left:auto; 
+    margin-right:auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+  }
+  
+  th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+  }
+
+  td {
+      background-color: #ddd;
+      font-family: arial, sans-serif;
+      padding: 8px;
+      border: 1px solid #000000;
+  }
+h3 {
+	text-align: right;
+}
+
+input[type=text] {
+    /* Old CSS
+    width: 56%;
+    padding: 5px 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; */
+
+    /*New CSS */
+    margin-left: 10px;
+    margin-bottom: 10px;
+    display: inline-flex;
+    min-height: 35px;
+    box-sizing: border-box; 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box; 
+	 padding: 8px;
+	 outline: none;
+	 border: 1px solid #B0CFE0;
+	 -webkit-transition: all 0.30s ease-in-out;
+	 -moz-transition: all 0.30s ease-in-out;
+	 -ms-transition: all 0.30s ease-in-out;
+	 -o-transition: all 0.30s ease-in-out;
+	  border-radius: 4px;
+  }
+ 
+  
+.form-group {
+	text-align: center;
+}
+
+#updateButton {
+	margin-left: 50%;
+}

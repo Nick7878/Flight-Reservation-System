@@ -15,12 +15,13 @@
   <div class="topnav">
     <img id="Logo" src="../images/logo.png" alt="Logo" />
     <a id="HomeLink" class="activeTab" href="homepage.html">Home</a>
-    <a id="ReservationLink" href="myReservationsAndFlightHistory.html">My Reservations/Flight History</a>
-    <a id = "ManagerLink" href = "ManagerFunctions.html">Manage Accounts</a>
+    <a id="bestSellingFlightsLink" href="jspBestSellingFlight.jsp">Best Selling Flights</a>
+    <a id="ReservationLink" href="jspMyReservationsAndFlightHistory.jsp">My Reservations/Flight History</a>
+    <a id="ManagerLink" href = "ManagerFunctions.html">Manage Accounts</a>
     <div class="dropdown">
         <img id="AccountLogo" src="../images/account_iconBlackBorder.png" alt="Account Logo" />
         <div class="dropdown-content">
-          <a id="myAccountDropdown" href="myAccount.html">My Account</a>
+          <a id="myAccountDropdown" href="jspMyAccount.jsp">My Account</a>
           <a id="loginDropdown" href="login.html">Log in</a>
           <a id="createAccountDropdown" href="createAccount.html">Sign up</a>
           <a id="signOutDropdown" href="homepage.html" onclick="signOut()">Logout</a>
@@ -29,21 +30,21 @@
   </div>
 
   <main>
-    <form>
-      From: <input type="text" class="fsize" name="From" placeholder="EWR">      
-      To:  <input type="text" class="fsize" name="To" placeholder="HNL"> 
-      Departing: <input type="text" class="fsize" name="startDate" placeholder="yyyy-mm-dd"> 
-      Returning: <input type="text" class="fsize" name="endDate" placeholder="yyyy-mm-dd" disabled>
-      Round Trip <input type="checkbox" class="fsize" name ="returnTrip" id="return" onchange="change()"> 
-      Passengers <input type="number" class="fsize" name="passengers" id="passengers" min = "1" max ="6">
+    <form action="jspAvailableFlights.jsp" method="get">
+      From: <input type="text" class="fsize" name="fromAirport" placeholder="EWR">      
+      To:  <input type="text" class="fsize" name="toAirport" placeholder="HNL"> 
+      Departing: <input type="text" class="fsize" name="departureDate" placeholder="yyyy-mm-dd"> 
+      Returning: <input type="text" class="fsize" name="returnDate" placeholder="yyyy-mm-dd" disabled>
+      Round Trip <input type="checkbox" class="fsize" name ="roundTrip" value="2" id="return" onchange="change()"> 
+      Passengers <input type="number" class="fsize" name="numOfPassengers" id="passengers" min = "1" max ="6">
       <input type="submit" name="Search">
     </form>
 
     <script>
 
       function change(){
-        const check = document.getElementsByName("returnTrip")[0]
-        document.getElementsByName('endDate')[0].disabled = !check.checked
+        const check = document.getElementsByName("roundTrip")[0]
+        document.getElementsByName('returnDate')[0].disabled = !check.checked
       }
     </script>
 

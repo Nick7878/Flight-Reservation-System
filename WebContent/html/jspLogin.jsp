@@ -31,15 +31,16 @@
 			Statement stmt = con.createStatement();
 			//Get the combobox from the HelloWorld.jsp
 			
-			//Get parameters from the HTML form at the login.jsp
+			//Get parameters from the HTML form at the myAccount.jsp
 		    String email = request.getParameter("email");
 		    String password = request.getParameter("password");
+		    
+		    
 		    
 			if ((email.equals(""))&&(password.equals(""))){
 				%>
 				<script> 
 				    alert("Please enter your email and password");
-				    //window.location.href = "login.html";
 				</script>
 				<% 
 			} else {
@@ -58,7 +59,7 @@
 						<script>
 							let email = "<%=email%>";
 							
-							setCookie(email, true);
+							setCookie(<%=result.getInt("accountNum")%>, email, true);
 						</script>
 						<%
 					} else {
@@ -66,7 +67,7 @@
 						<script>
 							let email = "<%=email%>";
 							
-							setCookie(email, false);
+							setCookie(<%=result.getInt("accountNum")%>, email, false);
 						</script>
 						<%
 					}
@@ -77,11 +78,18 @@
 					%>
 					<script> 
 				    	alert("User not found, or you entered a wrong password.");
-				    	//window.location.href = "login.html";
 					</script>
 					<%  
 				}
 			}
+			
+			%>
+			<script>
+				alert("Login Successful!");
+		    	window.location.href = "homepage.html";
+			</script>
+			<%	
+			
 			con.close();
 
 		} catch (Exception e) {
@@ -89,7 +97,6 @@
 			%>
 			<script>
 				alert("Sorry, unexcepted error happens.");
-		    	//window.location.href = "login.html";
 			</script>
 			<%			
 		}
