@@ -33,6 +33,7 @@ table, th, td {
                 <th>Departure Date</th>
                 <th># of Passengers </th>
                 <th>Reservation Type </th>
+                <th>Trip Type</th>
                 <th>Total Cost </th>
                 
             </tr>
@@ -66,7 +67,7 @@ table, th, td {
 		//Get the combobox from the HelloWorld.jsp
 		System.out.println(request.getParameter("value"));
 		
-		String str = "SELECT r.reservationCode, f.departureDate, r.passengers, CASE WHEN reservationType = 1 THEN 'One Way' WHEN reservationType = 2 THEN 'Round Trip' ELSE 'Invalid ReservationType' END AS reservationType, r.totalFare FROM flight f,reservationFlights rf ,reservations r WHERE f.flightNum = rf.flightNum AND r.reservationCode = rf.reservationCode AND f.departureDate >= CURDATE() AND r.accountNum = "  + accountNumFromCookie + " GROUP BY r.reservationCode";
+		String str = "SELECT r.reservationCode, CASE WHEN internationalFlight = 1 THEN 'International' ELSE 'Domestic' END AS internationalFlight, f.departureDate, r.passengers, CASE WHEN reservationType = 1 THEN 'One Way' WHEN reservationType = 2 THEN 'Round Trip' ELSE 'Invalid ReservationType' END AS reservationType, r.totalFare FROM flight f,reservationFlights rf ,reservations r WHERE f.flightNum = rf.flightNum AND r.reservationCode = rf.reservationCode AND f.departureDate >= CURDATE() AND r.accountNum = "  + accountNumFromCookie + " GROUP BY r.reservationCode";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		
@@ -82,6 +83,7 @@ table, th, td {
 				<td><%=result.getDate("departureDate") %></td>
 				<td><%=result.getInt("passengers") %></td>
 				<td><%=result.getString("reservationType") %></td>
+				<td><%=result.getString("internationalFlight") %></td>
 				<td>$<%=result.getDouble("totalFare") %></td>
 				
 				<!-- Add a total revenue field from every flight -->
@@ -106,6 +108,7 @@ table, th, td {
                 <th>Departure Date</th>
                 <th># of Passengers </th>
                 <th>Reservation Type </th>
+                <th>Trip Type</th>
                 <th>Total Cost </th>
                 
             </tr>
@@ -113,7 +116,7 @@ table, th, td {
             <tbody>
 	<%
 	
-		String str2 = "SELECT r.reservationCode, f.departureDate, r.passengers, CASE WHEN reservationType = 1 THEN 'One Way' WHEN reservationType = 2 THEN 'Round Trip' ELSE 'Invalid ReservationType' END AS reservationType, r.totalFare FROM flight f,reservationFlights rf ,reservations r WHERE f.flightNum = rf.flightNum AND r.reservationCode = rf.reservationCode AND f.departureDate <= CURDATE() AND r.accountNum = "  + accountNumFromCookie + " GROUP BY r.reservationCode";
+		String str2 = "SELECT r.reservationCode, CASE WHEN internationalFlight = 1 THEN 'International' ELSE 'Domestic' END AS internationalFlight, f.departureDate, r.passengers, CASE WHEN reservationType = 1 THEN 'One Way' WHEN reservationType = 2 THEN 'Round Trip' ELSE 'Invalid ReservationType' END AS reservationType, r.totalFare FROM flight f,reservationFlights rf ,reservations r WHERE f.flightNum = rf.flightNum AND r.reservationCode = rf.reservationCode AND f.departureDate <= CURDATE() AND r.accountNum = "  + accountNumFromCookie + " GROUP BY r.reservationCode";
 		//Run the query against the database.
 		ResultSet result2 = stmt.executeQuery(str2);
 		
@@ -129,6 +132,7 @@ table, th, td {
 				<td><%=result2.getDate("departureDate") %></td>
 				<td><%=result2.getInt("passengers") %></td>
 				<td><%=result2.getString("reservationType") %></td>
+				<td><%=result2.getString("internationalFlight") %></td>
 				<td>$<%=result2.getDouble("totalFare") %></td>
 				
 				<!-- Add a total revenue field from every flight -->
