@@ -80,6 +80,7 @@
 				    	alert("User not found, or you entered a wrong password.");
 					</script>
 					<%  
+					return;
 				}
 			}
 			
