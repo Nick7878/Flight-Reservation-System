@@ -14,7 +14,7 @@
   <!--Navigation Bar -->
   <div class="topnav">
     <img id="Logo" src="../images/logo.png" alt="Logo" />
-    <a id="HomeLink" class="activeTab" href="homepage.html">Home</a>
+    <a id="HomeLink" class="activeTab" onClick='localStorage.clear();' href="homepage.html">Home</a>
     <a id="bestSellingFlightsLink" href="jspBestSellingFlight.jsp">Best Selling Flights</a>
     <a id="ReservationLink" href="jspMyReservationsAndFlightHistory.jsp">My Reservations/Flight History</a>
     <a id="ManagerLink" href = "ManagerFunctions.html">Manage Accounts</a>
@@ -23,7 +23,7 @@
         <div class="dropdown-content">
           <a id="myAccountDropdown" href="jspMyAccount.jsp">My Account</a>
           <a id="loginDropdown" href="login.html">Log in</a>
-          <a id="createAccountDropdown" href="createAccount.html">Sign up</a>
+          <a id="createAccountDropdown" onClick='localStorage.clear();' href="createAccount.html">Sign up</a>
           <a id="signOutDropdown" href="homepage.html" onclick="signOut()">Logout</a>
     	</div>
   	</div>
@@ -31,12 +31,12 @@
 
   <main>
     <form action="jspAvailableFlights.jsp" method="get">
-      From: <input type="text" class="fsize" name="fromAirport" placeholder="EWR">      
-      To:  <input type="text" class="fsize" name="toAirport" placeholder="HNL"> 
-      Departing: <input type="text" class="fsize" name="departureDate" placeholder="yyyy-mm-dd"> 
-      Returning: <input type="text" class="fsize" name="returnDate" placeholder="yyyy-mm-dd" disabled>
+      From: <input type="text" class="fsize" id="fAirport" onkeyup='saveValue(this);' name="fromAirport" placeholder="EWR">      
+      To:  <input type="text" class="fsize" id="tAirport" onkeyup='saveValue(this);' name="toAirport" placeholder="HNL"> 
+      Departing: <input type="text" class="fsize" id="departingField" onkeyup='saveValue(this);' name="departureDate" placeholder="yyyy-mm-dd"> 
+      Returning: <input type="text" class="fsize" id="returningField" onkeyup='saveValue(this);' name="returnDate" placeholder="yyyy-mm-dd" disabled>
       Round Trip <input type="checkbox" class="fsize" name ="roundTrip" value="2" id="return" onchange="change()"> 
-      Passengers <input type="number" class="fsize" name="numOfPassengers" id="passengers" min = "1" max ="6">
+      Passengers <input type="number" class="fsize" name="numOfPassengers" onkeyup='saveValue(this);' id="passengers" min = "1" max ="6">
       <input type="submit" name="Search">
     </form>
 
@@ -46,6 +46,12 @@
         const check = document.getElementsByName("roundTrip")[0]
         document.getElementsByName('returnDate')[0].disabled = !check.checked
       }
+      
+      document.getElementById("fAirport").value = getSavedValue("fAirport");    // set the value to this input
+      document.getElementById("tAirport").value = getSavedValue("tAirport");   // set the value to this input
+      document.getElementById("departingField").value = getSavedValue("departingField");   // set the value to this input
+      document.getElementById("returningField").value = getSavedValue("returningField");
+      document.getElementById("passengers").value = getSavedValue("passengers");
     </script>
 
   </main>

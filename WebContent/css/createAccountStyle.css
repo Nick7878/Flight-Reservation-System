@@ -100,7 +100,7 @@ input[type = submit] {
     cursor: pointer;
   }
 
-  input[type=field], select {
+  input[type=text], select {
     /* Old CSS
     width: 56%;
     padding: 5px 5px;

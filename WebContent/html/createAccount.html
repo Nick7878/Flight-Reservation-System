@@ -9,7 +9,7 @@
     <body>
         <div class="topnav">
             <img id="Logo" src="../images/logo.png" alt="Logo" />
-            <a id="HomeLink" href="homepage.html">Home</a>
+            <a id="HomeLink" onClick='localStorage.clear();' href="homepage.html">Home</a>
             <a id="bestSellingFlightsLink" href="jspBestSellingFlight.jsp">Best Selling Flights</a>
             <a id="ReservationLink" href="jspMyReservationsAndFlightHistory.jsp">My Reservations/Flight History</a>
             <a id = "ManagerLink" href = "ManagerFunctions.html">Manage Accounts</a>
@@ -27,31 +27,44 @@
             <h1> Create Account Now </h1>
             <form action="jspCreateAccount.jsp" method="post">
                 <label>First Name:</label> <br>
-                <input type = "field" class = "input-box" placeholder = "Alec" name="firstName"> <br>
+                <input type = "text" class = "input-box" id="fName" placeholder = "Alec" onkeyup='saveValue(this);' name="firstName"> <br>
                 <label>Last Name: </label> <br> 
-                <input type = "field" class = "input-box" placeholder = "Rebadavia" name="lastName"> <br>
+                <input type = "text" class = "input-box" id="lName" placeholder = "Rebadavia" onkeyup='saveValue(this);' name="lastName"> <br>
                 <label>Address:</label><br>
-                <input type = "field" class = "input-box" placeholder = "16 Seminary Place" name="address"> <br>
+                <input type = "text" class = "input-box" id="addr" placeholder = "16 Seminary Place" onkeyup='saveValue(this);' name="address"> <br>
                 <label> City: </label> <br>
-                <input type = "field" class = "input-box" placeholder  = "New Brunswick" name="city"> <br>
+                <input type = "text" class = "input-box" id="city" placeholder  = "New Brunswick" onkeyup='saveValue(this);' name="city"> <br>
                 <label> State:</label> <br>
-                <input type = "field" class = "input-box" placeholder = "NJ" maxlength="2" name="state"> <br>
+                <input type = "text" class = "input-box" id="state" placeholder = "NJ" maxlength="2" onkeyup='saveValue(this);' name="state"> <br>
                 <label>Zip Code:</label> <br>
-                <input type = "number" class = "input-box" placeholder = "08901" maxLength="5" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="zipCode"><br>
+                <input type = "number" class = "input-box" id="zip" placeholder = "08901" maxLength="5" onkeyup='saveValue(this);' oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="zipCode"><br>
                 <label>Phone Number:</label><br>
-                <input type = "number" class = "input-box" placeholder = "7323579753" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="telephone"> <br>
+                <input type = "number" class = "input-box" id="phone" placeholder = "7323579753" maxlength="10" onkeyup='saveValue(this);' oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="telephone"> <br>
                 <label> Email: </label> <br>            
-                <input type = "field" class = "input-box" placeholder = "vandyck@gmail.com" name="email"> <br>
+                <input type = "text" class = "input-box" id="email" placeholder = "vandyck@gmail.com" onkeyup='saveValue(this);' name="email"> <br>
                 <label> Credit Card: </label><br>
-                <input type = "number" class = "input-box" placeholder = "XXXXXXXXXXXXXXXX" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="creditCardNum"> <br>
+                <input type = "number" class = "input-box" id="credit" placeholder = "XXXXXXXXXXXXXXXX" maxlength="16" onkeyup='saveValue(this);' oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="creditCardNum"> <br>
                 <label>Password: </label> <br>
-                <input type = "field" class = "input-box" placeholder = "Your Password" maxlength="20" name="password"> <br>
+                <input type = "text" class = "input-box" placeholder = "Your Password" maxlength="20" name="password"> <br>
                 <label>Confirm Password:</label> <br>
-                <input type = "field" class = "input-box" placeholder = "Confirm Password" maxlength="20" name="confirmPassword"> <br>
+                <input type = "text" class = "input-box" placeholder = "Confirm Password" maxlength="20" name="confirmPassword"> <br>
                 <p></p>
                 <input type = "submit" name = "Create Account">
             </form>
              <p>Already have an account? Login <a href="login.html" target="_self">Here</a></p>
         </div>
+        <script type="text/javascript">
+	        document.getElementById("fName").value = getSavedValue("fName");    // set the value to this input
+	        document.getElementById("lName").value = getSavedValue("lName");   // set the value to this input
+	        document.getElementById("addr").value = getSavedValue("addr");   // set the value to this input
+	        document.getElementById("city").value = getSavedValue("city");   // set the value to this input
+	        document.getElementById("state").value = getSavedValue("state");   // set the value to this input
+	        document.getElementById("zip").value = getSavedValue("zip");   // set the value to this input
+	        document.getElementById("phone").value = getSavedValue("phone");   // set the value to this input
+	        document.getElementById("email").value = getSavedValue("email");   // set the value to this input
+	        document.getElementById("credit").value = getSavedValue("credit");   // set the value to this input
+	        /* Here you can add more inputs to set value. if it's saved */
+
+		</script>
     </body>
 </html>
