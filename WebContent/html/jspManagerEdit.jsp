@@ -26,7 +26,7 @@ Connection conn = DriverManager.getConnection(host, "root", "gameboy*1");
 
 
 %>
-<form action ="" method = "post">
+<form action ="jspCompleteManagerEditAction.jsp" method = "post">
 	<%
 	Statement statement = conn.createStatement();
 	String accountNumber = request.getParameter("u");
@@ -80,53 +80,17 @@ Connection conn = DriverManager.getConnection(host, "root", "gameboy*1");
 	%>
 	<button type = "submit" id = "updateButton"> Update</button>
 	</form>
-<%
-String accNum= request.getParameter("id");
-String sqlLastName = request.getParameter("ln");
-String sqlFirstName = request.getParameter("fn");
-String sqlAddress = request.getParameter("adr");
-String sqlCity = request.getParameter("ci");
-String sqlState = request.getParameter("st");
-String sqlZip = request.getParameter("zip");
-String sqlTelephone = request.getParameter("tel");
-String sqlCreditCard = request.getParameter("ccn");
-
-if(sqlLastName!=null && sqlFirstName!=null && sqlAddress!=null && sqlCity!=null && sqlState!=null&& sqlZip!=null && sqlTelephone!=null && sqlCreditCard !=null){
-	String query = "UPDATE customer SET lastName = ?, firstName = ?, address = ?, city = ?, state = ?, zipCode = ?, telephone = ?, creditCardNum = ? WHERE accountNum = " + accNum + " ";
-	stmt = conn.prepareStatement(query);
-	stmt.setString(1,sqlLastName);
-	stmt.setString(2,sqlFirstName);
-	stmt.setString(3,sqlAddress);
-	stmt.setString(4,sqlCity);
-	stmt.setString(5,sqlState);
-	stmt.setString(6,sqlZip);
-	stmt.setString(7,sqlTelephone);
-	stmt.setString(8,sqlCreditCard);
-	stmt.executeUpdate();
-	response.sendRedirect("managerTest.jsp");
-
-%>
-
 	
-	<script>
-		alert("Update Successful!");
-	</script>
 	<%
-	response.sendRedirect("jspManagerTest.jsp");
-}
 } catch(Exception e) {
 	e.printStackTrace();
 	//make an alert and redirect back to managerTest using Javascript<!-- if error, show the alert and go back to login page --> 
 	%>
 	<script> 
-    alert("Sorry, something went wrong on our server, failed to create your account");
+    alert("Sorry, couldn't bring up account info to edit.");
     window.location.href = "jspManagerTest.jsp";
 	</script>
 	<%
 }
-
-
-
-
 %>
 </html>

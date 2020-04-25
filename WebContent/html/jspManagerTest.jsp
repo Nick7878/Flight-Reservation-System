@@ -43,7 +43,7 @@ table, th, td {
  	Class.forName("com.mysql.jdbc.Driver");
  	conn = DriverManager.getConnection(host, "root", "gameboy*1");
  	stat = conn.createStatement();
- 	String data = "SELECT * FROM customer";
+ 	String data = "SELECT * FROM customer JOIN accounts USING(accountNum) WHERE isManager = false";
  	res = stat.executeQuery(data);
  	while(res.next()){
  	%>
