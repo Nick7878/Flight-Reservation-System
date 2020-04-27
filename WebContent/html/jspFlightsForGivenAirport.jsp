@@ -42,8 +42,8 @@
 			<tr>
 			<th>Flight Number</th>
 			<th>Airline</th>
-			<th>To Airport</th>
 			<th>From Airport</th>
+			<th>To Airport</th>
 			<th># of Seats</th>
 			<th># of Seats Left</th>
 			<th>Fare</th>
@@ -59,8 +59,8 @@
 			<tr>
 				<td><%=result.getInt("flightNum") %></td>
 				<td><%=result.getString("airlineName") %></td>
-				<td><%=result.getString("airportTo") %></td>
 				<td><%=result.getString("airportFrom") %></td>
+				<td><%=result.getString("airportTo") %></td>
 				<td><%=result.getInt("numOfSeats") %></td>
 				<td><%=result.getInt("availableSeats") %></td>
 				<td>$<%=result.getInt("fares") %></td>

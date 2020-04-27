@@ -10,19 +10,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>title</title>
-<link rel = "stylesheet" href = "../css/genericCSS.css">
-<link rel="stylesheet" type="text/css" href="../css/myReservationsAndFlightHistoryStyle.css" />
-<style> table {
-  border-collapse: collapse;
-}
-
-table, th, td {
-  border: 1px solid black;
-  
-}</style>
 </head>
-
-		<h2>Hottest Flights Right Now!</h2>
+		<h2 style="text-align: center;">Hottest Flights Right Now!</h2>
 
         <table style = "width: 100%;">
         <thead>

@@ -52,8 +52,8 @@
 				<tr>
 				<th>Flight Number</th>
 				<th>Airline</th>
-				<th>To Airport</th>
 				<th>From Airport</th>
+				<th>To Airport</th>
 				<th>Fare</th>
 				<th>Stops</th>
 				<th>Departure Date</th>
@@ -69,8 +69,8 @@
 				<tr>
 					<td><%=flightRevenueResult.getInt("flightNum") %></td>
 					<td><%=flightRevenueResult.getString("airlineName") %></td>
-					<td><%=flightRevenueResult.getString("airportTo") %></td>
 					<td><%=flightRevenueResult.getString("airportFrom") %></td>
+					<td><%=flightRevenueResult.getString("airportTo") %></td>
 					<td><%=flightRevenueResult.getInt("numOfSeats") %></td>
 					<td>$<%=flightRevenueResult.getInt("fares") %></td>
 					<td><%=flightRevenueResult.getDate("departureDate") %></td>

@@ -41,8 +41,8 @@
 			<tr>
 			<th>Flight Number</th>
 			<th>Airline</th>
-			<th>To Airport</th>
 			<th>From Airport</th>
+			<th>To Airport</th>
 			<th># of Seats</th>
 			<th># of Available Seats</th>
 			<th>Fare</th>

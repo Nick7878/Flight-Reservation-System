@@ -56,6 +56,22 @@
 		String roundTrip = request.getParameter("roundTrip");
 		String numOfPassengers = request.getParameter("numOfPassengers");
 		
+		//Create date objects and compare them so that the return date is not less than the departure date
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
+		java.util.Date departureDateObject = formatter.parse(departureDate);
+		java.util.Date returnDateObject = formatter.parse(returnDate);
+		
+		if(returnDateObject.compareTo(departureDateObject) < 0) {	//If return date is less than the departure date
+			%>
+			<script>
+				alert("Please enter a return date greater than the departure date");
+				window.location.href = "homepage.html";
+			</script>
+			<%
+			
+		}
+		
 		
 		//Create a connection string
 		//name the schema cs336project otherwise this url will not work!
@@ -124,8 +140,8 @@
 			                	<th></th>
 								<th>Flight Number</th>
 								<th>Airline</th>
-								<th>To Airport</th>
 								<th>From Airport</th>
+								<th>To Airport</th>
 								<th>Available Seats</th>
 								<th>Fare</th>
 								<th>Departure Date</th>
@@ -145,8 +161,8 @@
 					               	</td>
 									<td><%=oneWayResult.getInt("flightNum") %></td>
 									<td><%=oneWayResult.getString("airlineName") %></td>
-									<td><%=oneWayResult.getString("airportTo") %></td>
 									<td><%=oneWayResult.getString("airportFrom") %></td>
+									<td><%=oneWayResult.getString("airportTo") %></td>
 									<td><%=oneWayResult.getInt("availableSeats") %></td>
 									<td>$<%=oneWayResult.getInt("fares") %></td>
 									<td><%=oneWayResult.getDate("departureDate") %></td>

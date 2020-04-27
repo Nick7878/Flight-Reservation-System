@@ -67,8 +67,8 @@ table, th, td {
             <tr>
 				<th>Flight Number</th>
 				<th>Airline</th>
-				<th>To Airport</th>
 				<th>From Airport</th>
+				<th>To Airport</th>
 				<th>Departure Date</th>
 				<th>Departure Time</th>
 				<th>Arrival Date</th>
@@ -85,8 +85,8 @@ table, th, td {
 				
 				<td><%=result.getString("flightNum") %></td>
 				<td><%=result.getString("airlineName") %></td>
-				<td><%=result.getString("airportTo") %></td>
 				<td><%=result.getString("airportFrom") %></td>
+				<td><%=result.getString("airportTo") %></td>
 				<td><%=result.getDate("departureDate") %></td>
 				<td><%=result.getTime("departureTime") %></td>
 				<td><%=result.getDate("arrivalDate") %></td>
