@@ -40,11 +40,6 @@
 	    
 		System.out.println("Round Trip: " + request.getParameter("roundTrip"));
 		session.setAttribute("numberOfPassengers", request.getParameter("numOfPassengers"));
-		if(request.getParameter("roundTrip") == null) {
-			session.setAttribute("round-trip", 1);
-		} else {
-			session.setAttribute("round-trip", request.getParameter("roundTrip"));	
-		}
 		session.setAttribute("fromAirport", request.getParameter("fromAirport"));
 		session.setAttribute("toAirport", request.getParameter("toAirport"));
 		session.setAttribute("departureDate", request.getParameter("departureDate"));
@@ -56,20 +51,88 @@
 		String roundTrip = request.getParameter("roundTrip");
 		String numOfPassengers = request.getParameter("numOfPassengers");
 		
-		//Create date objects and compare them so that the return date is not less than the departure date
+		System.out.println("airportTo: " + airportTo);
+		System.out.println("airportFrom: " + airportFrom);
+		System.out.println("departureDate: " + departureDate);
+		System.out.println("return date: " + returnDate);
+		System.out.println("numPassengers: " + numOfPassengers);
+		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		
-		java.util.Date departureDateObject = formatter.parse(departureDate);
-		java.util.Date returnDateObject = formatter.parse(returnDate);
-		
-		if(returnDateObject.compareTo(departureDateObject) < 0) {	//If return date is less than the departure date
+		if(airportFrom.equals("")) {
 			%>
 			<script>
-				alert("Please enter a return date greater than the departure date");
+				alert("Please enter an origin airport");
+		    	window.location.href = "homepage.html";
+			</script>
+			<%
+			return;
+		}
+		
+		if(airportTo.equals("")) {
+			%>
+			<script>
+				alert("Please enter a destination airport");
+		    	window.location.href = "homepage.html";
+			</script>
+			<%
+			return;
+		}
+		
+		if(request.getParameter("roundTrip") == null) {
+			session.setAttribute("round-trip", 1);
+			if(departureDate.equals("")) {
+				%>
+				<script>
+					alert("Please enter a departure date");
+			    	window.location.href = "homepage.html";
+				</script>
+				<%
+				return;
+			}
+			java.util.Date departureDateObject = formatter.parse(departureDate);
+		} else {
+			session.setAttribute("round-trip", request.getParameter("roundTrip"));
+			if(departureDate.equals("")) {
+				%>
+				<script>
+					alert("Please enter a departure date");
+			    	window.location.href = "homepage.html";
+				</script>
+				<%
+				return;
+			}
+			if(returnDate.equals("") || returnDate == null) {
+				%>
+				<script>
+					alert("Please enter a return date");
+			    	window.location.href = "homepage.html";
+				</script>
+				<%
+				return;
+			}
+			java.util.Date departureDateObject = formatter.parse(departureDate);
+			java.util.Date returnDateObject = formatter.parse(returnDate);
+			
+			if(returnDateObject.compareTo(departureDateObject) < 0) {	//If return date is less than the departure date
+				%>
+				<script>
+					alert("Please enter a return date greater than the departure date");
+					window.location.href = "homepage.html";
+				</script>
+				<%
+				return;
+			}
+		}
+		
+		if(numOfPassengers.equals("")) {
+			%>
+			<script>
+				alert("Please enter a number of passengers");
 				window.location.href = "homepage.html";
 			</script>
 			<%
-			
+			return;
 		}
 		
 		

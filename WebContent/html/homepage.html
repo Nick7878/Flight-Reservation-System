@@ -31,10 +31,10 @@
 
   <main>
     <form action="jspAvailableFlights.jsp" method="get">
-      From: <input type="text" class="fsize" id="fAirport" onkeyup='saveValue(this);' name="fromAirport" placeholder="EWR">      
-      To:  <input type="text" class="fsize" id="tAirport" onkeyup='saveValue(this);' name="toAirport" placeholder="HNL"> 
-      Departing: <input type="text" class="fsize" id="departingField" onkeyup='saveValue(this);' name="departureDate" placeholder="yyyy-mm-dd"> 
-      Returning: <input type="text" class="fsize" id="returningField" onkeyup='saveValue(this);' name="returnDate" placeholder="yyyy-mm-dd" disabled>
+      From: <input type="text" class="fsize" id="fAirport" onkeyup='saveValue(this);' name="fromAirport" maxLength="3" placeholder="EWR">      
+      To:  <input type="text" class="fsize" id="tAirport" onkeyup='saveValue(this);' name="toAirport" maxLength="3" placeholder="HNL"> 
+      Departing: <input type="text" class="fsize" id="departingField" onkeyup='saveValue(this);' name="departureDate" maxLength="10" placeholder="yyyy-mm-dd"> 
+      Returning: <input type="text" class="fsize" id="returningField" onkeyup='saveValue(this);' name="returnDate" maxLength="10" placeholder="yyyy-mm-dd" disabled>
       Round Trip <input type="checkbox" class="fsize" name ="roundTrip" value="2" id="return" onchange="change()"> 
       Passengers <input type="number" class="fsize" name="numOfPassengers" onkeyup='saveValue(this);' id="passengers" min = "1" max ="6">
       <input type="submit" name="Search">

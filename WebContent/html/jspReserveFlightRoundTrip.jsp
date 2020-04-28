@@ -69,20 +69,20 @@
 		
 		//Get necessary info to create reservation
 		String getFlightInfoQuery = "SELECT departureDate, CASE WHEN DATEDIFF('" + departureDate + "', CURDATE()) <= 3 THEN fares-10 WHEN DATEDIFF('" + departureDate + "', CURDATE()) <= 7 THEN fares-20 WHEN DATEDIFF('" + departureDate + "', CURDATE()) <= 14 THEN fares-40 WHEN DATEDIFF('" + departureDate + "', CURDATE()) <= 21 THEN fares-60 WHEN DATEDIFF('" + departureDate + "', CURDATE()) <= 30 THEN fares-80 END AS fares FROM flight WHERE flightNum IN ('" + departingFlightNum + "', '" + returningFlightNum + "') ORDER BY departureDate ASC;";
+		String numberOfPassengers = session.getAttribute("numberOfPassengers").toString();
 		
 		ResultSet flightResult = stmt.executeQuery(getFlightInfoQuery);
 		flightResult.next();
 		
-		int totalFare = flightResult.getInt("fares") + 20;
+		int totalFare = (flightResult.getInt("fares") * Integer.parseInt(numberOfPassengers)) + 20;
 		System.out.println("totalFare1: " + totalFare);
 		Date travelDate = flightResult.getDate("departureDate");
 		
 		flightResult.next();
 		
-		totalFare += flightResult.getInt("fares") + 20;
+		totalFare += (flightResult.getInt("fares") * Integer.parseInt(numberOfPassengers)) + 20;
 		System.out.println("totalFare2: " + totalFare);
 		
-		String numberOfPassengers = session.getAttribute("numberOfPassengers").toString();
 		String reservationType = session.getAttribute("round-trip").toString();
 		boolean internationalFlight = false;
 		

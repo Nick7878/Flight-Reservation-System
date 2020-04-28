@@ -74,7 +74,7 @@
 				<td><%=result.getString("airlineName") %></td>
 				<td><%=result.getString("airportFrom") %></td>
 				<td><%=result.getString("airportTo") %></td>
-				<td><%=result.getInt("fares") %></td>
+				<td>$<%=result.getInt("fares") %></td>
 				<td><%=result.getDate("departureDate") %></td>
 				<td><%=result.getTime("departureTime") %></td>
 				<td><%=result.getDate("arrivalDate") %></td>

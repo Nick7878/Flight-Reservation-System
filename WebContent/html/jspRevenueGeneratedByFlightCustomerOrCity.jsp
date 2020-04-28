@@ -39,8 +39,8 @@
 		System.out.println(request.getParameter("value"));
 		
 		String customerRevenueQuery = "SELECT firstName, lastName, accountNum, SUM(totalFare) AS totalRevenue FROM customer JOIN reservations USING(accountNum) GROUP BY accountNum HAVING accountNum = '" + accountNum + "';";
-		String cityRevenueQuery = "SELECT city AS destinationCity, (((numOfSeats - availableSeats) * fares) + 20) AS totalRevenue FROM flight JOIN airport ON airportTo = airportCode GROUP BY destinationCity HAVING destinationCity = '" + destinationCity + "';";
-		String flightRevenueQuery = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, numOfSeats, fares, departureDate, departureTime, arrivalDate, arrivalTime, (((numOfSeats - availableSeats) * fares) + 20) AS totalRevenue FROM flight JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode WHERE flightNum = '" + flightNum + "';";
+		String cityRevenueQuery = "SELECT city AS destinationCity, SUM(totalFare) AS totalRevenue FROM flight JOIN airport ON airportTo = airportCode JOIN reservationflights USING(flightNum) JOIN reservations USING(reservationCode) GROUP BY destinationCity HAVING destinationCity = '" + destinationCity + "';";
+		String flightRevenueQuery = "SELECT flightNum, airlineName, a1.airportName AS airportTo, a2.airportName AS airportFrom, numOfSeats, departureDate, departureTime, arrivalDate, arrivalTime, SUM((fares * passengers) + 20) AS totalRevenue FROM flight JOIN airline ON flight.airline = airline.airlineCode JOIN airport a1 ON flight.airportTo = a1.airportCode JOIN airport a2 ON flight.airportFrom = a2.airportCode JOIN reservationflights USING(flightNum) JOIN reservations USING(reservationCode) WHERE flightNum = '" + flightNum + "';";
 		//Run the query against the database.
 		ResultSet customerRevenueResult = customerRevenueStatement.executeQuery(customerRevenueQuery);
 		ResultSet cityRevenueResult = cityRevenueStatement.executeQuery(cityRevenueQuery);
@@ -54,8 +54,7 @@
 				<th>Airline</th>
 				<th>From Airport</th>
 				<th>To Airport</th>
-				<th>Fare</th>
-				<th>Stops</th>
+				<th># of Seats</th>
 				<th>Departure Date</th>
 				<th>Departure Time</th>
 				<th>Arrival Date</th>
@@ -72,7 +71,6 @@
 					<td><%=flightRevenueResult.getString("airportFrom") %></td>
 					<td><%=flightRevenueResult.getString("airportTo") %></td>
 					<td><%=flightRevenueResult.getInt("numOfSeats") %></td>
-					<td>$<%=flightRevenueResult.getInt("fares") %></td>
 					<td><%=flightRevenueResult.getDate("departureDate") %></td>
 					<td><%=flightRevenueResult.getTime("departureTime") %></td>
 					<td><%=flightRevenueResult.getDate("arrivalDate") %></td>

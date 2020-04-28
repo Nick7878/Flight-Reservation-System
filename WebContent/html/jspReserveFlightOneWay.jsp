@@ -70,9 +70,9 @@
 		ResultSet flightResult = stmt.executeQuery(getFlightInfoQuery);
 		flightResult.next();
 		
-		int totalFare = flightResult.getInt("fares") + 20;
-		Date travelDate = flightResult.getDate("departureDate");
 		String numberOfPassengers = session.getAttribute("numberOfPassengers").toString();
+		int totalFare = (flightResult.getInt("fares") * Integer.parseInt(numberOfPassengers)) + 20;
+		Date travelDate = flightResult.getDate("departureDate");
 		String reservationType = session.getAttribute("round-trip").toString();
 		boolean internationalFlight = false;
 		
