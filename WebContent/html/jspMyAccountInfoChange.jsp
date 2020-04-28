@@ -52,7 +52,7 @@
 		Statement stmt = con.createStatement();
 		//Get the combobox from the HelloWorld.jsp
 		
-		String changeCustomerInfoQuery = " UPDATE customer SET lastName= ' "+ lastName +" ', firstName = '"+ firstName +" ', address = '"+ address +" ', city = '"+ city +" ', state = '"+ state +" ', zipCode = '"+ zipCode +" ', telephone = '"+ telephone +" ', creditCardNum = '"+ creditCardNum +" ' WHERE accountNum = '" + accountNum + "';";
+		String changeCustomerInfoQuery = " UPDATE customer SET lastName= '"+ lastName +"', firstName = '"+ firstName +"', address = '"+ address +"', city = '"+ city +"', state = '"+ state +"', zipCode = '"+ zipCode +"', telephone = '"+ telephone +"', creditCardNum = '"+ creditCardNum +"' WHERE accountNum = '" + accountNum + "';";
 	
 		// 1. check empty
 		if( firstName.equals("") || lastName.equals("") || address.equals("") || city.equals("") || state.equals("") || zipCode.equals("") || telephone.equals("") || creditCardNum.equals("")){

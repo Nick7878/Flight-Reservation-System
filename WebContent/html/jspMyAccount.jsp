@@ -59,17 +59,17 @@
         <div id="pref">
           <table>
             <th> Change Email/Password </th>
-            <th> </th>
+            
             <tr>
               <td> Email Address </td>
               <td>
-                  <input type="text" id="email" name="email" value="<%=result.getString("email")%>" >
+                  <input type="text" id="email" name="email" value="<%=result.getString("email").trim()%>" >
               </td>
             </tr>
             <tr>
               <td> Password </td>
               <td>
-                <input type="text" id="pass" name="password" value="<%=result.getString("accountPassword")%>">
+                <input type="text" id="pass" name="password" value="<%=result.getString("accountPassword").trim()%>">
               </td>
             </tr>
             <tr>
@@ -89,7 +89,7 @@
         <div id="priv">
           <table>
             <th> Change Personal Info </th>
-            <th> </th>
+            
             <tr>
               <td>First Name</td>
               <td>
