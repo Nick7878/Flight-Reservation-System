@@ -41,7 +41,7 @@
 		<h1 style="text-align: center">On-Time/Delayed Flights</h1>
 		<table style="border: 1px solid black;">
 			<tr>
-			<th>Flight Number</th>
+			<th>Flight #</th>
 			<th>Airline</th>
 			<th>From Airport</th>
 			<th>To Airport</th>

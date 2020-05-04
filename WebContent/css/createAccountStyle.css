@@ -1,6 +1,7 @@
 body
 {
     background-image: url('../images/background.png');
+    background-attachment: fixed;
 }
 .signupform 
 {

@@ -96,7 +96,7 @@ table {
     margin-left:auto; 
     margin-right:auto;
     margin-top: 100px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
   }
   
   th {
@@ -112,6 +112,7 @@ table {
       border: 1px solid #000000;
   }
 
+
   input[type="submit"] {
     position:absolute;
     width: 25%;
@@ -121,7 +122,6 @@ table {
     margin-left: auto;
     margin-right: auto;
     text-align: bottom;
-    bottom: 200px;
     border: none;
     border-radius: 4px;
     cursor: pointer;

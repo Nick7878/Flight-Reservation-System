@@ -32,7 +32,7 @@
 		//Get the combobox from the HelloWorld.jsp
 		System.out.println(request.getParameter("value"));
 		
-		String str = "SELECT MAX(TR.totalRevenue) AS totalRev, accountNum, firstName, lastName, email FROM (SELECT accountNum, SUM(totalFare) AS totalRevenue, customer.firstName, customer.lastName, accounts.email FROM reservations JOIN customer USING(accountNum) JOIN accounts USING(accountNum) GROUP BY accountNum) AS TR;";
+		String str = "SELECT accountNum, SUM(totalFare) AS totalRev, customer.firstName AS firstName, customer.lastName AS lastName, accounts.email AS email FROM reservations JOIN customer USING(accountNum) JOIN accounts USING(accountNum) Group by accountNum ORDER BY totalRev DESC LIMIT 1;";
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		

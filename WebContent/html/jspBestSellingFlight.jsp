@@ -82,7 +82,7 @@
 				<td><%=result.getInt("availableSeats") %></td>
 				<td><%=result.getInt("seatsTaken") %></td>
 				<td><%=result.getInt("numOfSeats") %></td>
-				<td><%=result.getDouble("percentOfSeatsTaken") %></td>
+				<td><%=result.getDouble("percentOfSeatsTaken") %>%</td>
 				
 				<!-- Add a total revenue field from every flight -->
 			</tr>

@@ -48,7 +48,7 @@
 			<th>Departure Time</th>
 			<th>Arrival Date</th>
 			<th>Arrival Time</th>
-			<th>Number of Reservations</th>
+			<th># of Reservations</th>
 			</tr>
 		<%
 		

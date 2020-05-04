@@ -116,7 +116,7 @@ table, th, td {
             <tbody>
 	<%
 	
-		String str2 = "SELECT r.reservationCode, CASE WHEN internationalFlight = 1 THEN 'International' ELSE 'Domestic' END AS internationalFlight, f.departureDate, r.passengers, CASE WHEN reservationType = 1 THEN 'One Way' WHEN reservationType = 2 THEN 'Round Trip' ELSE 'Invalid ReservationType' END AS reservationType, r.totalFare FROM flight f,reservationFlights rf ,reservations r WHERE f.flightNum = rf.flightNum AND r.reservationCode = rf.reservationCode AND f.departureDate <= CURDATE() AND r.accountNum = "  + accountNumFromCookie + " GROUP BY r.reservationCode";
+		String str2 = "SELECT r.reservationCode, CASE WHEN internationalFlight = 1 THEN 'International' ELSE 'Domestic' END AS internationalFlight, f.departureDate, r.passengers, CASE WHEN reservationType = 1 THEN 'One Way' WHEN reservationType = 2 THEN 'Round Trip' ELSE 'Invalid ReservationType' END AS reservationType, r.totalFare FROM flight f,reservationFlights rf ,reservations r WHERE f.flightNum = rf.flightNum AND r.reservationCode = rf.reservationCode AND f.departureDate < CURDATE() AND r.accountNum = "  + accountNumFromCookie + " GROUP BY r.reservationCode";
 		//Run the query against the database.
 		ResultSet result2 = stmt.executeQuery(str2);
 		

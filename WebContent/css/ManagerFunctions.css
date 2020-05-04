@@ -1,6 +1,7 @@
 /* Use for general images  image  */
 body {
     background-image: url('../images/background.png');
+    background-attachment: fixed;
 }
 
 form {
